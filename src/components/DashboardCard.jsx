@@ -1,17 +1,18 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { COLOR_WHITE } from "../screens/utils/colors";
 
 const DashboardCard = () => {
   return (
     <View style={styles.cardStyle}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text style={{ color: "white" }}>0</Text>
-        <Text style={{ color: "white" }}>Person</Text>
+        <Text style={{ color: COLOR_WHITE }}>0</Text>
+        <Text style={{ color: COLOR_WHITE }}>Person</Text>
       </View>
       <View
-        style={{ height: 2, marginVertical: 10, backgroundColor: "white" }}
+        style={{ height: 2, marginVertical: 10, backgroundColor: COLOR_WHITE }}
       ></View>
-      <Text style={{ color: "white" }}>Today's Income</Text>
+      <Text style={{ color: COLOR_WHITE }}>Today's Income</Text>
     </View>
   );
 };

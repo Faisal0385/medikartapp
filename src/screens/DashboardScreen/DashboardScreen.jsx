@@ -4,6 +4,7 @@ import Search from "../../components/Search";
 import HeadingTitle from "../../components/HeadingTitle";
 import SubHeadingTitle from "../../components/SubHeadingTitle";
 import DashboardCard from "../../components/DashboardCard";
+import { COLOR_BLACK } from "../utils/colors";
 
 const DashboardScreen = () => {
   return (
@@ -35,6 +36,17 @@ const DashboardScreen = () => {
             style={{ height: 2, marginVertical: 10, backgroundColor: "white" }}
           ></View>
           <Text style={{ color: "white" }}>Today's Patient</Text>
+        </View>
+
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <View
+            style={{
+              height: 2,
+              width: "30%",
+              marginVertical: 10,
+              backgroundColor: COLOR_BLACK,
+            }}
+          ></View>
         </View>
 
         <SubHeadingTitle title="Categories" />
