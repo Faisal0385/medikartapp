@@ -12,6 +12,7 @@ const Search = () => {
     <View style={styles.searchStyle}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <TextInput
+          placeholderTextColor="white"
           style={styles.searchInputStyle}
           placeholder="Search Here..."
         />
