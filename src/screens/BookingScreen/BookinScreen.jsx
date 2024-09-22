@@ -19,13 +19,6 @@ const BookinScreen = () => {
       <View style={{ alignItems: "center" }}>
         <HeadingTitle title="Book Appointment" />
       </View>
-      {/* <View style={{ alignItems: "center" }}>
-        <Image
-          source={require("../../../assets/qrcode.png")}
-          style={{ height: 100, width: 100 }}
-        />
-      </View> */}
-
       <ScrollView>
         <View style={[styles.card, styles.shadowProp]}>
           <View style={{ padding: 10 }}>
