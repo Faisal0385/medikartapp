@@ -74,8 +74,8 @@ const PatientInfoScreen = () => {
             <TextInput style={styles.input} placeholder="Patient Weight (Kg)" />
             <Text style={{ fontWeight: "700" }}>Blood Group</Text>
             <TextInput style={styles.input} placeholder="Blood Group" />
-            <Text style={{ fontWeight: "700" }}>Fee (BDT)</Text>
-            <TextInput style={styles.input} placeholder="Fee (BDT)" />
+            {/* <Text style={{ fontWeight: "700" }}>Fee (BDT)</Text>
+            <TextInput style={styles.input} placeholder="Fee (BDT)" /> */}
 
             <TouchableOpacity style={styles.button}>
               <Text style={{ color: COLOR_WHITE }}>Submit</Text>
