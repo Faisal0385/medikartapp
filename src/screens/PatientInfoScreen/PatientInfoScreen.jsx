@@ -76,11 +76,6 @@ const PatientInfoScreen = () => {
             <TextInput style={styles.input} placeholder="Blood Group" />
             <Text style={{ fontWeight: "700" }}>Fee (BDT)</Text>
             <TextInput style={styles.input} placeholder="Fee (BDT)" />
-            <Text style={{ fontWeight: "700" }}>Discount Price (BDT)</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Discount Price (BDT)"
-            />
 
             <TouchableOpacity style={styles.button}>
               <Text style={{ color: COLOR_WHITE }}>Submit</Text>
@@ -107,6 +102,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
+    borderColor: "#eae8e8",
   },
   card: {
     backgroundColor: "white",
