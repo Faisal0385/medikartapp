@@ -1,6 +1,6 @@
-import BookinScreen from "./src/screens/BookingScreen/BookinScreen";
+import AppointmentScreen from "./src/screens/AppointmentScreen/AppointmentScreen";
 import DashboardScreen from "./src/screens/DashboardScreen/DashboardScreen";
-import PatientInfoScreen from "./src/screens/PatientInfoScreen/PatientInfoScreen";
+import BookinScreen from "./src/screens/BookingScreen/BookinScreen";
 
 export default function App() {
   return <BookinScreen />;

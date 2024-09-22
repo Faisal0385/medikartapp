@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { COLOR_WHITE } from "../screens/utils/colors";
+import { COLOR_WHITE } from "../utils/colors";
 
 const Search = () => {
   return (

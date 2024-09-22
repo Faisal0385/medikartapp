@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
-import { COLOR_WHITE } from "../utils/colors";
+import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
 
 const PatientInfoScreen = () => {
   return (
@@ -74,8 +74,6 @@ const PatientInfoScreen = () => {
             <TextInput style={styles.input} placeholder="Patient Weight (Kg)" />
             <Text style={{ fontWeight: "700" }}>Blood Group</Text>
             <TextInput style={styles.input} placeholder="Blood Group" />
-            {/* <Text style={{ fontWeight: "700" }}>Fee (BDT)</Text>
-            <TextInput style={styles.input} placeholder="Fee (BDT)" /> */}
 
             <TouchableOpacity style={styles.button}>
               <Text style={{ color: COLOR_WHITE }}>Submit</Text>

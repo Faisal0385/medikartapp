@@ -1,4 +1,5 @@
 import {
+  Image,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -10,14 +11,20 @@ import {
 } from "react-native";
 import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
-import { COLOR_WHITE, COLOR_BLACK } from "../utils/colors";
+import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
 
 const BookinScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center" }}>
-        <HeadingTitle title="Patient Booking" />
+        <HeadingTitle title="Book Appointment" />
       </View>
+      {/* <View style={{ alignItems: "center" }}>
+        <Image
+          source={require("../../../assets/qrcode.png")}
+          style={{ height: 100, width: 100 }}
+        />
+      </View> */}
 
       <ScrollView>
         <View style={[styles.card, styles.shadowProp]}>

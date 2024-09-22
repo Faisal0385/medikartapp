@@ -4,7 +4,7 @@ import Search from "../../components/Search";
 import HeadingTitle from "../../components/HeadingTitle";
 import SubHeadingTitle from "../../components/SubHeadingTitle";
 import DashboardCard from "../../components/DashboardCard";
-import { COLOR_BLACK } from "../utils/colors";
+import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
 
 const DashboardScreen = () => {
   return (
