@@ -6,5 +6,5 @@ import ReceiptScreen from "./src/screens/ReceiptScreen/ReceiptScreen";
 import PatientListScreen from "./src/screens/PatientListScreen/PatientListScreen";
 
 export default function App() {
-  return <DashboardScreen />;
+  return <ReceiptScreen />;
 }
