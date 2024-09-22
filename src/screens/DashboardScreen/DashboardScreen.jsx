@@ -14,7 +14,7 @@ const DashboardScreen = () => {
         <HeadingTitle title="Dashboard" />
 
         {/* Search Component */}
-        <Search />
+        {/* <Search /> */}
 
         <DashboardCard />
 
