@@ -43,7 +43,7 @@ const ReceiptScreen = () => {
                 ZYONA LEASER
               </Text>
             </Text>
-            <View style={{ alignItems: "center", marginTop:10 }}>
+            <View style={{ alignItems: "center", marginTop: 10 }}>
               <Text>Contact: 0161544212</Text>
               <Text>
                 Address: জব্বার মার্কেট ২য় তলা, উপজেলা সদর বোয়ালখালী চট্টগ্রাম।
@@ -63,11 +63,13 @@ const ReceiptScreen = () => {
             <Text
               style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
             >
-              <Text style={{ fontWeight: "700" }}>Payment Status: </Text>{" "}
+              <Text style={{ fontWeight: "700" }}>Payment Status: </Text>
               <Text style={{ color: "green", fontSize: 16, fontWeight: "700" }}>
-                Paid{" "}
+                Paid
               </Text>
-              <Text style={{ fontWeight: "700" }}> Time: </Text> 7:30 PM
+              <Text>{"          "}</Text>
+              <Text style={{ fontWeight: "700" }}> Date</Text> 12-12-24 :: 7:30
+              PM
             </Text>
 
             <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -126,6 +128,12 @@ const ReceiptScreen = () => {
             >
               <Text style={{ color: COLOR_WHITE }}>Print Receipt</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.skipButton}
+              onPress={goToThankYouScreen}
+            >
+              <Text style={{ color: COLOR_WHITE }}>Skip</Text>
+            </TouchableOpacity>
             <Text
               style={{ textAlign: "center", fontStyle: "italic", fontSize: 12 }}
             >
@@ -163,5 +171,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginVertical: 20,
+  },
+  skipButton: {
+    alignItems: "center",
+    backgroundColor: "#FA4D24",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom:10
   },
 });

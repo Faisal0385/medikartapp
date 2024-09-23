@@ -64,34 +64,6 @@ const DashboardScreen = () => {
             }}
           ></View>
         </View>
-
-        <SubHeadingTitle title="Categories" />
-
-        <View
-          style={{
-            flexDirection: "row",
-            marginVertical: 30,
-          }}
-        >
-          <TouchableOpacity
-            style={styles.button}
-            onPress={goToPatientInfoScreen}
-          >
-            <Text style={{ color: "white" }}>Add Patient</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={goToPatientListScreen}
-          >
-            <Text style={{ color: "white" }}>Patient List</Text>
-          </TouchableOpacity>
-          {/* <TouchableOpacity
-            style={styles.button}
-            onPress={goToPatientHistoryScreen}
-          >
-            <Text style={{ color: "white" }}>Previous Patient</Text>
-          </TouchableOpacity> */}
-        </View>
       </SafeAreaView>
     </View>
   );
@@ -104,12 +76,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F4F4F4",
     paddingHorizontal: 20,
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#17B48C",
-    padding: 15,
-    borderRadius: 5,
-    margin:2
   },
 });
