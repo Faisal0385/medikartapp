@@ -35,7 +35,7 @@ const ReceiptScreen = () => {
         <View style={[styles.card, styles.shadowProp]}>
           <View style={{ padding: 10 }}>
             <Text
-              style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
+              style={{ backgroundColor: "#eae8e8", padding: 5, marginTop: 10 }}
             >
               <Text
                 style={{ fontWeight: "700", fontSize: 20, textAlign: "center" }}
@@ -43,7 +43,7 @@ const ReceiptScreen = () => {
                 ZYONA LEASER
               </Text>
             </Text>
-            <View style={{ alignItems: "center" }}>
+            <View style={{ alignItems: "center", marginTop:10 }}>
               <Text>Contact: 0161544212</Text>
               <Text>
                 Address: জব্বার মার্কেট ২য় তলা, উপজেলা সদর বোয়ালখালী চট্টগ্রাম।
@@ -54,7 +54,7 @@ const ReceiptScreen = () => {
               <View
                 style={{
                   height: 2,
-                  width: "100%",
+                  width: "30%",
                   marginVertical: 10,
                   backgroundColor: COLOR_BLACK,
                 }}
@@ -63,8 +63,10 @@ const ReceiptScreen = () => {
             <Text
               style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
             >
-              <Text style={{ fontWeight: "700" }}>Payment Status: </Text> Paid
-              ||
+              <Text style={{ fontWeight: "700" }}>Payment Status: </Text>{" "}
+              <Text style={{ color: "green", fontSize: 16, fontWeight: "700" }}>
+                Paid{" "}
+              </Text>
               <Text style={{ fontWeight: "700" }}> Time: </Text> 7:30 PM
             </Text>
 

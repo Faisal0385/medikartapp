@@ -10,9 +10,7 @@ const PatientListScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Heading Title Component */}
-      <View style={{ alignItems: "center" }}>
-        <HeadingTitle title="Patient List" />
-      </View>
+      <HeadingTitle title="Max Hospital" />
 
       {/* Search Component */}
       <Search />

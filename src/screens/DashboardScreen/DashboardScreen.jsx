@@ -23,7 +23,7 @@ const DashboardScreen = () => {
     <View style={styles.container}>
       <SafeAreaView>
         {/* Heading Title Component */}
-        <HeadingTitle title="Dashboard" />
+        <HeadingTitle title="Welcome, Faisal" />
 
         {/* Search Component */}
         {/* <Search /> */}
@@ -80,10 +80,10 @@ const DashboardScreen = () => {
             style={styles.button}
             onPress={goToPatientListScreen}
           >
-            <Text>Patient List</Text>
+            <Text style={{ color: "white" }}>Patient List</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <Text>Add Patient</Text>
+            <Text style={{ color: "white" }}>Patient History</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
