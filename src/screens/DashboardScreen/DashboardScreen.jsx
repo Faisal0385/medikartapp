@@ -19,6 +19,10 @@ const DashboardScreen = () => {
     navigation.navigate("Patient List");
   };
 
+  const goToPatientHistoryScreen = () => {
+    navigation.navigate("Patient History");
+  };
+
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -82,8 +86,11 @@ const DashboardScreen = () => {
           >
             <Text style={{ color: "white" }}>Patient List</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Text style={{ color: "white" }}>Patient History</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={goToPatientHistoryScreen}
+          >
+            <Text style={{ color: "white" }}>Previous Patient</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -102,7 +109,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     backgroundColor: "#17B48C",
-    padding: 20,
+    padding: 15,
     borderRadius: 5,
   },
 });

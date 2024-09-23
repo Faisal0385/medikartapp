@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import ReceiptScreen from "../screens/ReceiptScreen/ReceiptScreen";
 import PatientListScreen from "../screens/PatientListScreen/PatientListScreen";
 import ThankYouScreen from "../screens/ThankYouScreen/ThankYouScreen";
+import PatientHistory from "../screens/PatientHistory/PatientHistory";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ function MainNavigator() {
         <Stack.Screen name="Receipt" component={ReceiptScreen} />
         <Stack.Screen name="Patient List" component={PatientListScreen} />
         <Stack.Screen name="Thanks" component={ThankYouScreen} />
+        <Stack.Screen name="Patient History" component={PatientHistory} />
       </Stack.Navigator>
     </NavigationContainer>
   );
