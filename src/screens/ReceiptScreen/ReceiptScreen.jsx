@@ -1,19 +1,24 @@
 import {
   Image,
-  Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const ReceiptScreen = () => {
+  const navigation = useNavigation();
+
+  const goToThankYouScreen = () => {
+    navigation.navigate("Thanks");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -113,7 +118,10 @@ const ReceiptScreen = () => {
               <Text style={{ fontWeight: "700" }}>Fee (BDT): </Text> 700
             </Text>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={goToThankYouScreen}
+            >
               <Text style={{ color: COLOR_WHITE }}>Print Receipt</Text>
             </TouchableOpacity>
             <Text

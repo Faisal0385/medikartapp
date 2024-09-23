@@ -6,6 +6,7 @@ import BookingScreen from "../screens/BookingScreen/BookingScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import ReceiptScreen from "../screens/ReceiptScreen/ReceiptScreen";
 import PatientListScreen from "../screens/PatientListScreen/PatientListScreen";
+import ThankYouScreen from "../screens/ThankYouScreen/ThankYouScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ function MainNavigator() {
         <Stack.Screen name="Booking" component={BookingScreen} />
         <Stack.Screen name="Receipt" component={ReceiptScreen} />
         <Stack.Screen name="Patient List" component={PatientListScreen} />
+        <Stack.Screen name="Thanks" component={ThankYouScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
