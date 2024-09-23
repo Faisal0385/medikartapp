@@ -10,8 +10,16 @@ import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
 import Search from "../../components/Search";
+import { useNavigation } from "@react-navigation/native";
 
 const AppointmentScreen = () => {
+
+  const navigation = useNavigation();
+
+  const goToBookingScreen = () => {
+    navigation.navigate("Booking");
+  };
+
   return (
     <SafeAreaView>
       <View style={{ alignItems: "center" }}>
@@ -57,7 +65,7 @@ const AppointmentScreen = () => {
             </Text>
 
             <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button} onPress={goToBookingScreen}>
                 <Text style={{ color: COLOR_WHITE }}>Appointment</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}>

@@ -12,8 +12,15 @@ import {
 import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
+import { useNavigation } from "@react-navigation/native";
 
-const BookinScreen = () => {
+const BookingScreen = () => {
+  const navigation = useNavigation();
+
+  const goToReceiptScreen = () => {
+    navigation.navigate("Receipt");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -170,7 +177,7 @@ const BookinScreen = () => {
             <Text style={{ fontWeight: "700" }}>Fee (BDT)</Text>
             <TextInput style={styles.input} placeholder="Fee (BDT)" />
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={goToReceiptScreen}>
               <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
@@ -183,7 +190,7 @@ const BookinScreen = () => {
   );
 };
 
-export default BookinScreen;
+export default BookingScreen;
 
 const styles = StyleSheet.create({
   container: {

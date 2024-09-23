@@ -11,8 +11,15 @@ import {
 import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const PatientInfoScreen = () => {
+  const navigation = useNavigation();
+
+  const goToAppointmentScreen = () => {
+    navigation.navigate("Appointment");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center" }}>
@@ -75,7 +82,10 @@ const PatientInfoScreen = () => {
             <Text style={{ fontWeight: "700" }}>Blood Group</Text>
             <TextInput style={styles.input} placeholder="Blood Group" />
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={goToAppointmentScreen}
+            >
               <Text style={{ color: COLOR_WHITE }}>Submit</Text>
             </TouchableOpacity>
           </View>

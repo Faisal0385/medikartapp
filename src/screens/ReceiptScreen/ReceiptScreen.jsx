@@ -17,12 +17,12 @@ const ReceiptScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center" }}>
-        <HeadingTitle title="Receipt" />
+        <HeadingTitle title="Payment Receipt" />
       </View>
-      <View style={{ alignItems: "center", marginTop: 50 }}>
+      <View style={{ alignItems: "center", marginTop: 5 }}>
         <Image
           source={require("../../../assets/qrcode.png")}
-          style={{ height: 100, width: 100 }}
+          style={{ height: 80, width: 80 }}
         />
       </View>
 
@@ -38,6 +38,13 @@ const ReceiptScreen = () => {
                 ZYONA LEASER
               </Text>
             </Text>
+            <View style={{ alignItems: "center" }}>
+              <Text>Contact: 0161544212</Text>
+              <Text>
+                Address: জব্বার মার্কেট ২য় তলা, উপজেলা সদর বোয়ালখালী চট্টগ্রাম।
+                , Boalkhali, Bangladesh
+              </Text>
+            </View>
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <View
                 style={{
