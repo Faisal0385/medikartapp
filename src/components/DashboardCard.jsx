@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { COLOR_WHITE } from "../utils/colors";
 
@@ -10,7 +10,11 @@ const DashboardCard = () => {
         <Text style={{ color: COLOR_WHITE }}>Person</Text>
       </View>
       <View
-        style={{ height: 2, marginVertical: 10, backgroundColor: COLOR_WHITE }}
+        style={{
+          height: 2,
+          marginVertical: 10,
+          backgroundColor: COLOR_WHITE,
+        }}
       ></View>
       <Text style={{ color: COLOR_WHITE }}>Today's Income</Text>
     </View>
