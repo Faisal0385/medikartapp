@@ -13,9 +13,10 @@ import { COLOR_WHITE } from "../../utils/colors";
 const PatientHistory = () => {
   return (
     <SafeAreaView style={styles.container}>
-
       {/* Search Component */}
-      <Search />
+      <View style={{ paddingHorizontal: 10 }}>
+        <Search />
+      </View>
 
       <ScrollView>
         <View style={[styles.card, styles.shadowProp]}>

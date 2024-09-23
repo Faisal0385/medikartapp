@@ -10,7 +10,7 @@ const PatientListScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Heading Title Component */}
-      <HeadingTitle title="Max Hospital" />
+      <HeadingTitle title="Zyona Laser" />
 
       {/* Search Component */}
       <Search />

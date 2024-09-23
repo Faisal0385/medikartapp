@@ -30,7 +30,7 @@ const DashboardScreen = () => {
         <HeadingTitle title="Welcome, Faisal" />
 
         {/* Search Component */}
-        {/* <Search /> */}
+        <Search goto={goToPatientHistoryScreen} />
 
         <DashboardCard />
 
@@ -70,7 +70,6 @@ const DashboardScreen = () => {
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "space-between",
             marginVertical: 30,
           }}
         >
@@ -86,12 +85,12 @@ const DashboardScreen = () => {
           >
             <Text style={{ color: "white" }}>Patient List</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.button}
             onPress={goToPatientHistoryScreen}
           >
             <Text style={{ color: "white" }}>Previous Patient</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </SafeAreaView>
     </View>
@@ -111,5 +110,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#17B48C",
     padding: 15,
     borderRadius: 5,
+    margin:2
   },
 });

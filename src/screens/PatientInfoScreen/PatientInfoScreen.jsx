@@ -43,40 +43,43 @@ const PatientInfoScreen = () => {
             >
               <Pressable
                 style={{
+                  flex:1,
                   backgroundColor: "teal",
                   padding: 10,
                   borderRadius: 10,
                   margin: 5,
                 }}
               >
-                <Text style={{ color: "white" }}>Male</Text>
+                <Text style={{ color: "white", textAlign:"center" }}>Male</Text>
               </Pressable>
               <Pressable
                 style={{
+                  flex:1,
                   backgroundColor: "teal",
                   padding: 10,
                   borderRadius: 10,
                   margin: 5,
                 }}
               >
-                <Text style={{ color: "white" }}>Female</Text>
+                <Text style={{ color: "white", textAlign:"center" }}>Female</Text>
               </Pressable>
               <Pressable
                 style={{
+                  flex:1,
                   backgroundColor: "teal",
                   padding: 10,
                   borderRadius: 10,
                   margin: 5,
                 }}
               >
-                <Text style={{ color: "white" }}>Others</Text>
+                <Text style={{ color: "white", textAlign:"center" }}>Others</Text>
               </Pressable>
             </View>
 
-            <Text style={{ fontWeight: "700" }}>Age</Text>
-            <TextInput style={styles.input} placeholder="Age" />
             <Text style={{ fontWeight: "700" }}>Phone</Text>
             <TextInput style={styles.input} placeholder="Phone" />
+            <Text style={{ fontWeight: "700" }}>Age</Text>
+            <TextInput style={styles.input} placeholder="Age" />
             <Text style={{ fontWeight: "700" }}>Patient Weight (Kg)</Text>
             <TextInput style={styles.input} placeholder="Patient Weight (Kg)" />
             <Text style={{ fontWeight: "700" }}>Blood Group</Text>

@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { COLOR_WHITE } from "../utils/colors";
 
-const Search = () => {
+const Search = ({goto}) => {
   return (
     <View style={styles.searchStyle}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -17,7 +17,7 @@ const Search = () => {
           style={styles.searchInputStyle}
           placeholder="Search Here..."
         />
-        <TouchableOpacity style={styles.searchBtn}>
+        <TouchableOpacity style={styles.searchBtn} onPress={goto}>
           <Text style={{ color: COLOR_WHITE }}>Search</Text>
         </TouchableOpacity>
       </View>
