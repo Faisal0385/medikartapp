@@ -8,12 +8,11 @@ import {
 } from "react-native";
 import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
-import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
+import { COLOR_WHITE } from "../../utils/colors";
 import Search from "../../components/Search";
 import { useNavigation } from "@react-navigation/native";
 
 const AppointmentScreen = () => {
-
   const navigation = useNavigation();
 
   const goToBookingScreen = () => {
@@ -21,17 +20,17 @@ const AppointmentScreen = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center" }}>
         <HeadingTitle title="Appointment List" />
       </View>
 
+      {/* Search Component */}
+      <View style={{ margin: 10 }}>
+        <Search />
+      </View>
+
       <ScrollView>
-        {/* Search Component */}
-        <View style={{ margin: 10 }}>
-          <Search />
-        </View>
-        
         <View style={[styles.card, styles.shadowProp]}>
           <View style={{ padding: 10 }}>
             <Text
@@ -65,7 +64,10 @@ const AppointmentScreen = () => {
             </Text>
 
             <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={styles.button} onPress={goToBookingScreen}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={goToBookingScreen}
+              >
                 <Text style={{ color: COLOR_WHITE }}>Appointment</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}>
@@ -74,7 +76,6 @@ const AppointmentScreen = () => {
             </View>
           </View>
         </View>
-
         <View style={[styles.card, styles.shadowProp]}>
           <View style={{ padding: 10 }}>
             <Text

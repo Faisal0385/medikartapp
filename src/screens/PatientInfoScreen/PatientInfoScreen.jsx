@@ -22,7 +22,7 @@ const PatientInfoScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: "center", marginVertical: 15 }}>
         <HeadingTitle title="Add Patient Info" />
       </View>
       <ScrollView>

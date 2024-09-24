@@ -9,8 +9,16 @@ import {
 import Search from "../../components/Search";
 import React from "react";
 import { COLOR_WHITE } from "../../utils/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const PatientHistory = () => {
+
+  const navigation = useNavigation();
+
+  const goToBookingScreen = () => {
+    navigation.navigate("Patient Info");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Search Component */}
@@ -52,7 +60,7 @@ const PatientHistory = () => {
             </Text>
 
             <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button} onPress={goToBookingScreen}>
                 <Text style={{ color: COLOR_WHITE }}>Re-Appointment</Text>
               </TouchableOpacity>
             </View>
