@@ -180,9 +180,9 @@ const BookingScreen = () => {
             <TouchableOpacity style={styles.button} onPress={goToReceiptScreen}>
               <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            {/* <TouchableOpacity style={styles.button}>
               <Text style={{ color: COLOR_WHITE }}>Edit Patient Info</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </ScrollView>

@@ -28,7 +28,13 @@ function MainNavigator() {
         component={BottomNavBar}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Booking" component={BookingScreen} />
+      <Stack.Screen
+        name="Booking"
+        component={BookingScreen}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
       <Stack.Screen
         name="Receipt"
         component={ReceiptScreen}
@@ -39,8 +45,20 @@ function MainNavigator() {
         component={ThankYouScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Patient List" component={PatientListScreen} />
-      <Stack.Screen name="Patient History" component={PatientHistory} />
+      <Stack.Screen
+        name="Patient List"
+        component={PatientListScreen}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="Patient History"
+        component={PatientHistory}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }
