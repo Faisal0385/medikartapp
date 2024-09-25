@@ -1,13 +1,14 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { COLOR_WHITE } from "../utils/colors";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const DashboardCard = () => {
   return (
     <View style={styles.cardStyle}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ color: COLOR_WHITE }}>0</Text>
-        <Text style={{ color: COLOR_WHITE }}>Person</Text>
+        <Text style={{ color: COLOR_WHITE }}> <FontAwesomeIcon name="dollar" size={16} /></Text>
       </View>
       <View
         style={{
