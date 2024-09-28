@@ -29,28 +29,6 @@ const BookingScreen = () => {
       <ScrollView>
         <View style={[styles.card, styles.shadowProp]}>
           <View style={{ padding: 10 }}>
-            <Text style={{ fontWeight: "700" }}>Serial No.</Text>
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginTop: 10,
-              }}
-            >
-              32
-            </Text>
-
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
-                style={{
-                  height: 2,
-                  width: "100%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
-                }}
-              ></View>
-            </View>
-
             <Text style={{ fontWeight: "700" }}>Full Name</Text>
             <Text
               style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
@@ -75,7 +53,7 @@ const BookingScreen = () => {
               }}
             >
               <View style={{ marginRight: 10, flex: 1 }}>
-                <Text style={{ fontWeight: "700" }}>Age</Text>
+                <Text style={{ fontWeight: "700" }}>Blood Group</Text>
                 <Text
                   style={{
                     backgroundColor: "#eae8e8",
@@ -83,7 +61,7 @@ const BookingScreen = () => {
                     marginTop: 10,
                   }}
                 >
-                  28 Y 6 M
+                  AB+
                 </Text>
               </View>
 
@@ -129,53 +107,16 @@ const BookingScreen = () => {
                 }}
               ></View>
             </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                marginVertical: 10,
-              }}
-            >
-              <View style={{ marginRight: 10, flex: 1 }}>
-                <Text style={{ fontWeight: "700" }}>Patient Weight (Kg)</Text>
-                <Text
-                  style={{
-                    backgroundColor: "#eae8e8",
-                    padding: 10,
-                    marginTop: 10,
-                  }}
-                >
-                  60
-                </Text>
-              </View>
-
-              <View style={{ marginRight: 10, flex: 1 }}>
-                <Text style={{ fontWeight: "700" }}>Blood Group</Text>
-                <Text
-                  style={{
-                    backgroundColor: "#eae8e8",
-                    padding: 10,
-                    marginTop: 10,
-                  }}
-                >
-                  AB+
-                </Text>
-              </View>
+            <Text style={{ fontWeight: "700" }}>Serial No.</Text>
+            <TextInput style={styles.input} placeholder="Serial No." />
+            <Text style={{ fontWeight: "700" }}>Age (Y/M/D)</Text>
+            <View style={{ flexDirection: "row" }}>
+              <TextInput style={styles.ageInput} placeholder="Year" />
+              <TextInput style={styles.ageInput} placeholder="Month" />
+              <TextInput style={styles.ageInput} placeholder="Day" />
             </View>
-
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
-                style={{
-                  height: 2,
-                  width: "100%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
-                }}
-              ></View>
-            </View>
-
-            <Text style={{ fontWeight: "700" }}>Fee (BDT)</Text>
-            <TextInput style={styles.input} placeholder="Fee (BDT)" />
+            <Text style={{ fontWeight: "700" }}>Patient Weight (Kg)</Text>
+            <TextInput style={styles.input} placeholder="Patient Weight (Kg)" />
 
             <TouchableOpacity style={styles.button} onPress={goToReceiptScreen}>
               <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>
@@ -205,6 +146,16 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderColor: "#eae8e8",
+  },
+  ageInput: {
+    flex: 1,
+    height: 40,
+    marginVertical: 10,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 5,
+    borderColor: "#eae8e8",
+    margin: 2,
   },
   card: {
     backgroundColor: "white",

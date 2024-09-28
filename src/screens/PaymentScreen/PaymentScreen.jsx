@@ -12,17 +12,17 @@ import { COLOR_WHITE } from "../../utils/colors";
 import Search from "../../components/Search";
 import { useNavigation } from "@react-navigation/native";
 
-const AppointmentScreen = () => {
+const PaymentScreen = () => {
   const navigation = useNavigation();
 
-  const goToBookingScreen = () => {
-    navigation.navigate("Booking");
+  const goToPaymentScreen = () => {
+    navigation.navigate("Receipt");
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center" }}>
-        <HeadingTitle title="Appointment List" />
+        <HeadingTitle title="Payment List" />
       </View>
 
       {/* Search Component */}
@@ -56,12 +56,9 @@ const AppointmentScreen = () => {
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={styles.button}
-                onPress={goToBookingScreen}
+                onPress={goToPaymentScreen}
               >
-                <Text style={{ color: COLOR_WHITE }}>Appointment</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{ color: COLOR_WHITE }}>Edit Patient Info</Text>
+                <Text style={{ color: COLOR_WHITE }}>Payment</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -89,43 +86,11 @@ const AppointmentScreen = () => {
             </Text>
 
             <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{ color: COLOR_WHITE }}>Appointment</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{ color: COLOR_WHITE }}>Edit Patient Info</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.card, styles.shadowProp]}>
-          <View style={{ padding: 10 }}>
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Name: </Text> Jon Doe
-            </Text>
-
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Phone: </Text>01325234556
-            </Text>
-
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{ color: COLOR_WHITE }}>Appointment</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{ color: COLOR_WHITE }}>Edit Patient Info</Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={goToPaymentScreen}
+              >
+                <Text style={{ color: COLOR_WHITE }}>Payment</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -153,21 +118,54 @@ const AppointmentScreen = () => {
             </Text>
 
             <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{ color: COLOR_WHITE }}>Appointment</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Text style={{ color: COLOR_WHITE }}>Edit Patient Info</Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={goToPaymentScreen}
+              >
+                <Text style={{ color: COLOR_WHITE }}>Payment</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
+        <View style={[styles.card, styles.shadowProp]}>
+          <View style={{ padding: 10 }}>
+            <Text
+              style={{
+                backgroundColor: "#eae8e8",
+                padding: 10,
+                marginVertical: 5,
+              }}
+            >
+              <Text style={{ fontWeight: "700" }}>Name: </Text> Jon Doe
+            </Text>
+
+            <Text
+              style={{
+                backgroundColor: "#eae8e8",
+                padding: 10,
+                marginVertical: 5,
+              }}
+            >
+              <Text style={{ fontWeight: "700" }}>Phone: </Text>01325234556
+            </Text>
+
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={goToPaymentScreen}
+              >
+                <Text style={{ color: COLOR_WHITE }}>Payment</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default AppointmentScreen;
+export default PaymentScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -199,7 +197,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#17B48C",
+    backgroundColor: "#FA4D24",
     padding: 10,
     borderRadius: 5,
     marginVertical: 10,

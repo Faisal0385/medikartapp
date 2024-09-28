@@ -28,9 +28,7 @@ const PatientInfoScreen = () => {
       <ScrollView>
         <View style={[styles.card, styles.shadowProp]}>
           <View style={{ padding: 10 }}>
-            <Text style={{ fontWeight: "700" }}>Serial No.</Text>
-            <TextInput style={styles.input} placeholder="Serial No." />
-
+            
             <Text style={{ fontWeight: "700" }}>Full Name</Text>
             <TextInput style={styles.input} placeholder="Full Name" />
 
@@ -84,14 +82,7 @@ const PatientInfoScreen = () => {
 
             <Text style={{ fontWeight: "700" }}>Phone</Text>
             <TextInput style={styles.input} placeholder="Phone" />
-            <Text style={{ fontWeight: "700" }}>Age (Y/M/D)</Text>
-            <View style={{ flexDirection: "row" }}>
-              <TextInput style={styles.ageInput} placeholder="Year" />
-              <TextInput style={styles.ageInput} placeholder="Month" />
-              <TextInput style={styles.ageInput} placeholder="Day" />
-            </View>
-            <Text style={{ fontWeight: "700" }}>Patient Weight (Kg)</Text>
-            <TextInput style={styles.input} placeholder="Patient Weight (Kg)" />
+            
             <Text style={{ fontWeight: "700" }}>Blood Group</Text>
             <TextInput style={styles.input} placeholder="Blood Group" />
 
@@ -124,16 +115,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderColor: "#eae8e8",
-  },
-  ageInput: {
-    flex: 1,
-    height: 40,
-    marginVertical: 10,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 5,
-    borderColor: "#eae8e8",
-    margin: 2,
   },
   card: {
     backgroundColor: "white",
