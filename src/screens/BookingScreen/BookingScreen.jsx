@@ -1,5 +1,4 @@
 import {
-  Image,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -10,120 +9,110 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import HeadingTitle from "../../components/HeadingTitle";
-import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
+import { COLOR_WHITE } from "../../utils/colors";
 import { useNavigation } from "@react-navigation/native";
+import Divider from "./components/Divider";
 
 const BookingScreen = () => {
   const navigation = useNavigation();
 
   const goToReceiptScreen = () => {
-    navigation.navigate("Receipt");
+    navigation.navigate("Payment");
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ alignItems: "center", marginVertical: 15 }}>
-        <HeadingTitle title="Book Appointment" />
-      </View>
       <ScrollView>
         <View style={[styles.card, styles.shadowProp]}>
           <View style={{ padding: 10 }}>
-            <Text style={{ fontWeight: "700" }}>Full Name</Text>
-            <Text
-              style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
-            >
-              Jon Doe
+            <Text style={{ fontWeight: "700" }}>Serial No.</Text>
+            <TextInput style={styles.input} placeholder="Serial No." />
+            <Divider />
+
+            <Text style={{ fontWeight: "700" }}>
+              Full Name <Text style={{ color: "red" }}>*</Text>
             </Text>
+            <TextInput style={styles.input} placeholder="Full Name" />
+            <Divider />
 
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
-                style={{
-                  height: 2,
-                  width: "100%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
-                }}
-              ></View>
-            </View>
+            <Text style={{ fontWeight: "700" }}>Phone <Text style={{ color: "red" }}>*</Text></Text>
+            <TextInput style={styles.input} placeholder="Phone" />
+            <Divider />
 
+            <Text style={{ fontWeight: "700" }}>Gender <Text style={{ color: "red" }}>*</Text></Text>
             <View
               style={{
                 flexDirection: "row",
+                paddingVertical: 10,
               }}
             >
-              <View style={{ marginRight: 10, flex: 1 }}>
-                <Text style={{ fontWeight: "700" }}>Blood Group</Text>
-                <Text
-                  style={{
-                    backgroundColor: "#eae8e8",
-                    padding: 10,
-                    marginTop: 10,
-                  }}
-                >
-                  AB+
-                </Text>
-              </View>
-
-              <View style={{ marginLeft: 10, flex: 1 }}>
-                <Text style={{ fontWeight: "700" }}>Gender</Text>
-                <Text
-                  style={{
-                    backgroundColor: "#eae8e8",
-                    padding: 10,
-                    marginTop: 10,
-                  }}
-                >
+              <Pressable
+                style={{
+                  flex: 1,
+                  backgroundColor: "teal",
+                  padding: 10,
+                  borderRadius: 8,
+                  borderColor: "teal",
+                  borderWidth: 1,
+                  margin: 5,
+                }}
+              >
+                <Text style={{ color: "white", textAlign: "center" }}>
                   Male
                 </Text>
-              </View>
-            </View>
-
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
+              </Pressable>
+              <Pressable
                 style={{
-                  height: 2,
-                  width: "100%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
+                  flex: 1,
+                  backgroundColor: "white",
+                  padding: 10,
+                  borderRadius: 8,
+                  borderColor: "teal",
+                  borderWidth: 1,
+                  margin: 5,
                 }}
-              ></View>
-            </View>
-
-            <Text style={{ fontWeight: "700" }}>Phone</Text>
-            <Text
-              style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
-            >
-              01325234556
-            </Text>
-
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
+              >
+                <Text style={{ color: "black", textAlign: "center" }}>
+                  Female
+                </Text>
+              </Pressable>
+              <Pressable
                 style={{
-                  height: 2,
-                  width: "100%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
+                  flex: 1,
+                  backgroundColor: "white",
+                  padding: 10,
+                  borderRadius: 8,
+                  borderColor: "teal",
+                  borderWidth: 1,
+                  margin: 5,
                 }}
-              ></View>
+              >
+                <Text style={{ color: "black", textAlign: "center" }}>
+                  Others
+                </Text>
+              </Pressable>
             </View>
-            <Text style={{ fontWeight: "700" }}>Serial No.</Text>
-            <TextInput style={styles.input} placeholder="Serial No." />
+            <Divider />
+
             <Text style={{ fontWeight: "700" }}>Age (Y/M/D)</Text>
             <View style={{ flexDirection: "row" }}>
               <TextInput style={styles.ageInput} placeholder="Year" />
               <TextInput style={styles.ageInput} placeholder="Month" />
               <TextInput style={styles.ageInput} placeholder="Day" />
             </View>
+            <Divider />
+
             <Text style={{ fontWeight: "700" }}>Patient Weight (Kg)</Text>
             <TextInput style={styles.input} placeholder="Patient Weight (Kg)" />
+            <Divider />
+
+            <Text style={{ fontWeight: "700" }}>Blood Group</Text>
+            <TextInput style={styles.input} placeholder="Patient Weight (Kg)" />
+            
 
             <TouchableOpacity style={styles.button} onPress={goToReceiptScreen}>
               <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity style={styles.button}>
-              <Text style={{ color: COLOR_WHITE }}>Edit Patient Info</Text>
-            </TouchableOpacity> */}
           </View>
         </View>
       </ScrollView>
@@ -137,11 +126,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
-    paddingHorizontal: 20,
   },
   input: {
     height: 40,
-    marginVertical: 10,
+    marginVertical: 5,
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
@@ -161,7 +149,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 8,
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
     margin: 12,
   },
   shadowProp: {

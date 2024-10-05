@@ -12,7 +12,7 @@ import DashboardCard from "../../components/DashboardCard";
 import { COLOR_BLACK, COLOR_WHITE } from "../../utils/colors";
 import { useNavigation } from "@react-navigation/native";
 import SubHeadingTitle from "../../components/SubHeadingTitle";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const DashboardScreen = () => {
   const navigation = useNavigation();
@@ -29,7 +29,9 @@ const DashboardScreen = () => {
     <View style={styles.container}>
       <SafeAreaView>
         {/* Heading Title Component */}
-        <HeadingTitle title="Welcome, Faisal" />
+        <View style={{marginVertical:15}}>
+          <HeadingTitle title="Welcome, Faisal" />
+        </View>
 
         {/* Search Component */}
         <Search goto={goToPatientHistoryScreen} />
@@ -48,7 +50,9 @@ const DashboardScreen = () => {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <Text style={{ color: "white" }}>0</Text>
-            <Text style={{ color: "white" }}><FontAwesomeIcon name="users" size={16} /></Text>
+            <Text style={{ color: "white" }}>
+              <FontAwesomeIcon name="users" size={16} />
+            </Text>
           </View>
           <View
             style={{
@@ -72,7 +76,10 @@ const DashboardScreen = () => {
         </View>
         <SubHeadingTitle title="Today's Patient List" />
         <TouchableOpacity style={styles.button} onPress={goToPatientListScreen}>
-          <Text style={{ color: COLOR_WHITE }}> <FontAwesomeIcon name="user-circle" size={18}/>  Show Patient List</Text>
+          <Text style={{ color: COLOR_WHITE }}>
+            {" "}
+            <FontAwesomeIcon name="user-circle" size={18} /> Show Patient List
+          </Text>
         </TouchableOpacity>
       </SafeAreaView>
     </View>

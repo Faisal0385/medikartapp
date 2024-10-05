@@ -4,7 +4,7 @@ import React from 'react'
 const HeadingTitle = ({title}) => {
   return (
     <View>
-          <Text style={{ fontSize: 25, fontWeight: "600", marginTop:20 }}>{title}</Text>
+          <Text style={{ fontSize: 25, fontWeight: "600", marginTop:5 }}>{title}</Text>
         </View>
   )
 }

@@ -16,7 +16,7 @@ const PatientHistory = () => {
   const navigation = useNavigation();
 
   const goToBookingScreen = () => {
-    navigation.navigate("Patient Info");
+    navigation.navigate("Booking");
   };
 
   return (

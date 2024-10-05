@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import HeadingTitle from "../../components/HeadingTitle";
-import { COLOR_WHITE } from "../../utils/colors";
-import Search from "../../components/Search";
+import HeadingTitle from "../../../components/HeadingTitle";
+import { COLOR_WHITE } from "../../../utils/colors";
+import Search from "../../../components/Search";
 import { useNavigation } from "@react-navigation/native";
 
 const AppointmentScreen = () => {

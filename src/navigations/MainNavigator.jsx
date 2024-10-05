@@ -7,12 +7,21 @@ import PatientHistory from "../screens/PatientHistory/PatientHistory";
 import BottomNavBar from "../screens/BottomNavBar";
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import OnBoardingScreen from "../screens/OnBoardingScreen/OnBoardingScreen";
+import PaymentScreen from "../screens/PaymentScreen/PaymentScreen";
+import DashboardCard from "../components/DashboardCard";
+import PatientInfoScreen from "../screens/PatientInfoScreen/PatientInfoScreen";
+import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
 
 const Stack = createStackNavigator();
 
 function MainNavigator() {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
@@ -29,13 +38,6 @@ function MainNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Booking"
-        component={BookingScreen}
-        options={{
-          headerBackTitleVisible: false,
-        }}
-      />
-      <Stack.Screen
         name="Receipt"
         component={ReceiptScreen}
         options={{ headerShown: false }}
@@ -45,16 +47,32 @@ function MainNavigator() {
         component={ThankYouScreen}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
-        name="Patient List"
-        component={PatientListScreen}
+        name="Booking"
+        component={BookingScreen}
         options={{
           headerBackTitleVisible: false,
         }}
       />
       <Stack.Screen
+        name="Payment"
+        component={PaymentScreen}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
+
+      <Stack.Screen
         name="Patient History"
         component={PatientHistory}
+        options={{
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="Patient List"
+        component={PatientListScreen}
         options={{
           headerBackTitleVisible: false,
         }}

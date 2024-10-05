@@ -5,161 +5,69 @@ import {
   ScrollView,
   View,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import React from "react";
-import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE } from "../../utils/colors";
-import Search from "../../components/Search";
 import { useNavigation } from "@react-navigation/native";
 
-const PaymentScreen = () => {
+const PaymentComponent = () => {
   const navigation = useNavigation();
 
   const goToPaymentScreen = () => {
     navigation.navigate("Receipt");
   };
+  return (
+    <View style={[styles.card, styles.shadowProp]}>
+      <View style={{ padding: 10 }}>
+        <Text
+          style={{
+            backgroundColor: "#eae8e8",
+            padding: 10,
+            marginVertical: 5,
+          }}
+        >
+          <Text style={{ fontWeight: "700" }}>Serial No: </Text> 22
+        </Text>
+        <Text
+          style={{
+            backgroundColor: "#eae8e8",
+            padding: 10,
+            marginVertical: 5,
+          }}
+        >
+          <Text style={{ fontWeight: "700" }}>Name: </Text> Jon Doe
+        </Text>
 
+        <Text
+          style={{
+            backgroundColor: "#eae8e8",
+            padding: 10,
+            marginVertical: 5,
+          }}
+        >
+          <Text style={{ fontWeight: "700" }}>Phone: </Text>01325234556
+        </Text>
+        <TextInput style={styles.input} placeholder="Payment" />
+
+        <View style={{ flexDirection: "row" }}>
+          <TouchableOpacity style={styles.button} onPress={goToPaymentScreen}>
+            <Text style={{ color: COLOR_WHITE }}>Payment</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const PaymentScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ alignItems: "center" }}>
-        <HeadingTitle title="Payment List" />
-      </View>
-
-      {/* Search Component */}
-      <View style={{ margin: 10 }}>
-        <Search />
-      </View>
-
       <ScrollView>
-        <View style={[styles.card, styles.shadowProp]}>
-          <View style={{ padding: 10 }}>
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Name: </Text> Jon Doe
-            </Text>
-
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Phone: </Text>01325234556
-            </Text>
-
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={goToPaymentScreen}
-              >
-                <Text style={{ color: COLOR_WHITE }}>Payment</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.card, styles.shadowProp]}>
-          <View style={{ padding: 10 }}>
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Name: </Text> Jon Doe
-            </Text>
-
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Phone: </Text>01325234556
-            </Text>
-
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={goToPaymentScreen}
-              >
-                <Text style={{ color: COLOR_WHITE }}>Payment</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.card, styles.shadowProp]}>
-          <View style={{ padding: 10 }}>
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Name: </Text> Jon Doe
-            </Text>
-
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Phone: </Text>01325234556
-            </Text>
-
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={goToPaymentScreen}
-              >
-                <Text style={{ color: COLOR_WHITE }}>Payment</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.card, styles.shadowProp]}>
-          <View style={{ padding: 10 }}>
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Name: </Text> Jon Doe
-            </Text>
-
-            <Text
-              style={{
-                backgroundColor: "#eae8e8",
-                padding: 10,
-                marginVertical: 5,
-              }}
-            >
-              <Text style={{ fontWeight: "700" }}>Phone: </Text>01325234556
-            </Text>
-
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={goToPaymentScreen}
-              >
-                <Text style={{ color: COLOR_WHITE }}>Payment</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-
+        <PaymentComponent />
+        <PaymentComponent />
+        <PaymentComponent />
+        <PaymentComponent />
       </ScrollView>
     </SafeAreaView>
   );
@@ -171,7 +79,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
-    paddingHorizontal: 20,
     margin: 5,
   },
   input: {

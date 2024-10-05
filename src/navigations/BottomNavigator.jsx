@@ -2,10 +2,11 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DashboardScreen from "../screens/DashboardScreen/DashboardScreen";
 import PatientInfoScreen from "../screens/PatientInfoScreen/PatientInfoScreen";
-import AppointmentScreen from "../screens/AppointmentScreen/AppointmentScreen";
+import AppointmentScreen from "../screens/others/AppointmentScreen/AppointmentScreen";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6"
 import PaymentScreen from "../screens/PaymentScreen/PaymentScreen";
+import BookingScreen from "../screens/BookingScreen/BookingScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,10 +28,9 @@ const BottomNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Patient Info"
-        component={PatientInfoScreen}
+        name="Booking"
+        component={BookingScreen}
         options={{
-          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <FontAwesomeIcon name="user-plus" color={color} size={20} />
@@ -38,22 +38,9 @@ const BottomNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Appointment"
-        component={AppointmentScreen}
-        options={{
-          headerShown: false,
-          tabBarShowLabel: false,
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesomeIcon name="address-book" color={color} size={20} />
-          ),
-        }}
-        
-      />
-      <Tab.Screen
         name="Payment"
         component={PaymentScreen}
         options={{
-          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <FontAwesome6 name="money-check-dollar" color={color} size={20} />
