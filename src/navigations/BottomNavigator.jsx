@@ -1,8 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DashboardScreen from "../screens/DashboardScreen/DashboardScreen";
-import PatientInfoScreen from "../screens/PatientInfoScreen/PatientInfoScreen";
-import AppointmentScreen from "../screens/others/AppointmentScreen/AppointmentScreen";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6"
 import PaymentScreen from "../screens/PaymentScreen/PaymentScreen";

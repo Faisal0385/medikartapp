@@ -17,11 +17,19 @@ const ProfileScreen = () => {
       <ScrollView>
         <View style={{ alignItems: "center", padding: 20 }}>
           <Image
-            source={require("../../../assets/icon.png")}
+            source={require("../../../assets/logo/logo.png")}
             style={styles.profileImage}
           />
-          <Text>Faisal A. Salam</Text>
-          <Text>faisal@gmail.com</Text>
+          <View style={{ paddingTop: 10 }}>
+            <Text style={{ fontSize: 22, fontWeight: "600" }}>
+              Faisal A. Salam
+            </Text>
+          </View>
+          <View>
+            <Text style={{ fontSize: 16, fontWeight: "600" }}>
+              faisal@gmail.com
+            </Text>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

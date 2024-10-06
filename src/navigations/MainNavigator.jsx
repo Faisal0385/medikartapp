@@ -8,8 +8,6 @@ import BottomNavBar from "../screens/BottomNavBar";
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import OnBoardingScreen from "../screens/OnBoardingScreen/OnBoardingScreen";
 import PaymentScreen from "../screens/PaymentScreen/PaymentScreen";
-import DashboardCard from "../components/DashboardCard";
-import PatientInfoScreen from "../screens/PatientInfoScreen/PatientInfoScreen";
 import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
 
 const Stack = createStackNavigator();
@@ -17,11 +15,7 @@ const Stack = createStackNavigator();
 function MainNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{ headerShown: false }}
-      />
+      
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
@@ -35,6 +29,11 @@ function MainNavigator() {
       <Stack.Screen
         name="Bottom Navbar"
         component={BottomNavBar}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
