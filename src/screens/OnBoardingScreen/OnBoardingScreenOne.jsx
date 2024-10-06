@@ -4,8 +4,6 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
@@ -49,7 +47,7 @@ const OnBoardingScreenOne = () => {
           {/* Navigation Button */}
           <NavigationButton
             nextRoute="OnboardingTwo"
-            skipRoute="Bottom Navbar"
+            skipRoute="SignInScreen"
           />
         </View>
       </ScrollView>

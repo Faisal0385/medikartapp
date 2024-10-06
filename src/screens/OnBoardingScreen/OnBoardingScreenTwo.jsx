@@ -45,7 +45,7 @@ const OnBoardingScreenTwo = () => {
           {/* Navigation Button */}
           <NavigationButton
             nextRoute="OnboardingThree"
-            skipRoute="Bottom Navbar"
+            skipRoute="SignInScreen"
           />
         </View>
       </ScrollView>

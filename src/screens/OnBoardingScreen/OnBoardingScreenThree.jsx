@@ -45,7 +45,7 @@ const OnBoardingScreenThree = () => {
 
           {/* Navigation Button */}
           <TouchableOpacity
-            onPress={() => navigation.navigate("Bottom Navbar")}
+            onPress={() => navigation.navigate("SignInScreen")}
             style={{
               backgroundColor: "#6EBCFF",
               padding: 20,

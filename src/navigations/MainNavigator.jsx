@@ -11,15 +11,28 @@ import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
 import OnBoardingScreenOne from "../screens/OnBoardingScreen/OnBoardingScreenOne";
 import OnBoardingScreenTwo from "../screens/OnBoardingScreen/OnBoardingScreenTwo";
 import OnBoardingScreenThree from "../screens/OnBoardingScreen/OnBoardingScreenThree";
+import SignInScreen from "../screens/Auth/SignInScreen/SignInScreen";
+import ForgotPasswordScreen from "../screens/Auth/ForgotPasswordScreen/ForgotPasswordScreen";
 
 const Stack = createStackNavigator();
 
 function MainNavigator() {
   return (
     <Stack.Navigator>
+      
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignInScreen"
+        component={SignInScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ForgotPasswordScreen"
+        component={ForgotPasswordScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
