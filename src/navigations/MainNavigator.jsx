@@ -6,24 +6,35 @@ import ThankYouScreen from "../screens/ThankYouScreen/ThankYouScreen";
 import PatientHistory from "../screens/PatientHistory/PatientHistory";
 import BottomNavBar from "../screens/BottomNavBar";
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
-import OnBoardingScreen from "../screens/OnBoardingScreen/OnBoardingScreen";
 import PaymentScreen from "../screens/PaymentScreen/PaymentScreen";
 import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
+import OnBoardingScreenOne from "../screens/OnBoardingScreen/OnBoardingScreenOne";
+import OnBoardingScreenTwo from "../screens/OnBoardingScreen/OnBoardingScreenTwo";
+import OnBoardingScreenThree from "../screens/OnBoardingScreen/OnBoardingScreenThree";
 
 const Stack = createStackNavigator();
 
 function MainNavigator() {
   return (
     <Stack.Navigator>
-      
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Onboarding"
-        component={OnBoardingScreen}
+        name="OnboardingOne"
+        component={OnBoardingScreenOne}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OnboardingTwo"
+        component={OnBoardingScreenTwo}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OnboardingThree"
+        component={OnBoardingScreenThree}
         options={{ headerShown: false }}
       />
       <Stack.Screen
