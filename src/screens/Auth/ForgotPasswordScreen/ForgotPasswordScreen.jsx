@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 
 const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
@@ -52,11 +54,13 @@ const ForgotPasswordScreen = () => {
               justifyContent: "flex-start",
             }}
           >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>Your Email</Text>
+            <Text style={{ fontSize: 16, fontWeight: "600" }}>
+              <FontAwesomeIcon name="envelope" size={16} /> Your Email
+            </Text>
           </View>
           <TextInput style={styles.input} placeholder="Email" />
           <TouchableOpacity
-          onPress={() => navigation.navigate("OTP Screen")}
+            onPress={() => navigation.navigate("OTP Screen")}
             style={{
               width: "90%",
               padding: 10,
@@ -64,11 +68,15 @@ const ForgotPasswordScreen = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ textAlign: "center", color: "white" }}>Submit</Text>
+            <Text style={{ textAlign: "center", color: "white" }}>
+              <FontAwesome6 name="envelope-circle-check" size={14} /> Send
+            </Text>
           </TouchableOpacity>
           <View style={{ marginVertical: 25 }}>
-            <Pressable  onPress={() => navigation.navigate("SignInScreen")}>
-              <Text style={{ color: "grey" }}>Have an Account? Singin Here</Text>
+            <Pressable onPress={() => navigation.navigate("SignInScreen")}>
+              <Text style={{ color: "grey" }}>
+                Have an Account? Singin Here
+              </Text>
             </Pressable>
           </View>
         </View>

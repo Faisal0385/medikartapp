@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const ResetPassword = () => {
   const navigation = useNavigation();
@@ -77,7 +78,7 @@ const ResetPassword = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ textAlign: "center", color: "white" }}>Submit</Text>
+            <Text style={{ textAlign: "center", color: "white" }}><MaterialCommunityIcons name="check-decagram" size={14}/> Submit</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

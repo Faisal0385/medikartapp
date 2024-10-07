@@ -21,7 +21,6 @@ const Stack = createStackNavigator();
 function MainNavigator() {
   return (
     <Stack.Navigator>
-      
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}

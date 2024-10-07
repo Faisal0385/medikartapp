@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const SignInScreen = () => {
   const navigation = useNavigation();
@@ -52,7 +54,7 @@ const SignInScreen = () => {
               justifyContent: "flex-start",
             }}
           >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>Email</Text>
+            <Text style={{ fontSize: 16, fontWeight: "600" }}><FontAwesomeIcon name="envelope" size={16} /> Email</Text>
           </View>
           <TextInput style={styles.input} placeholder="Email" />
 
@@ -63,9 +65,11 @@ const SignInScreen = () => {
               justifyContent: "flex-start",
             }}
           >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>Password</Text>
+            <Text style={{ fontSize: 16, fontWeight: "600" }}><MaterialIcons name="password" size={16} /> Password</Text>
           </View>
+
           <TextInput style={styles.input} placeholder="Password" />
+
           <TouchableOpacity
             onPress={() => navigation.navigate("Bottom Navbar")}
             style={{
@@ -75,7 +79,9 @@ const SignInScreen = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ textAlign: "center", color: "white" }}>Submit</Text>
+            <Text style={{ textAlign: "center", color: "white" }}>
+              <FontAwesomeIcon name="user-circle" size={14} /> Sing In
+            </Text>
           </TouchableOpacity>
           <View style={{ marginVertical: 20 }}>
             <Pressable

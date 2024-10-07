@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome6";
 
 const OTPScreen = () => {
   const navigation = useNavigation();
@@ -32,6 +33,7 @@ const OTPScreen = () => {
             style={{ width: 100, height: 100 }}
           />
 
+
           <View>
             <Text
               style={{
@@ -44,6 +46,7 @@ const OTPScreen = () => {
               Enter Your Verification Code!
             </Text>
           </View>
+          
           <View style={{ flexDirection: "row", padding: 10 }}>
             <TextInput style={styles.input} placeholder="0" />
             <TextInput style={styles.input} placeholder="0" />
@@ -78,8 +81,17 @@ const OTPScreen = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ textAlign: "center", color: "white" }}>Verify</Text>
+            <Text
+              style={{
+                textAlign: "center",
+                color: "white",
+              }}
+            >
+              <FontAwesomeIcon name="file-circle-check" size={12} /> Verify
+            </Text>
           </TouchableOpacity>
+
+
         </View>
       </ScrollView>
     </SafeAreaView>
