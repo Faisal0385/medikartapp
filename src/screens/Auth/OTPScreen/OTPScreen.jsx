@@ -12,7 +12,7 @@ import {
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const ResetPassword = () => {
+const OTPScreen = () => {
   const navigation = useNavigation();
   const { height, width } = Dimensions.get("window");
   return (
@@ -24,7 +24,7 @@ const ResetPassword = () => {
             height: height / 2,
             alignItems: "center",
             justifyContent: "center",
-            marginVertical: height / 10,
+            marginVertical: height / 14,
           }}
         >
           <Image
@@ -37,39 +37,40 @@ const ResetPassword = () => {
               style={{
                 fontSize: 24,
                 fontWeight: "600",
-                marginVertical: 30,
+                marginVertical: 10,
                 alignItems: "flex-start",
               }}
             >
-              Reset Your New Password!!
+              Enter Your Verification Code!
             </Text>
+          </View>
+          <View style={{ flexDirection: "row", padding: 10 }}>
+            <TextInput style={styles.input} placeholder="0" />
+            <TextInput style={styles.input} placeholder="0" />
+            <TextInput style={styles.input} placeholder="0" />
+            <TextInput style={styles.input} placeholder="0" />
           </View>
           <View
             style={{
+              marginBottom: 20,
               width: "90%",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
             }}
           >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>
-              Reset Password
-            </Text>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  color: "grey",
+                  fontSize: 12,
+                  fontWeight: "600",
+                  textDecorationLine: "underline",
+                }}
+              >
+                Send a new code
+              </Text>
+            </TouchableOpacity>
           </View>
-          <TextInput style={styles.input} placeholder="Reset Password" />
-          <View
-            style={{
-              width: "90%",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>
-              Confirm Password
-            </Text>
-          </View>
-          <TextInput style={styles.input} placeholder="Confirm Password" />
           <TouchableOpacity
-            onPress={() => navigation.navigate("SignInScreen")}
+            onPress={() => navigation.navigate("ResetPassword")}
             style={{
               width: "90%",
               padding: 10,
@@ -77,7 +78,7 @@ const ResetPassword = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ textAlign: "center", color: "white" }}>Submit</Text>
+            <Text style={{ textAlign: "center", color: "white" }}>Verify</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -85,7 +86,7 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default OTPScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -94,12 +95,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    height: 40,
-    margin: 12,
+    flex: 1,
+    height: 50,
+    margin: 10,
     borderWidth: 1,
     borderColor: "lightgrey",
     padding: 10,
     borderRadius: 5,
-    width: "90%",
+    textAlign: "center",
   },
 });

@@ -67,7 +67,7 @@ const SignInScreen = () => {
           </View>
           <TextInput style={styles.input} placeholder="Password" />
           <TouchableOpacity
-          onPress={() => navigation.navigate("Bottom Navbar")}
+            onPress={() => navigation.navigate("Bottom Navbar")}
             style={{
               width: "90%",
               padding: 10,

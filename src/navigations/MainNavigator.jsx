@@ -13,6 +13,8 @@ import OnBoardingScreenTwo from "../screens/OnBoardingScreen/OnBoardingScreenTwo
 import OnBoardingScreenThree from "../screens/OnBoardingScreen/OnBoardingScreenThree";
 import SignInScreen from "../screens/Auth/SignInScreen/SignInScreen";
 import ForgotPasswordScreen from "../screens/Auth/ForgotPasswordScreen/ForgotPasswordScreen";
+import OTPScreen from "../screens/Auth/OTPScreen/OTPScreen";
+import ResetPassword from "../screens/Auth/ResetPassword/ResetPassword";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +35,16 @@ function MainNavigator() {
       <Stack.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OTP Screen"
+        component={OTPScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
         options={{ headerShown: false }}
       />
       <Stack.Screen

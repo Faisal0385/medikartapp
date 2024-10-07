@@ -14,6 +14,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
 const ForgotPasswordScreen = () => {
+  const navigation = useNavigation();
   const { height, width } = Dimensions.get("window");
   return (
     <SafeAreaView style={styles.container}>
@@ -41,7 +42,7 @@ const ForgotPasswordScreen = () => {
                 alignItems: "flex-start",
               }}
             >
-              Forgot Password!!
+              Forgot Your Password!!
             </Text>
           </View>
           <View
@@ -51,10 +52,11 @@ const ForgotPasswordScreen = () => {
               justifyContent: "flex-start",
             }}
           >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>Email</Text>
+            <Text style={{ fontSize: 16, fontWeight: "600" }}>Your Email</Text>
           </View>
           <TextInput style={styles.input} placeholder="Email" />
           <TouchableOpacity
+          onPress={() => navigation.navigate("OTP Screen")}
             style={{
               width: "90%",
               padding: 10,
@@ -65,8 +67,8 @@ const ForgotPasswordScreen = () => {
             <Text style={{ textAlign: "center", color: "white" }}>Submit</Text>
           </TouchableOpacity>
           <View style={{ marginVertical: 25 }}>
-            <Pressable>
-              <Text style={{ color: "grey" }}>Login Here</Text>
+            <Pressable  onPress={() => navigation.navigate("SignInScreen")}>
+              <Text style={{ color: "grey" }}>Have an Account? Singin Here</Text>
             </Pressable>
           </View>
         </View>
