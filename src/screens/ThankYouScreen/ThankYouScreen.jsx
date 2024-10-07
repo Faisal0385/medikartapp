@@ -7,13 +7,13 @@ const ThankYouScreen = () => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("Dashboard");
-    }, 1000);
+    }, 2000);
   }, []);
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignItems: "center", marginTop: 5 }}>
         <Image
-          source={require("../../../assets/icon.png")}
+          source={require("../../../assets/logo/logo.png")}
           style={{ height: 80, width: 80 }}
         />
       </View>

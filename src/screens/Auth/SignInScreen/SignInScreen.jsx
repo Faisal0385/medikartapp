@@ -81,7 +81,7 @@ const SignInScreen = () => {
             <Pressable
               onPress={() => navigation.navigate("ForgotPasswordScreen")}
             >
-              <Text style={{ color: "grey" }}>Forgot Password?</Text>
+              <Text style={{ color: "grey" }}>Forgot Your Password?</Text>
             </Pressable>
           </View>
         </View>
