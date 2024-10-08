@@ -1,6 +1,6 @@
 import {
+  KeyboardAvoidingView,
   Dimensions,
-  Image,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -10,46 +10,51 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AuthImage from "../../../components/AuthImage";
+import AuthTitle from "../../../components/AuthTitle";
 
 const ResetPassword = () => {
   const navigation = useNavigation();
-  const { height, width } = Dimensions.get("window");
+  const { width } = Dimensions.get("window");
+
+  const [secureTextBool, setSecureTextBool] = useState(true);
+  const [resetPassword, setResetPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const validateFun = () => {
+    if (resetPassword.trim() === "") {
+      alert("New Password can not be empty!!");
+      return;
+    }
+    if (confirmPassword.trim() === "") {
+      alert("Confirm Password can not be empty!!");
+      return;
+    }
+    if (resetPassword.trim() !== confirmPassword.trim()) {
+      alert("Password did not matched!!");
+      return;
+    }
+
+    navigation.navigate("SignInScreen")
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
       <ScrollView>
+        <AuthImage
+          imageWidth={width}
+          authImage={require("../../../../assets/doctor-illustration.jpg")}
+        />
 
-        <AuthImage imageWidth={width} authImage={require("../../../../assets/doctor-illustration.jpg")}/>
+        <AuthTitle titleText={"Reset Your New Password!!"} subTitleText={""} />
 
-        <View
-          style={{
-            width: width,
-            // height: height / 2,
-            alignItems: "center",
-            justifyContent: "center",
-            // marginVertical: height / 10,
-          }}
-        >
-          {/* <Image
-            source={require("../../../../assets/logo/logo.png")}
-            style={{ width: 100, height: 100 }}
-          /> */}
-
-          <View>
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: "600",
-                marginVertical: 30,
-                alignItems: "flex-start",
-              }}
-            >
-              Reset Your New Password!!
-            </Text>
-          </View>
+        <View style={styles.formWrapper(width)}>
           <View
             style={{
               width: "90%",
@@ -61,7 +66,13 @@ const ResetPassword = () => {
               Reset Password
             </Text>
           </View>
-          <TextInput style={styles.input} placeholder="Reset Password" />
+          <TextInput
+            style={styles.input}
+            placeholder="Reset Password"
+            value={resetPassword}
+            secureTextEntry={true}
+            onChangeText={(value)=>setResetPassword(value)}
+          />
           <View
             style={{
               width: "90%",
@@ -73,9 +84,15 @@ const ResetPassword = () => {
               Confirm Password
             </Text>
           </View>
-          <TextInput style={styles.input} placeholder="Confirm Password" />
+          <TextInput
+            style={styles.input}
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            secureTextEntry={true}
+            onChangeText={(value)=>setConfirmPassword(value)}
+          />
           <TouchableOpacity
-            onPress={() => navigation.navigate("SignInScreen")}
+            onPress={() => validateFun()}
             style={{
               width: "90%",
               padding: 10,
@@ -89,6 +106,7 @@ const ResetPassword = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -101,6 +119,11 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
   },
+  formWrapper: (width) => ({
+    width: width,
+    alignItems: "center",
+    padding: 5,
+  }),
   input: {
     height: 40,
     margin: 12,

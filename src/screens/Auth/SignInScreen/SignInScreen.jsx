@@ -37,6 +37,8 @@ const SignInScreen = () => {
       alert("Password can not be empty!!");
       return;
     }
+
+    navigation.navigate("Bottom Navbar")
   };
   return (
     <SafeAreaView style={styles.container}>
