@@ -1,5 +1,6 @@
 import {
   Dimensions,
+  KeyboardAvoidingView,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -35,93 +36,97 @@ const OTPScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <AuthImage
-          imageWidth={width}
-          authImage={require("../../../../assets/doctor-illustration.jpg")}
-        />
-        
-        <AuthTitle
-          titleText={"Enter Your Verification Code!"}
-          subTitleText={""}
-        />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <ScrollView>
+          <AuthImage
+            imageWidth={width}
+            authImage={require("../../../../assets/doctor-illustration.jpg")}
+          />
 
-        <View style={{ flexDirection: "row", paddingHorizontal: 10 }}>
-          <TextInput
-            style={styles.input}
-            placeholder="0"
-            keyboardType="numeric"
-            value={digit1}
-            onChangeText={(value) => setDigit1(value)}
+          <AuthTitle
+            titleText={"Enter Your Verification Code!"}
+            subTitleText={""}
           />
-          <TextInput
-            style={styles.input}
-            placeholder="0"
-            keyboardType="numeric"
-            value={digit2}
-            onChangeText={(value) => setDigit2(value)}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="0"
-            keyboardType="numeric"
-            value={digit3}
-            onChangeText={(value) => setDigit3(value)}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="0"
-            keyboardType="numeric"
-            value={digit4}
-            onChangeText={(value) => setDigit4(value)}
-          />
-        </View>
 
-        <View
-          style={{
-            width: width,
-            alignItems: "center",
-          }}
-        >
+          <View style={{ flexDirection: "row", paddingHorizontal: 10 }}>
+            <TextInput
+              style={styles.input}
+              placeholder="0"
+              keyboardType="numeric"
+              value={digit1}
+              onChangeText={(value) => setDigit1(value)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="0"
+              keyboardType="numeric"
+              value={digit2}
+              onChangeText={(value) => setDigit2(value)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="0"
+              keyboardType="numeric"
+              value={digit3}
+              onChangeText={(value) => setDigit3(value)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="0"
+              keyboardType="numeric"
+              value={digit4}
+              onChangeText={(value) => setDigit4(value)}
+            />
+          </View>
+
           <View
             style={{
-              marginBottom: 20,
-              width: "90%",
+              width: width,
+              alignItems: "center",
             }}
           >
-            <TouchableOpacity>
+            <View
+              style={{
+                marginBottom: 20,
+                width: "90%",
+              }}
+            >
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    color: "grey",
+                    fontSize: 12,
+                    fontWeight: "600",
+                    textDecorationLine: "underline",
+                  }}
+                >
+                  Send a new code
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={() => validateFun()}
+              style={{
+                width: "90%",
+                padding: 10,
+                backgroundColor: "#0081F1",
+                borderRadius: 5,
+              }}
+            >
               <Text
                 style={{
-                  color: "grey",
-                  fontSize: 12,
-                  fontWeight: "600",
-                  textDecorationLine: "underline",
+                  textAlign: "center",
+                  color: "white",
                 }}
               >
-                Send a new code
+                <FontAwesomeIcon name="file-circle-check" size={12} /> Verify
               </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => validateFun()}
-            style={{
-              width: "90%",
-              padding: 10,
-              backgroundColor: "#0081F1",
-              borderRadius: 5,
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-              }}
-            >
-              <FontAwesomeIcon name="file-circle-check" size={12} /> Verify
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

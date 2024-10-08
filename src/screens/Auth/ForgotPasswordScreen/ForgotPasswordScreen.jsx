@@ -1,5 +1,6 @@
 import {
   Dimensions,
+  KeyboardAvoidingView,
   Platform,
   Pressable,
   SafeAreaView,
@@ -33,56 +34,60 @@ const ForgotPasswordScreen = () => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <AuthImage
-          imageWidth={width}
-          authImage={require("../../../../assets/doctor-illustration.jpg")}
-        />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <ScrollView>
+          <AuthImage
+            imageWidth={width}
+            authImage={require("../../../../assets/doctor-illustration.jpg")}
+          />
 
-        <AuthTitle titleText={"Forgot Your Password!!"} subTitleText={""} />
-        <View style={styles.formWrapper(width)}>
-          <View style={styles.inputWrapper}>
-            <Text style={styles.inputLabel}>
-              <FontAwesomeIcon
-                name="envelope"
-                size={16}
-                style={{ color: "#c6c6c6" }}
-              />{" "}
-              Email
-            </Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              value={email}
-              onChangeText={(value) => setEmail(value)}
-            />
-          </View>
-
-          <TouchableOpacity
-            onPress={(value) => validateFun(value)}
-            style={{
-              width: "90%",
-              padding: 10,
-              backgroundColor: "#0081F1",
-              borderRadius: 5,
-            }}
-          >
-            <Text style={{ textAlign: "center", color: "white" }}>
-              <FontAwesome6 name="envelope-circle-check" size={14} /> Send
-            </Text>
-          </TouchableOpacity>
-
-          <View style={{ marginVertical: 25 }}>
-            <Pressable onPress={() => navigation.navigate("SignInScreen")}>
-              <Text style={{ color: "grey" }}>
-                Have an Account? Sing In Here
+          <AuthTitle titleText={"Forgot Your Password!!"} subTitleText={""} />
+          <View style={styles.formWrapper(width)}>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.inputLabel}>
+                <FontAwesomeIcon
+                  name="envelope"
+                  size={16}
+                  style={{ color: "#c6c6c6" }}
+                />{" "}
+                Email
               </Text>
-            </Pressable>
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={email}
+                onChangeText={(value) => setEmail(value)}
+              />
+            </View>
+
+            <TouchableOpacity
+              onPress={(value) => validateFun(value)}
+              style={{
+                width: "90%",
+                padding: 10,
+                backgroundColor: "#0081F1",
+                borderRadius: 5,
+              }}
+            >
+              <Text style={{ textAlign: "center", color: "white" }}>
+                <FontAwesome6 name="envelope-circle-check" size={14} /> Send
+              </Text>
+            </TouchableOpacity>
+
+            <View style={{ marginVertical: 25 }}>
+              <Pressable onPress={() => navigation.navigate("SignInScreen")}>
+                <Text style={{ color: "grey" }}>
+                  Have an Account? Sing In Here
+                </Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
