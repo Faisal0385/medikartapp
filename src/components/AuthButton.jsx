@@ -3,11 +3,12 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 
-const AuthButton = ({btnText, icon}) => {
+const AuthButton = ({ btnText, icon, onPressFun }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("Bottom Navbar")}
+      // onPress={() => navigation.navigate("Bottom Navbar")}
+      onPress={() => onPressFun()}
       style={{
         width: "90%",
         padding: 10,
@@ -16,7 +17,7 @@ const AuthButton = ({btnText, icon}) => {
       }}
     >
       <Text style={{ textAlign: "center", color: "white" }}>
-        {icon} {btnText} 
+        {icon} {btnText}
       </Text>
     </TouchableOpacity>
   );

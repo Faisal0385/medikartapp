@@ -7,20 +7,37 @@ import {
   StatusBar,
   StyleSheet,
   View,
+  Text,
+  TextInput,
+  TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
 import AuthButton from "../../../components/AuthButton";
 import AuthLinkButton from "../../../components/AuthLinkButton";
-import FormInput from "../../../components/FormInput";
 
 const SignInScreen = () => {
   const navigation = useNavigation();
-  const { height, width } = Dimensions.get("window");
+  const { width } = Dimensions.get("window");
+  const [secureTextBool, setSecureTextBool] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const validateFun = () => {
+    if (email.trim() === "") {
+      alert("Email can not be empty!!");
+      return;
+    }
+    if (password.trim() === "") {
+      alert("Password can not be empty!!");
+      return;
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
@@ -40,36 +57,70 @@ const SignInScreen = () => {
           />
 
           <View style={styles.formWrapper(width)}>
-            {/* Email */}
-            <FormInput
-              labelText={"Email"}
-              labelIcon={
+            {/* Email Input*/}
+            <View style={styles.inputWrapper}>
+              <Text style={styles.inputLabel}>
                 <FontAwesomeIcon
                   name="envelope"
                   size={16}
                   style={{ color: "#c6c6c6" }}
-                />
-              }
-              secureText={false}
-              autoCapital={"none"}
-            />
+                />{" "}
+                Email
+              </Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={email}
+                onChangeText={(value) => setEmail(value)}
+              />
+            </View>
 
-            {/* Password */}
-            <FormInput
-              labelText={"Password"}
-              labelIcon={
-                <MaterialIcons
-                  name="password"
-                  size={16}
-                  style={{ color: "#c6c6c6" }}
-                />
-              }
-              secureText={true}
-              autoCapital={"yes"}
-            />
+            {/* Password Input*/}
+            <View style={styles.inputWrapper}>
+              <View style={styles.labelWrapper}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <MaterialIcons
+                    name="password"
+                    size={16}
+                    style={{ color: "#c6c6c6" }}
+                  />
+                  <Text style={{ fontWeight: "700" }}> Password</Text>
+                </View>
+
+                <TouchableOpacity
+                  onPress={() => setSecureTextBool(!secureTextBool)}
+                >
+                  <Text>
+                    {secureTextBool ? (
+                      <MaterialCommunityIcons
+                        name="eye-off"
+                        size={22}
+                        style={{ color: "#b92b38" }}
+                      />
+                    ) : (
+                      <MaterialCommunityIcons
+                        name="eye"
+                        size={22}
+                        style={{ color: "#b92b38" }}
+                      />
+                    )}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <TextInput
+                style={styles.input}
+                placeholder="Password"
+                secureTextEntry={secureTextBool}
+                value={password}
+                onChangeText={(value) => setPassword(value)}
+              />
+            </View>
 
             {/* Button */}
             <AuthButton
+              onPressFun={validateFun}
               btnText={"Sing In"}
               icon={<FontAwesomeIcon name="user-circle" size={14} />}
             />
@@ -97,15 +148,22 @@ const styles = StyleSheet.create({
   formWrapper: (width) => ({
     width: width,
     alignItems: "center",
-    paddingVertical: 20,
+    padding: 5,
   }),
+  inputWrapper: { width: "90%", marginVertical: 10 },
+  inputLabel: { fontWeight: "700" },
   input: {
+    marginTop: 10,
     height: 40,
-    margin: 12,
     borderWidth: 1,
     borderColor: "lightgrey",
-    padding: 10,
     borderRadius: 5,
-    width: "90%",
+    padding: 10,
+  },
+  labelWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontWeight: "700",
   },
 });

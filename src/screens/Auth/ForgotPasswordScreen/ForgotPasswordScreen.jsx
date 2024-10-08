@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
@@ -19,7 +19,17 @@ import AuthTitle from "../../../components/AuthTitle";
 
 const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
-  const { height, width } = Dimensions.get("window");
+  const { width } = Dimensions.get("window");
+  const [email, setEmail] = useState("");
+
+  const validateFun = () => {
+    if (email.trim() === "") {
+      alert("Email can not be empty!!");
+      return;
+    }
+
+    navigation.navigate("OTP Screen");
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -29,47 +39,28 @@ const ForgotPasswordScreen = () => {
         />
 
         <AuthTitle titleText={"Forgot Your Password!!"} subTitleText={""} />
-
-        <View
-          style={{
-            width: width,
-            // height: height / 2,
-            alignItems: "center",
-            // justifyContent: "center",
-            // marginVertical: height / 10,
-          }}
-        >
-          {/* <Image
-            source={require("../../../../assets/logo/logo.png")}
-            style={{ width: 100, height: 100 }}
-          /> */}
-
-          {/* <View>
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: "600",
-                // marginVertical: 30,
-                alignItems: "flex-start",
-              }}
-            >
-              Forgot Your Password!!
+        <View style={styles.formWrapper(width)}>
+          <View style={styles.inputWrapper}>
+            <Text style={styles.inputLabel}>
+              <FontAwesomeIcon
+                name="envelope"
+                size={16}
+                style={{ color: "#c6c6c6" }}
+              />{" "}
+              Email
             </Text>
-          </View> */}
-          <View
-            style={{
-              width: "90%",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>
-              <FontAwesomeIcon name="envelope" size={16} /> Your Email
-            </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={(value) => setEmail(value)}
+            />
           </View>
-          <TextInput style={styles.input} placeholder="Email" />
+
           <TouchableOpacity
-            onPress={() => navigation.navigate("OTP Screen")}
+            onPress={(value) => validateFun(value)}
             style={{
               width: "90%",
               padding: 10,
@@ -81,10 +72,11 @@ const ForgotPasswordScreen = () => {
               <FontAwesome6 name="envelope-circle-check" size={14} /> Send
             </Text>
           </TouchableOpacity>
+
           <View style={{ marginVertical: 25 }}>
             <Pressable onPress={() => navigation.navigate("SignInScreen")}>
               <Text style={{ color: "grey" }}>
-                Have an Account? Singin Here
+                Have an Account? Sing In Here
               </Text>
             </Pressable>
           </View>
@@ -102,13 +94,25 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
   },
+  formWrapper: (width) => ({
+    width: width,
+    alignItems: "center",
+    padding: 5,
+  }),
+  inputWrapper: { width: "90%", marginVertical: 10 },
+  inputLabel: { fontWeight: "700" },
   input: {
+    marginTop: 10,
     height: 40,
-    margin: 12,
     borderWidth: 1,
     borderColor: "lightgrey",
-    padding: 10,
     borderRadius: 5,
-    width: "90%",
+    padding: 10,
+  },
+  labelWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontWeight: "700",
   },
 });
