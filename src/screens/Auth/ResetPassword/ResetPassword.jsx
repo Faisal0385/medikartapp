@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -12,6 +13,7 @@ import {
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import AuthImage from "../../../components/AuthImage";
 
 const ResetPassword = () => {
   const navigation = useNavigation();
@@ -19,19 +21,22 @@ const ResetPassword = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+
+        <AuthImage imageWidth={width} authImage={require("../../../../assets/doctor-illustration.jpg")}/>
+
         <View
           style={{
             width: width,
-            height: height / 2,
+            // height: height / 2,
             alignItems: "center",
             justifyContent: "center",
-            marginVertical: height / 10,
+            // marginVertical: height / 10,
           }}
         >
-          <Image
+          {/* <Image
             source={require("../../../../assets/logo/logo.png")}
             style={{ width: 100, height: 100 }}
-          />
+          /> */}
 
           <View>
             <Text
@@ -78,7 +83,9 @@ const ResetPassword = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ textAlign: "center", color: "white" }}><MaterialCommunityIcons name="check-decagram" size={14}/> Submit</Text>
+            <Text style={{ textAlign: "center", color: "white" }}>
+              <MaterialCommunityIcons name="check-decagram" size={14} /> Submit
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -91,7 +98,7 @@ export default ResetPassword;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
   },
   input: {

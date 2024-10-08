@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -12,6 +13,7 @@ import {
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome6";
+import AuthImage from "../../../components/AuthImage";
 
 const OTPScreen = () => {
   const navigation = useNavigation();
@@ -19,20 +21,23 @@ const OTPScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+        <AuthImage
+          imageWidth={width}
+          authImage={require("../../../../assets/doctor-illustration.jpg")}
+        />
         <View
           style={{
             width: width,
-            height: height / 2,
+            // height: height / 2,
             alignItems: "center",
-            justifyContent: "center",
-            marginVertical: height / 14,
+            // justifyContent: "center",
+            // marginVertical: height / 14,
           }}
         >
-          <Image
+          {/* <Image
             source={require("../../../../assets/logo/logo.png")}
             style={{ width: 100, height: 100 }}
-          />
-
+          /> */}
 
           <View>
             <Text
@@ -46,7 +51,7 @@ const OTPScreen = () => {
               Enter Your Verification Code!
             </Text>
           </View>
-          
+
           <View style={{ flexDirection: "row", padding: 10 }}>
             <TextInput style={styles.input} placeholder="0" />
             <TextInput style={styles.input} placeholder="0" />
@@ -90,8 +95,6 @@ const OTPScreen = () => {
               <FontAwesomeIcon name="file-circle-check" size={12} /> Verify
             </Text>
           </TouchableOpacity>
-
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -103,7 +106,7 @@ export default OTPScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
   },
   input: {

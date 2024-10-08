@@ -1,97 +1,87 @@
 import {
   Dimensions,
-  Image,
-  Pressable,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import AuthImage from "../../../components/AuthImage";
+import AuthTitle from "../../../components/AuthTitle";
+import AuthButton from "../../../components/AuthButton";
+import AuthLinkButton from "../../../components/AuthLinkButton";
+import FormInput from "../../../components/FormInput";
 
 const SignInScreen = () => {
   const navigation = useNavigation();
   const { height, width } = Dimensions.get("window");
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View
-          style={{
-            width: width,
-            height: height / 2,
-            alignItems: "center",
-            justifyContent: "center",
-            marginVertical: height / 10,
-          }}
-        >
-          <Image
-            source={require("../../../../assets/logo/logo.png")}
-            style={{ width: 100, height: 100 }}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <ScrollView>
+          <AuthImage
+            imageWidth={width}
+            authImage={require("../../../../assets/doctor-illustration.jpg")}
           />
 
-          <View>
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: "600",
-                marginVertical: 30,
-                alignItems: "flex-start",
-              }}
-            >
-              Welcome Back
-            </Text>
-          </View>
-          <View
-            style={{
-              width: "90%",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}><FontAwesomeIcon name="envelope" size={16} /> Email</Text>
-          </View>
-          <TextInput style={styles.input} placeholder="Email" />
+          <AuthTitle
+            titleText={"Welcome Back"}
+            subTitleText={
+              "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati et tenetur, animi."
+            }
+          />
 
-          <View
-            style={{
-              width: "90%",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}><MaterialIcons name="password" size={16} /> Password</Text>
-          </View>
+          <View style={styles.formWrapper(width)}>
+            {/* Email */}
+            <FormInput
+              labelText={"Email"}
+              labelIcon={
+                <FontAwesomeIcon
+                  name="envelope"
+                  size={16}
+                  style={{ color: "#c6c6c6" }}
+                />
+              }
+              secureText={false}
+              autoCapital={"none"}
+            />
 
-          <TextInput style={styles.input} placeholder="Password" />
+            {/* Password */}
+            <FormInput
+              labelText={"Password"}
+              labelIcon={
+                <MaterialIcons
+                  name="password"
+                  size={16}
+                  style={{ color: "#c6c6c6" }}
+                />
+              }
+              secureText={true}
+              autoCapital={"yes"}
+            />
 
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Bottom Navbar")}
-            style={{
-              width: "90%",
-              padding: 10,
-              backgroundColor: "#0081F1",
-              borderRadius: 5,
-            }}
-          >
-            <Text style={{ textAlign: "center", color: "white" }}>
-              <FontAwesomeIcon name="user-circle" size={14} /> Sing In
-            </Text>
-          </TouchableOpacity>
-          <View style={{ marginVertical: 20 }}>
-            <Pressable
-              onPress={() => navigation.navigate("ForgotPasswordScreen")}
-            >
-              <Text style={{ color: "grey" }}>Forgot Your Password?</Text>
-            </Pressable>
+            {/* Button */}
+            <AuthButton
+              btnText={"Sing In"}
+              icon={<FontAwesomeIcon name="user-circle" size={14} />}
+            />
+
+            {/* Link Button */}
+            <AuthLinkButton
+              linkText={"Forgot Your Password?"}
+              navigationRoute={"ForgotPasswordScreen"}
+            />
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -101,9 +91,14 @@ export default SignInScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
   },
+  formWrapper: (width) => ({
+    width: width,
+    alignItems: "center",
+    paddingVertical: 20,
+  }),
   input: {
     height: 40,
     margin: 12,
