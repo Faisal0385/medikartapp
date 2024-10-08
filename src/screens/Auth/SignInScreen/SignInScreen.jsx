@@ -20,6 +20,7 @@ import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
 import AuthButton from "../../../components/AuthButton";
 import AuthLinkButton from "../../../components/AuthLinkButton";
+import { errorToast, successToast } from "../../ToastMessage";
 
 const SignInScreen = () => {
   const navigation = useNavigation();
@@ -30,15 +31,16 @@ const SignInScreen = () => {
 
   const validateFun = () => {
     if (email.trim() === "") {
-      alert("Email can not be empty!!");
+      errorToast("Email can not be empty!!");
       return;
     }
     if (password.trim() === "") {
-      alert("Password can not be empty!!");
+      errorToast("Password can not be empty!!");
       return;
     }
 
-    navigation.navigate("Bottom Navbar")
+    successToast("Login Successful");
+    navigation.navigate("Bottom Navbar");
   };
   return (
     <SafeAreaView style={styles.container}>

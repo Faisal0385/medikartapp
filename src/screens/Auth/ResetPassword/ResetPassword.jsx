@@ -15,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
+import { errorToast, successToast } from "../../ToastMessage";
 
 const ResetPassword = () => {
   const navigation = useNavigation();
@@ -26,19 +27,20 @@ const ResetPassword = () => {
 
   const validateFun = () => {
     if (resetPassword.trim() === "") {
-      alert("New Password can not be empty!!");
+      errorToast("New password can not be empty!!");
       return;
     }
     if (confirmPassword.trim() === "") {
-      alert("Confirm Password can not be empty!!");
+      errorToast("Confirm password can not be empty!!");
       return;
     }
     if (resetPassword.trim() !== confirmPassword.trim()) {
-      alert("Password did not matched!!");
+      errorToast("Password did not matched!!");
       return;
     }
 
-    navigation.navigate("SignInScreen")
+    successToast("New password set successfully!!");
+    navigation.navigate("SignInScreen");
   };
 
   return (
@@ -46,66 +48,70 @@ const ResetPassword = () => {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-      <ScrollView>
-        <AuthImage
-          imageWidth={width}
-          authImage={require("../../../../assets/doctor-illustration.jpg")}
-        />
-
-        <AuthTitle titleText={"Reset Your New Password!!"} subTitleText={""} />
-
-        <View style={styles.formWrapper(width)}>
-          <View
-            style={{
-              width: "90%",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>
-              Reset Password
-            </Text>
-          </View>
-          <TextInput
-            style={styles.input}
-            placeholder="Reset Password"
-            value={resetPassword}
-            secureTextEntry={true}
-            onChangeText={(value)=>setResetPassword(value)}
+        <ScrollView>
+          <AuthImage
+            imageWidth={width}
+            authImage={require("../../../../assets/doctor-illustration.jpg")}
           />
-          <View
-            style={{
-              width: "90%",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>
-              Confirm Password
-            </Text>
-          </View>
-          <TextInput
-            style={styles.input}
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            secureTextEntry={true}
-            onChangeText={(value)=>setConfirmPassword(value)}
+
+          <AuthTitle
+            titleText={"Reset Your New Password!!"}
+            subTitleText={""}
           />
-          <TouchableOpacity
-            onPress={() => validateFun()}
-            style={{
-              width: "90%",
-              padding: 10,
-              backgroundColor: "#0081F1",
-              borderRadius: 5,
-            }}
-          >
-            <Text style={{ textAlign: "center", color: "white" }}>
-              <MaterialCommunityIcons name="check-decagram" size={14} /> Submit
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+
+          <View style={styles.formWrapper(width)}>
+            <View
+              style={{
+                width: "90%",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+              }}
+            >
+              <Text style={{ fontSize: 16, fontWeight: "600" }}>
+                New Password
+              </Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              placeholder="New Password"
+              value={resetPassword}
+              secureTextEntry={true}
+              onChangeText={(value) => setResetPassword(value)}
+            />
+            <View
+              style={{
+                width: "90%",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+              }}
+            >
+              <Text style={{ fontSize: 16, fontWeight: "600" }}>
+                Confirm Password
+              </Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              secureTextEntry={true}
+              onChangeText={(value) => setConfirmPassword(value)}
+            />
+            <TouchableOpacity
+              onPress={() => validateFun()}
+              style={{
+                width: "90%",
+                padding: 10,
+                backgroundColor: "#0081F1",
+                borderRadius: 5,
+              }}
+            >
+              <Text style={{ textAlign: "center", color: "white" }}>
+                <MaterialCommunityIcons name="check-decagram" size={14} />{" "}
+                Submit
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

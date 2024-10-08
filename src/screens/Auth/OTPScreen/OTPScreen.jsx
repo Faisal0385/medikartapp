@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome6";
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
+import { errorToast } from "../../ToastMessage";
 
 const OTPScreen = () => {
   const navigation = useNavigation();
@@ -26,7 +27,7 @@ const OTPScreen = () => {
 
   const validateFun = () => {
     if (digit1 === 0 || digit2 === 0 || digit3 === 0 || digit4 === 0) {
-      alert("Digits can not be empty!!");
+      errorToast("Digits can not be empty!!");
       return;
     }
     navigation.navigate("ResetPassword");

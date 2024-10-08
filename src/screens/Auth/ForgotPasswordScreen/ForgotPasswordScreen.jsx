@@ -16,6 +16,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
+import { errorToast } from "../../ToastMessage";
 
 const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
@@ -24,7 +25,7 @@ const ForgotPasswordScreen = () => {
 
   const validateFun = () => {
     if (email.trim() === "") {
-      alert("Email can not be empty!!");
+      errorToast("Email can not be empty!!");
       return;
     }
 
