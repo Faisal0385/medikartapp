@@ -1,4 +1,5 @@
 import {
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -25,11 +26,37 @@ const DashboardScreen = () => {
     navigation.navigate("Patient List");
   };
 
+  const goToProfileScreen = () => {
+    navigation.navigate("ProfileScreen");
+  };
+
   return (
     <View style={styles.container}>
       <SafeAreaView>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            borderBottomWidth: 1,
+            borderBottomColor: "lightgrey",
+            padding: 5,
+          }}
+        >
+          <TouchableOpacity>
+            <Image
+              source={require("../../../assets/qrcode.png")}
+              style={{ width: 25, height: 25 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => goToProfileScreen()}>
+            <Image
+              source={require("../../../assets/logo/logo.png")}
+              style={{ width: 25, height: 25 }}
+            />
+          </TouchableOpacity>
+        </View>
         {/* Heading Title Component */}
-        <View style={{marginVertical:15}}>
+        <View style={{ marginVertical: 15 }}>
           <HeadingTitle title="Welcome, Faisal" />
         </View>
 

@@ -19,6 +19,7 @@ const BottomNavigator = () => {
         name="Dashboard"
         component={DashboardScreen}
         options={{
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <FontAwesomeIcon name="home" color={color} size={20} />

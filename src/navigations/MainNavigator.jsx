@@ -46,7 +46,6 @@ function MainNavigator() {
         component={OTPScreen}
         options={{ headerShown: false }}
       />
-      
       <Stack.Screen
         name="OnboardingOne"
         component={OnBoardingScreenOne}
@@ -62,13 +61,15 @@ function MainNavigator() {
         component={OnBoardingScreenThree}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
         name="Bottom Navbar"
         component={BottomNavBar}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
-        name="Profile"
+        name="ProfileScreen"
         component={ProfileScreen}
         options={{ headerShown: false }}
       />
@@ -82,7 +83,6 @@ function MainNavigator() {
         component={ThankYouScreen}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="Booking"
         component={BookingScreen}
@@ -97,7 +97,6 @@ function MainNavigator() {
           headerBackTitleVisible: false,
         }}
       />
-
       <Stack.Screen
         name="Patient History"
         component={PatientHistory}
