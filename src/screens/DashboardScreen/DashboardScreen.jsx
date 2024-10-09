@@ -39,7 +39,7 @@ const DashboardScreen = () => {
             justifyContent: "space-between",
             borderBottomWidth: 1,
             borderBottomColor: "lightgrey",
-            padding: 5,
+            paddingVertical: 20,
           }}
         >
           <TouchableOpacity>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
   },
   button: {
     alignItems: "center",

@@ -80,7 +80,7 @@ const ForgotPasswordScreen = () => {
 
             <View style={{ marginVertical: 25 }}>
               <Pressable onPress={() => navigation.navigate("SignInScreen")}>
-                <Text style={{ color: "grey" }}>
+                <Text style={{ color: "grey", textDecorationLine:"underline" }}>
                   Have an Account? Sing In Here
                 </Text>
               </Pressable>
