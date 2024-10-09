@@ -21,7 +21,11 @@ const Stack = createStackNavigator();
 function MainNavigator() {
   return (
     <Stack.Navigator>
-      
+      <Stack.Screen
+        name="Bottom Navbar"
+        component={BottomNavBar}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
@@ -60,12 +64,6 @@ function MainNavigator() {
       <Stack.Screen
         name="OnboardingThree"
         component={OnBoardingScreenThree}
-        options={{ headerShown: false }}
-      />
-
-<Stack.Screen
-        name="Bottom Navbar"
-        component={BottomNavBar}
         options={{ headerShown: false }}
       />
 

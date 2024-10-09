@@ -10,16 +10,68 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { COLOR_WHITE } from "../../utils/colors";
 import { useNavigation } from "@react-navigation/native";
 import Divider from "./components/Divider";
+import { errorToast } from "../ToastMessage";
+import { Dropdown } from "react-native-element-dropdown";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+
+const data = [
+  { label: "AB+", value: "1" },
+  { label: "AB-", value: "2" },
+  { label: "O+", value: "3" },
+  { label: "O-", value: "4" },
+  { label: "A-", value: "5" },
+  { label: "A+", value: "6" },
+  { label: "B+", value: "7" },
+  { label: "B-", value: "8" },
+];
 
 const BookingScreen = () => {
-  const navigation = useNavigation();
+  const [value, setValue] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
 
+  const renderLabel = () => {
+    if (value || isFocus) {
+      return (
+        <Text style={[styles.label, isFocus && { color: "blue" }]}>
+          Dropdown label
+        </Text>
+      );
+    }
+    return null;
+  };
+
+  const navigation = useNavigation();
   const goToReceiptScreen = () => {
     navigation.navigate("Payment");
+  };
+
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("M");
+
+  const [ageYear, setAgeYear] = useState(0);
+  const [ageMonth, setAgeMonth] = useState(0);
+  const [ageDay, setAgeDay] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [group, setGroup] = useState("");
+
+  const validateFun = () => {
+    if (fullName.trim() == "") {
+      errorToast("Full name can not be empty!!");
+      return;
+    }
+    if (phone.trim() === "") {
+      errorToast("Phone can not be empty!!");
+      return;
+    }
+    if (ageYear === 0) {
+      errorToast("Age can not be empty!!");
+      return;
+    }
   };
 
   return (
@@ -37,13 +89,27 @@ const BookingScreen = () => {
               <Text style={{ fontWeight: "700" }}>
                 Full Name <Text style={{ color: "red" }}>*</Text>
               </Text>
-              <TextInput style={styles.input} placeholder="Full Name" />
+              <TextInput
+                value={fullName}
+                onChangeText={(value) => {
+                  setFullName(value);
+                }}
+                style={styles.input}
+                placeholder="Full Name"
+              />
               <Divider />
 
               <Text style={{ fontWeight: "700" }}>
                 Phone <Text style={{ color: "red" }}>*</Text>
               </Text>
-              <TextInput style={styles.input} placeholder="Phone" />
+              <TextInput
+                value={phone}
+                onChangeText={(value) => {
+                  setPhone(value);
+                }}
+                style={styles.input}
+                placeholder="Phone"
+              />
               <Divider />
 
               <Text style={{ fontWeight: "700" }}>
@@ -56,9 +122,10 @@ const BookingScreen = () => {
                 }}
               >
                 <Pressable
+                  onPress={() => setGender("M")}
                   style={{
                     flex: 1,
-                    backgroundColor: "teal",
+                    backgroundColor: gender === "M" ? "teal" : "white",
                     padding: 10,
                     borderRadius: 8,
                     borderColor: "teal",
@@ -66,14 +133,20 @@ const BookingScreen = () => {
                     margin: 5,
                   }}
                 >
-                  <Text style={{ color: "white", textAlign: "center" }}>
+                  <Text
+                    style={{
+                      color: gender === "M" ? "white" : "black",
+                      textAlign: "center",
+                    }}
+                  >
                     Male
                   </Text>
                 </Pressable>
                 <Pressable
+                  onPress={() => setGender("F")}
                   style={{
                     flex: 1,
-                    backgroundColor: "white",
+                    backgroundColor: gender === "F" ? "teal" : "white",
                     padding: 10,
                     borderRadius: 8,
                     borderColor: "teal",
@@ -81,14 +154,20 @@ const BookingScreen = () => {
                     margin: 5,
                   }}
                 >
-                  <Text style={{ color: "black", textAlign: "center" }}>
+                  <Text
+                    style={{
+                      color: gender === "F" ? "white" : "black",
+                      textAlign: "center",
+                    }}
+                  >
                     Female
                   </Text>
                 </Pressable>
                 <Pressable
+                  onPress={() => setGender("O")}
                   style={{
                     flex: 1,
-                    backgroundColor: "white",
+                    backgroundColor: gender === "O" ? "teal" : "white",
                     padding: 10,
                     borderRadius: 8,
                     borderColor: "teal",
@@ -96,37 +175,94 @@ const BookingScreen = () => {
                     margin: 5,
                   }}
                 >
-                  <Text style={{ color: "black", textAlign: "center" }}>
+                  <Text
+                    style={{
+                      color: gender === "O" ? "white" : "black",
+                      textAlign: "center",
+                    }}
+                  >
                     Others
                   </Text>
                 </Pressable>
               </View>
+
+              <Divider />
+              
+              <Text style={{ fontWeight: "700" }}>Age (Y/M/D) <Text style={{ color: "red" }}>*</Text></Text>
+              <View style={{ flexDirection: "row" }}>
+                <TextInput
+                  keyboardType="numeric"
+                  value={ageYear}
+                  onChangeText={(value) => {
+                    setAgeYear(value);
+                  }}
+                  style={styles.ageInput}
+                  placeholder="Year"
+                />
+                <TextInput
+                  keyboardType="numeric"
+                  value={ageMonth}
+                  onChangeText={(value) => {
+                    setAgeMonth(value);
+                  }}
+                  style={styles.ageInput}
+                  placeholder="Month"
+                />
+                <TextInput
+                  keyboardType="numeric"
+                  value={ageDay}
+                  onChangeText={(value) => {
+                    setAgeDay(value);
+                  }}
+                  style={styles.ageInput}
+                  placeholder="Day"
+                />
+              </View>
+
               <Divider />
 
-              <Text style={{ fontWeight: "700" }}>Age (Y/M/D)</Text>
-              <View style={{ flexDirection: "row" }}>
-                <TextInput style={styles.ageInput} placeholder="Year" />
-                <TextInput style={styles.ageInput} placeholder="Month" />
-                <TextInput style={styles.ageInput} placeholder="Day" />
-              </View>
+              <Text style={{ fontWeight: "700" }}>Blood Group</Text>
+              <Dropdown
+                style={[styles.dropdown, isFocus && { borderColor: "red" }]}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={data}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder={!isFocus ? "Select item" : "..."}
+                value={value}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={(item) => {
+                  setValue(item.value);
+                  setIsFocus(false);
+                }}
+                renderLeftIcon={() => (
+                  <MaterialIcons
+                    style={styles.icon}
+                    color={isFocus ? "red" : "teal"}
+                    name="bloodtype"
+                    size={20}
+                  />
+                )}
+              />
               <Divider />
 
               <Text style={{ fontWeight: "700" }}>Patient Weight (Kg)</Text>
               <TextInput
+                keyboardType="numeric"
+                value={weight}
+                onChangeText={(value) => {
+                  setWeight(value);
+                }}
                 style={styles.input}
                 placeholder="Patient Weight (Kg)"
               />
               <Divider />
 
-              <Text style={{ fontWeight: "700" }}>Blood Group</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Patient Weight (Kg)"
-              />
-
               <TouchableOpacity
+                onPress={() => validateFun()}
                 style={styles.button}
-                onPress={goToReceiptScreen}
               >
                 <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>
               </TouchableOpacity>
@@ -182,5 +318,16 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginVertical: 5,
+  },
+  dropdown: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    borderRadius: 5,
+    marginTop: 8,
+  },
+  selectedTextStyle: {
+    color: "green",
   },
 });
