@@ -1,14 +1,13 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { COLOR_WHITE } from "../utils/colors";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
-const DashboardCard = () => {
+const DashboardCard = ({ title, amount, bgcolor, fonticons }) => {
   return (
-    <View style={styles.cardStyle}>
+    <View style={styles.cardStyle(bgcolor)}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text style={{ color: COLOR_WHITE }}>0</Text>
-        <Text style={{ color: COLOR_WHITE }}> <FontAwesomeIcon name="dollar" size={16} /></Text>
+        <Text style={{ color: COLOR_WHITE }}>{amount}</Text>
+        <Text style={{ color: COLOR_WHITE }}> {fonticons}</Text>
       </View>
       <View
         style={{
@@ -17,7 +16,7 @@ const DashboardCard = () => {
           backgroundColor: COLOR_WHITE,
         }}
       ></View>
-      <Text style={{ color: COLOR_WHITE }}>Today's Income</Text>
+      <Text style={{ color: COLOR_WHITE, fontSize: 16 }}>{title}</Text>
     </View>
   );
 };
@@ -25,10 +24,10 @@ const DashboardCard = () => {
 export default DashboardCard;
 
 const styles = StyleSheet.create({
-  cardStyle: {
-    backgroundColor: "#17B48C",
+  cardStyle: (bgcolor) => ({
+    backgroundColor: bgcolor,
     marginVertical: 20,
     padding: 30,
     borderRadius: 5,
-  },
+  }),
 });

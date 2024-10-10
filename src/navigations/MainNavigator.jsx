@@ -26,7 +26,6 @@ function MainNavigator() {
         component={BottomNavBar}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
@@ -67,7 +66,7 @@ function MainNavigator() {
         component={OnBoardingScreenThree}
         options={{ headerShown: false }}
       />
-
+      
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
@@ -98,7 +97,7 @@ function MainNavigator() {
         }}
       />
       <Stack.Screen
-        name="Patient History"
+        name="PatientHistory"
         component={PatientHistory}
         options={{
           headerBackTitleVisible: false,
