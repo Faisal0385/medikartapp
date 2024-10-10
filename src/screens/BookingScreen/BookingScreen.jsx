@@ -13,7 +13,7 @@ import {
 import React, { useState } from "react";
 import { COLOR_WHITE } from "../../utils/colors";
 import { useNavigation } from "@react-navigation/native";
-import Divider from "./components/Divider";
+import Divider from "../../components/Divider";
 import { errorToast } from "../ToastMessage";
 import { Dropdown } from "react-native-element-dropdown";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";

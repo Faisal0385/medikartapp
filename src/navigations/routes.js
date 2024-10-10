@@ -1,3 +1,7 @@
+export const goToDashboardScreen = (navigation) => {
+  navigation.navigate("Bottom Navbar");
+};
+
 export const goToProfileScreen = (navigation) => {
   navigation.navigate("ProfileScreen");
 };
@@ -7,5 +11,5 @@ export const goToPatientHistoryScreen = (navigation) => {
 };
 
 export const goToPatientListScreen = (navigation) => {
-  navigation.navigate("Patient List");
+  navigation.navigate("PatientList");
 };

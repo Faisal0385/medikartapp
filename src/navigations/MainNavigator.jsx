@@ -22,6 +22,14 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="PatientList"
+        component={PatientListScreen}
+        options={{
+          headerShown:false,
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
         name="Bottom Navbar"
         component={BottomNavBar}
         options={{ headerShown: false }}
@@ -66,7 +74,7 @@ function MainNavigator() {
         component={OnBoardingScreenThree}
         options={{ headerShown: false }}
       />
-      
+
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
@@ -99,13 +107,6 @@ function MainNavigator() {
       <Stack.Screen
         name="PatientHistory"
         component={PatientHistory}
-        options={{
-          headerBackTitleVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="Patient List"
-        component={PatientListScreen}
         options={{
           headerBackTitleVisible: false,
         }}

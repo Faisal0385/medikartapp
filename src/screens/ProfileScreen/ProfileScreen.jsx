@@ -7,13 +7,15 @@ import {
   View,
 } from "react-native";
 import React from "react";
+import AppBar from "../../components/AppBar";
+import { goToDashboardScreen } from "../../navigations/routes";
 
 const ProfileScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.appBarStyle}>
-        <Text style={styles.headerTextStyle}>Profile Screen</Text>
-      </View>
+      {/* App Bar */}
+      <AppBar appBarText="Profile Screen" routeFunc={goToDashboardScreen} />
+
       <ScrollView>
         <View style={{ alignItems: "center", padding: 20 }}>
           <Image

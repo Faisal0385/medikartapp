@@ -3,7 +3,7 @@ import React from "react";
 
 const HeadingTitle = ({ title }) => {
   return (
-    <Text style={{ fontSize: 25, fontWeight: "600", marginTop: 5 }}>
+    <Text style={{ fontSize: 24, fontWeight: "600", marginTop: 5 }}>
       {title}
     </Text>
   );
