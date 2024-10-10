@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import {  StatusBar, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import DashboardCard from "../../components/DashboardCard";
@@ -10,7 +10,7 @@ const PatientListScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Heading Title Component */}
-      <HeadingTitle title="Zyona Laser" />
+      <HeadingTitle title="Zyona Laser & Skin Care" />
 
       {/* Search Component */}
       <Search />
@@ -170,8 +170,9 @@ export default PatientListScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     backgroundColor: "#F4F4F4",
-    paddingHorizontal: 20,
-    margin: 10,
+    paddingHorizontal: 5,
+    margin: 5,
   },
 });

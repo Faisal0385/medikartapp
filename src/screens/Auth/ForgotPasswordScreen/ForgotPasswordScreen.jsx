@@ -10,6 +10,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  StatusBar
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -18,6 +19,7 @@ import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
 import { errorToast } from "../../ToastMessage";
+
 
 const ForgotPasswordScreen = () => {
   const navigation = useNavigation();

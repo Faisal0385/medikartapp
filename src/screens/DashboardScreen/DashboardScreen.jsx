@@ -5,6 +5,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar,
+  Platform
 } from "react-native";
 import React from "react";
 import Search from "../../components/Search";
@@ -118,6 +120,7 @@ export default DashboardScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     backgroundColor: "#F4F4F4",
     paddingHorizontal: 15,
   },

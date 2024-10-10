@@ -6,6 +6,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar,
+  Platform,
 } from "react-native";
 import React from "react";
 import HeadingTitle from "../../components/HeadingTitle";
@@ -35,13 +37,16 @@ const ReceiptScreen = () => {
         <View style={[styles.card, styles.shadowProp]}>
           <View style={{ padding: 10 }}>
             <Text
-              style={{ backgroundColor: "#eae8e8", padding: 5, marginTop: 10 }}
+              style={{
+                backgroundColor: "#eae8e8",
+                padding: 5,
+                marginTop: 10,
+                fontWeight: "700",
+                fontSize: 20,
+                textAlign: "center",
+              }}
             >
-              <Text
-                style={{ fontWeight: "700", fontSize: 20, textAlign: "center" }}
-              >
-                ZYONA LEASER
-              </Text>
+              ZYONA LEASER
             </Text>
             <View style={{ alignItems: "center", marginTop: 10 }}>
               <Text>Contact: 0161544212</Text>
@@ -162,8 +167,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     margin: 5,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   button: {
     alignItems: "center",
@@ -177,6 +183,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FA4D24",
     padding: 10,
     borderRadius: 5,
-    marginBottom:10
+    marginBottom: 10,
   },
 });

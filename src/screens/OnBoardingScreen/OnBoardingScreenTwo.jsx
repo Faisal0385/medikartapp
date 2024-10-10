@@ -39,7 +39,7 @@ const OnBoardingScreenTwo = () => {
             heading={ONBOARDING_TWO_HEADING_TEXT}
             para={ONBOARDING_TWO_PARA_TEXT}
           />
-          <TextComponent />
+
           {/* Indicator container */}
           <IndicatorComponent num={1} />
           {/* Navigation Button */}

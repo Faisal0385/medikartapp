@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  StatusBar
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
