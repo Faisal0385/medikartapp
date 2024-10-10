@@ -22,10 +22,10 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="PatientList"
-        component={PatientListScreen}
+        name="PatientHistory"
+        component={PatientHistory}
         options={{
-          headerShown:false,
+          headerShown: false,
           headerBackTitleVisible: false,
         }}
       />
@@ -105,9 +105,10 @@ function MainNavigator() {
         }}
       />
       <Stack.Screen
-        name="PatientHistory"
-        component={PatientHistory}
+        name="PatientList"
+        component={PatientListScreen}
         options={{
+          headerShown: false,
           headerBackTitleVisible: false,
         }}
       />
