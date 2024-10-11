@@ -9,9 +9,9 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  StatusBar
+  StatusBar,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome6";
 import AuthImage from "../../../components/AuthImage";
@@ -21,6 +21,11 @@ import { errorToast } from "../../ToastMessage";
 const OTPScreen = () => {
   const navigation = useNavigation();
   const { width } = Dimensions.get("window");
+
+  const input1 = useRef();
+  const input2 = useRef();
+  const input3 = useRef();
+  const input4 = useRef();
 
   const [digit1, setDigit1] = useState(0);
   const [digit2, setDigit2] = useState(0);
@@ -53,32 +58,66 @@ const OTPScreen = () => {
 
           <View style={{ flexDirection: "row", paddingHorizontal: 10 }}>
             <TextInput
+              ref={input1}
               style={styles.input}
               placeholder="0"
               keyboardType="numeric"
               value={digit1}
-              onChangeText={(value) => setDigit1(value)}
+              onChangeText={(value) => {
+                if (value.length >= 1) {
+                  input2.current.focus();
+                  setDigit1(value);
+                } else {
+                  setDigit1(value);
+                }
+              }}
             />
             <TextInput
+              ref={input2}
               style={styles.input}
               placeholder="0"
               keyboardType="numeric"
               value={digit2}
-              onChangeText={(value) => setDigit2(value)}
+              onChangeText={(value) => {
+                if (value.length >= 1) {
+                  input3.current.focus();
+                  setDigit2(value);
+                } else {
+                  input1.current.focus();
+                  setDigit2(value);
+                }
+              }}
             />
             <TextInput
+              ref={input3}
               style={styles.input}
               placeholder="0"
               keyboardType="numeric"
               value={digit3}
-              onChangeText={(value) => setDigit3(value)}
+              onChangeText={(value) => {
+                if (value.length >= 1) {
+                  input4.current.focus();
+                  setDigit3(value);
+                } else {
+                  input2.current.focus();
+                  setDigit3(value);
+                }
+              }}
             />
             <TextInput
+              ref={input4}
               style={styles.input}
               placeholder="0"
               keyboardType="numeric"
               value={digit4}
-              onChangeText={(value) => setDigit4(value)}
+              onChangeText={(value) => {
+                if (value.length >= 1) {
+                  setDigit4(value);
+                } else {
+                  input3.current.focus();
+                  setDigit4(value);
+                }
+              }}
             />
           </View>
 
