@@ -9,14 +9,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  StatusBar
+  StatusBar,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
-import { errorToast, successToast } from "../../ToastMessage";
+import { myErrorToast, successToast } from "../../ToastMessage";
 
 const ResetPassword = () => {
   const navigation = useNavigation();
@@ -28,15 +28,15 @@ const ResetPassword = () => {
 
   const validateFun = () => {
     if (resetPassword.trim() === "") {
-      errorToast("New password can not be empty!!");
+      myErrorToast("New password can not be empty!!", "top");
       return;
     }
     if (confirmPassword.trim() === "") {
-      errorToast("Confirm password can not be empty!!");
+      myErrorToast("Confirm password can not be empty!!", "top");
       return;
     }
     if (resetPassword.trim() !== confirmPassword.trim()) {
-      errorToast("Password did not matched!!");
+      myErrorToast("Password did not matched!!", "top");
       return;
     }
 
