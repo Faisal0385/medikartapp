@@ -33,17 +33,6 @@ const BookingScreen = () => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
-  const renderLabel = () => {
-    if (value || isFocus) {
-      return (
-        <Text style={[styles.label, isFocus && { color: "blue" }]}>
-          Dropdown label
-        </Text>
-      );
-    }
-    return null;
-  };
-
   const navigation = useNavigation();
   const goToReceiptScreen = () => {
     navigation.navigate("Payment");
@@ -83,7 +72,7 @@ const BookingScreen = () => {
           <View style={[styles.card, styles.shadowProp]}>
             <View style={{ padding: 10 }}>
               <Text style={{ fontWeight: "700" }}>Serial No.</Text>
-              <TextInput style={styles.input} placeholder="Serial No." />
+              <TextInput keyboardType="numeric" style={styles.input} placeholder="Serial No." />
               <Divider />
 
               <Text style={{ fontWeight: "700" }}>
@@ -103,6 +92,7 @@ const BookingScreen = () => {
                 Phone <Text style={{ color: "red" }}>*</Text>
               </Text>
               <TextInput
+                keyboardType="numeric"
                 value={phone}
                 onChangeText={(value) => {
                   setPhone(value);
@@ -187,8 +177,10 @@ const BookingScreen = () => {
               </View>
 
               <Divider />
-              
-              <Text style={{ fontWeight: "700" }}>Age (Y/M/D) <Text style={{ color: "red" }}>*</Text></Text>
+
+              <Text style={{ fontWeight: "700" }}>
+                Age (Y/M/D) <Text style={{ color: "red" }}>*</Text>
+              </Text>
               <View style={{ flexDirection: "row" }}>
                 <TextInput
                   keyboardType="numeric"
