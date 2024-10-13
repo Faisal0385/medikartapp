@@ -49,7 +49,6 @@ const SignInScreen = () => {
       >
         <ScrollView>
           <AuthImage
-            imageWidth={width}
             authImage={require("../../../../assets/doctor-illustration.jpg")}
           />
 
@@ -147,17 +146,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    alignItems: "center",
   },
   formWrapper: (width) => ({
     width: width,
     alignItems: "center",
-    padding: 5,
   }),
   inputWrapper: { width: "90%", marginVertical: 10 },
   inputLabel: { fontWeight: "700" },
   input: {
-    marginTop: 10,
+    marginTop: 5,
     height: 40,
     borderWidth: 1,
     borderColor: "lightgrey",

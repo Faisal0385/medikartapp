@@ -21,6 +21,27 @@ const Stack = createStackNavigator();
 function MainNavigator() {
   return (
     <Stack.Navigator>
+            <Stack.Screen
+        name="SignInScreen"
+        component={SignInScreen}
+        options={{ headerShown: false }}
+      />
+      
+      <Stack.Screen
+        name="OnboardingOne"
+        component={OnBoardingScreenOne}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OnboardingTwo"
+        component={OnBoardingScreenTwo}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OnboardingThree"
+        component={OnBoardingScreenThree}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
@@ -44,11 +65,7 @@ function MainNavigator() {
         component={ResetPassword}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="SignInScreen"
-        component={SignInScreen}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
@@ -59,21 +76,7 @@ function MainNavigator() {
         component={OTPScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="OnboardingOne"
-        component={OnBoardingScreenOne}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="OnboardingTwo"
-        component={OnBoardingScreenTwo}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="OnboardingThree"
-        component={OnBoardingScreenThree}
-        options={{ headerShown: false }}
-      />
+      
 
       <Stack.Screen
         name="ProfileScreen"

@@ -1,7 +1,9 @@
 import {
   Image,
+  Platform,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -41,7 +43,11 @@ const ProfileScreen = () => {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+    backgroundColor: "#F4F4F4",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
   appBarStyle: {
     backgroundColor: "lightgrey",
   },

@@ -10,7 +10,7 @@ const NavigationButton = ({ nextRoute, skipRoute }) => {
         onPress={() => navigation.navigate(nextRoute)}
         style={{
           backgroundColor: "#6EBCFF",
-          padding: 20,
+          padding: 15,
           borderRadius: 5,
           margin: 10,
         }}

@@ -24,15 +24,15 @@ const OnBoardingScreenOne = () => {
       <ScrollView>
         <Image
           source={require("../../../assets/onboarding/doctor-01.jpg")}
-          style={{ width: width, height: height / 2 }}
+          style={{ width: width, height: height/2 }}
         />
         <View
           style={{
             borderColor: "lightgrey",
-            margin: 20,
+            margin: 10,
             borderWidth: 1,
             borderRadius: 10,
-            padding: 20,
+            padding: 10,
           }}
         >
           {/* Text container */}

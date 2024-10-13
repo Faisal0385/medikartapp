@@ -29,10 +29,10 @@ const OnBoardingScreenTwo = () => {
         <View
           style={{
             borderColor: "lightgrey",
-            margin: 20,
+            margin: 10,
             borderWidth: 1,
             borderRadius: 10,
-            padding: 20,
+            padding: 10,
           }}
         >
           <TextComponent

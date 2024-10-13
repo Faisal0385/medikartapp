@@ -1,13 +1,14 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, View } from "react-native";
 import React from "react";
 
-const AuthImage = ({ imageWidth, authImage }) => {
+const AuthImage = ({authImage }) => {
+  const { height, width } = Dimensions.get("window");
   return (
     <View>
       <Image
         source={authImage}
-        style={styles.imageStyle(imageWidth)}
-        resizeMode="contain"
+        style={{width: width, height: height/2.5}}
+        resizeMode="cover"
         resizeMethod="resize"
       />
     </View>
@@ -15,7 +16,3 @@ const AuthImage = ({ imageWidth, authImage }) => {
 };
 
 export default AuthImage;
-
-const styles = StyleSheet.create({
-    imageStyle:(imageWidth)=>({width: imageWidth, height: 300})
-});

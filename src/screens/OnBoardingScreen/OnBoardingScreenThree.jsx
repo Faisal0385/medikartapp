@@ -30,10 +30,10 @@ const OnBoardingScreenThree = () => {
         <View
           style={{
             borderColor: "lightgrey",
-            margin: 20,
+            margin: 10,
             borderWidth: 1,
             borderRadius: 10,
-            padding: 20,
+            padding: 10,
           }}
         >
           <TextComponent
@@ -48,7 +48,7 @@ const OnBoardingScreenThree = () => {
             onPress={() => navigation.navigate("SignInScreen")}
             style={{
               backgroundColor: "#6EBCFF",
-              padding: 20,
+              padding: 15,
               borderRadius: 5,
               margin: 10,
             }}

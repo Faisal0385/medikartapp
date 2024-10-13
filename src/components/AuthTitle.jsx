@@ -24,14 +24,15 @@ const styles = StyleSheet.create({
   titleTextStyle: {
     fontSize: 24,
     fontWeight: "600",
-    marginVertical: 20,
     textAlign: "center",
+    marginVertical:10
   },
   subTitleTextStyle: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "500",
     textAlign: "center",
     color: "grey",
     marginBottom: 5,
+    marginHorizontal:10
   },
 });
