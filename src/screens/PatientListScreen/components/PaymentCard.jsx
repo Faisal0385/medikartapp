@@ -4,10 +4,10 @@ import React from "react";
 const PaymentCard = ({ id, name, fee, status, time }) => {
   return (
     <View
-      key={id}
+      key={id+1}
       style={{
         backgroundColor: "#17B48C",
-        marginVertical: 15,
+        marginVertical: 10,
         padding: 30,
         borderRadius: 5,
       }}

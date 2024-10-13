@@ -34,7 +34,7 @@ const DashboardScreen = () => {
       <ScrollView>
         <View style={{ marginHorizontal: 8 }}>
           {/* Heading Title Component */}
-          <View style={{ marginVertical: 10 }}>
+          <View style={{ marginVertical: 8 }}>
             <HeadingTitle title="Welcome Back" />
           </View>
 

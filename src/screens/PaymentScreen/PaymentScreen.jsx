@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
-    margin: 5,
   },
   input: {
     height: 40,
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
     borderRadius: 8,
-    padding: 10,
+    padding: 5,
     margin: 14,
   },
   shadowProp: {
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FA4D24",
     padding: 10,
     borderRadius: 5,
-    marginVertical: 10,
+    marginVertical: 3,
     marginHorizontal: 5,
   },
 });

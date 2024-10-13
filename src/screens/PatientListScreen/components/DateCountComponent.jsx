@@ -19,5 +19,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginVertical: 10,
   },
-  textStyle: { fontSize: 18, fontWeight: "600" },
+  textStyle: { fontSize: 16, fontWeight: "600" },
 });

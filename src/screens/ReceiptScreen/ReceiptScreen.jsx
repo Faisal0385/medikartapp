@@ -29,7 +29,7 @@ const ReceiptScreen = () => {
       <View style={{ alignItems: "center", marginTop: 5 }}>
         <Image
           source={require("../../../assets/qrcode.png")}
-          style={{ height: 80, width: 80 }}
+          style={{ height: 70, width: 70 }}
         />
       </View>
 
@@ -65,17 +65,44 @@ const ReceiptScreen = () => {
                 }}
               ></View>
             </View>
-            <Text
-              style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
+
+            <View
+              style={{ backgroundColor: "#eae8e8", padding: 8, marginTop: 10 }}
             >
-              <Text style={{ fontWeight: "700" }}>Payment Status: </Text>
-              <Text style={{ color: "green", fontSize: 16, fontWeight: "700" }}>
-                Paid
-              </Text>
-              <Text>{"          "}</Text>
-              <Text style={{ fontWeight: "700" }}> Date</Text> 12-12-24 :: 7:30
-              PM
-            </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginBottom: 5,
+                }}
+              >
+                <View style={{ flexDirection: "row" }}>
+                  <Text style={{ fontWeight: "700" }}>Payment Status: </Text>
+                  <Text style={{ color: "green", fontWeight: "700" }}>
+                    Paid
+                  </Text>
+                </View>
+                <View>
+                  <Text>
+                    <Text style={{ fontWeight: "700" }}>Fee (BDT): </Text> 700
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginBottom: 5,
+                }}
+              >
+                <View>
+                  <Text style={{ fontWeight: "700" }}>Date: 12-12-24</Text>
+                </View>
+                <View>
+                  <Text style={{ fontWeight: "700" }}>Time: 7:30 PM</Text>
+                </View>
+              </View>
+            </View>
 
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <View
@@ -121,11 +148,6 @@ const ReceiptScreen = () => {
                 }}
               ></View>
             </View>
-            <Text
-              style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
-            >
-              <Text style={{ fontWeight: "700" }}>Fee (BDT): </Text> 700
-            </Text>
 
             <TouchableOpacity
               style={styles.button}
@@ -168,7 +190,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F4F4F4",
     paddingHorizontal: 10,
-    margin: 5,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   button: {
@@ -176,7 +197,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FA4D24",
     padding: 10,
     borderRadius: 5,
-    marginVertical: 20,
+    marginVertical: 10,
   },
   skipButton: {
     alignItems: "center",

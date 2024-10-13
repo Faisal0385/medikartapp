@@ -26,7 +26,7 @@ export default DashboardCard;
 const styles = StyleSheet.create({
   cardStyle: (bgcolor) => ({
     backgroundColor: bgcolor,
-    marginVertical: 20,
+    marginVertical: 10,
     padding: 30,
     borderRadius: 5,
   }),

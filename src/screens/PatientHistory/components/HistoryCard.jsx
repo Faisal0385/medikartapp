@@ -4,7 +4,7 @@ import { COLOR_WHITE } from "../../../utils/colors";
 
 const HistoryCard = ({ id, vid, date, name, phone }) => {
   return (
-    <View key={id} style={[styles.card, styles.shadowProp]}>
+    <View key={id+2} style={[styles.card, styles.shadowProp]}>
       <View style={{ padding: 10 }}>
         <Text
           style={{

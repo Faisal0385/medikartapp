@@ -27,7 +27,7 @@ const PatientListScreen = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ margin: 10 }}>
           {/* Heading Title Component */}
-          <View style={{ marginVertical: 10 }}>
+          <View style={{ marginVertical: 5 }}>
             <HeadingTitle title="Zyona Laser & Skin Care" />
           </View>
 
