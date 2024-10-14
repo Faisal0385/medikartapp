@@ -22,15 +22,16 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Splash Screen"
-        component={SplashScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="Bottom Navbar"
         component={BottomNavBar}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Splash Screen"
+        component={SplashScreen}
+        options={{ headerShown: false }}
+      />
+      
       <Stack.Screen
         name="SignInScreen"
         component={SignInScreen}

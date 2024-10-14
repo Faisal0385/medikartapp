@@ -6,16 +6,73 @@ import {
   View,
   TouchableOpacity,
   TextInput,
+  ActivityIndicator,
+  RefreshControl,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { COLOR_WHITE } from "../../utils/colors";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
+import axios from "axios";
 
-const PaymentComponent = () => {
+const PaymentComponent = ({ data, callApi }) => {
   const navigation = useNavigation();
 
-  const goToPaymentScreen = () => {
-    navigation.navigate("Receipt");
+  const [loader, setLoader] = useState(false);
+  const [payment, setPayment] = useState(null);
+
+  const goToPaymentScreen = (bid) => {
+    if (payment === null) {
+      Toast.show({
+        type: "error",
+        text1: "Payment can not be empty!!",
+        position: "bottom",
+        visibilityTime: 2000,
+        bottomOffset: 100,
+      });
+      return;
+    }
+    axios
+      .post("https://aketbd.com/medikart/api/v1/doctor/booking-payment", {
+        booking_id: bid,
+        payment_amount: payment,
+      })
+      .then(function (response) {
+        setLoader(false);
+        if (response.data.status == "success") {
+          setPayment("");
+          Toast.show({
+            type: "success",
+            text1: response.data.message,
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+          callApi();
+          navigation.navigate("Receipt");
+        } else if (response.data.status == "error") {
+          Toast.show({
+            type: "error",
+            text1: response.data.message,
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      })
+      .catch(function (error) {
+        setLoader(false);
+        if (error.status == 500) {
+          Toast.show({
+            type: "error",
+            text1: "Somthing went wrong!!",
+            text2: "Try agian!!",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      });
   };
   return (
     <View style={[styles.card, styles.shadowProp]}>
@@ -36,7 +93,7 @@ const PaymentComponent = () => {
             marginVertical: 5,
           }}
         >
-          <Text style={{ fontWeight: "700" }}>Name: </Text> Jon Doe
+          <Text style={{ fontWeight: "700" }}>Name: {data.full_name}</Text>
         </Text>
 
         <Text
@@ -46,12 +103,21 @@ const PaymentComponent = () => {
             marginVertical: 5,
           }}
         >
-          <Text style={{ fontWeight: "700" }}>Phone: </Text>01325234556
+          <Text style={{ fontWeight: "700" }}>Phone: </Text>
+          {data.mobile}
         </Text>
-        <TextInput style={styles.input} placeholder="Payment" />
+        <TextInput
+          style={styles.input}
+          placeholder="Payment"
+          keyboardType="numeric"
+          onChangeText={(value) => setPayment(value)}
+        />
 
         <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity style={styles.button} onPress={goToPaymentScreen}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => goToPaymentScreen(data.id)}
+          >
             <Text style={{ color: COLOR_WHITE }}>Payment</Text>
           </TouchableOpacity>
         </View>
@@ -61,13 +127,74 @@ const PaymentComponent = () => {
 };
 
 const PaymentScreen = () => {
+  const [loader, setLoader] = useState(true);
+  const [reloader, setReloader] = useState(false);
+
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    apiCall();
+    setRefreshing(false);
+  }, []);
+
+  const [data, setData] = useState([]);
+  const apiCall = () => {
+    axios
+      .get("https://aketbd.com/medikart/api/v1/due/patient-list/1")
+      .then(function (response) {
+        if (response.data.status === "success") {
+          setData(response.data?.data);
+          setLoader(false);
+        }
+      })
+      .catch(function (error) {
+        setLoader(false);
+        if (error.status == 500) {
+          Toast.show({
+            type: "error",
+            text1: "Somthing went wrong!!",
+            text2: "Try agian!!",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      });
+  };
+
+  const callApi = () => {
+    apiCall();
+  };
+
+  useEffect(() => {
+    apiCall();
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <PaymentComponent />
-        <PaymentComponent />
-        <PaymentComponent />
-        <PaymentComponent />
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        {loader ? (
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: 100,
+            }}
+          >
+            <ActivityIndicator size={"large"} color={"orange"} />
+          </View>
+        ) : data.length != 0 ? (
+          data.map((item, index) => <PaymentComponent  key={index} data={item} callApi={callApi} />)
+        ) : (
+          <Text style={{ textAlign: "center", margin: 20, fontSize: 30 }}>
+            No Data Found!!
+          </Text>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

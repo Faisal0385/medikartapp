@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -10,13 +11,15 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { COLOR_WHITE } from "../../utils/colors";
 import { useNavigation } from "@react-navigation/native";
 import Divider from "../../components/Divider";
 import { errorToast } from "../ToastMessage";
 import { Dropdown } from "react-native-element-dropdown";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import axios from "axios";
+import Toast from "react-native-toast-message";
 
 const data = [
   { label: "AB+", value: "1" },
@@ -30,37 +33,108 @@ const data = [
 ];
 
 const BookingScreen = () => {
+  const [loader, setLoader] = useState(false);
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
-
-  const navigation = useNavigation();
-  const goToReceiptScreen = () => {
-    navigation.navigate("Payment");
-  };
-
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("M");
-
   const [ageYear, setAgeYear] = useState(0);
   const [ageMonth, setAgeMonth] = useState(0);
   const [ageDay, setAgeDay] = useState(0);
   const [weight, setWeight] = useState(0);
-  const [group, setGroup] = useState("");
 
-  const validateFun = () => {
+  const booking = () => {
     if (fullName.trim() == "") {
-      errorToast("Full name can not be empty!!");
+      Toast.show({
+        type: "error",
+        text1: "Full name can not be empty!!",
+        position: "bottom",
+        visibilityTime: 2000,
+        bottomOffset: 100,
+      });
       return;
     }
-    if (phone.trim() === "") {
-      errorToast("Phone can not be empty!!");
+
+    if (phone.trim() == "") {
+      Toast.show({
+        type: "error",
+        text1: "Mobile can not be empty!!",
+        position: "bottom",
+        visibilityTime: 2000,
+        bottomOffset: 100,
+      });
       return;
     }
-    if (ageYear === 0) {
-      errorToast("Age can not be empty!!");
+
+    if (gender.trim() == "") {
+      Toast.show({
+        type: "error",
+        text1: "Gender can not be empty!!",
+        position: "bottom",
+        visibilityTime: 2000,
+        bottomOffset: 100,
+      });
       return;
     }
+
+    if (ageYear.trim() == "") {
+      Toast.show({
+        type: "error",
+        text1: "Year can not be empty!!",
+        position: "bottom",
+        visibilityTime: 2000,
+        bottomOffset: 100,
+      });
+      return;
+    }
+
+    setLoader(true);
+    axios
+      .post("https://aketbd.com/medikart/api/v1/doctor/booking-appointment", {
+        full_name: fullName,
+        mobile: phone,
+        gender: gender,
+        age_year: ageYear,
+        age_month: ageMonth,
+        age_day: ageDay,
+        weight: weight,
+        blood_grp: value,
+      })
+      .then(function (response) {
+        setLoader(false);
+
+        if (response.data.status == "success") {
+          Toast.show({
+            type: "success",
+            text1: response.data.message,
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+          setFullName("");
+          setPhone("");
+          setGender("");
+          setValue("");
+          setWeight("");
+          setAgeDay("");
+          setAgeMonth("");
+          setAgeYear("");
+        }
+      })
+      .catch(function (error) {
+        setLoader(false);
+        if (error.status == 500) {
+          Toast.show({
+            type: "error",
+            text1: "Somthing went wrong!!",
+            text2: "Try agian!!",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      });
   };
 
   return (
@@ -72,7 +146,11 @@ const BookingScreen = () => {
           <View style={[styles.card, styles.shadowProp]}>
             <View style={{ padding: 10 }}>
               <Text style={{ fontWeight: "700" }}>Serial No.</Text>
-              <TextInput keyboardType="numeric" style={styles.input} placeholder="Serial No." />
+              <TextInput
+                keyboardType="numeric"
+                style={styles.input}
+                placeholder="Serial No."
+              />
               <Divider />
 
               <Text style={{ fontWeight: "700" }}>
@@ -190,6 +268,7 @@ const BookingScreen = () => {
                   }}
                   style={styles.ageInput}
                   placeholder="Year"
+                  maxLength={3}
                 />
                 <TextInput
                   keyboardType="numeric"
@@ -199,6 +278,7 @@ const BookingScreen = () => {
                   }}
                   style={styles.ageInput}
                   placeholder="Month"
+                  maxLength={2}
                 />
                 <TextInput
                   keyboardType="numeric"
@@ -208,6 +288,7 @@ const BookingScreen = () => {
                   }}
                   style={styles.ageInput}
                   placeholder="Day"
+                  maxLength={2}
                 />
               </View>
 
@@ -249,15 +330,20 @@ const BookingScreen = () => {
                 }}
                 style={styles.input}
                 placeholder="Patient Weight (Kg)"
+                maxLength={3}
               />
               <Divider />
 
-              <TouchableOpacity
-                onPress={() => validateFun()}
-                style={styles.button}
-              >
-                <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>
-              </TouchableOpacity>
+              {loader ? (
+                <ActivityIndicator size="large" color={"green"} />
+              ) : (
+                <TouchableOpacity
+                  onPress={() => booking()}
+                  style={styles.button}
+                >
+                  <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>
+                </TouchableOpacity>
+              )}
             </View>
           </View>
         </ScrollView>
