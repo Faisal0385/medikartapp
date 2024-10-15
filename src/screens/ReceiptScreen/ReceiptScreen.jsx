@@ -8,17 +8,73 @@ import {
   View,
   StatusBar,
   Platform,
+  TextInput,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
-import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+import axios from "axios";
+import Toast from "react-native-toast-message";
 
-const ReceiptScreen = () => {
-  const navigation = useNavigation();
+const ReceiptScreen = ({ navigation }) => {
+  const route = useRoute();
+  const data = route.params?.data;
+  const [loader, setLoader] = useState(false);
+  const [paymentAmount, setPaymentAmount] = useState(0);
 
-  const goToThankYouScreen = () => {
-    navigation.navigate("Thanks");
+  const goToPaymentScreen = (bid) => {
+    if (paymentAmount === 0) {
+      Toast.show({
+        type: "error",
+        text1: "Payment can not be empty!!",
+        position: "bottom",
+        visibilityTime: 2000,
+        bottomOffset: 100,
+      });
+      return;
+    }
+
+    axios
+      .post("https://aketbd.com/medikart/api/v1/doctor/booking-payment", {
+        booking_id: bid,
+        payment_amount: paymentAmount,
+      })
+      .then(function (response) {
+        setLoader(false);
+        if (response.data.status == "success") {
+          Toast.show({
+            type: "success",
+            text1: response.data.message,
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+          setPaymentAmount(0);
+          navigation.navigate("Thanks");
+        } else if (response.data.status == "error") {
+          Toast.show({
+            type: "error",
+            text1: response.data.message,
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      })
+      .catch(function (error) {
+        setLoader(false);
+        if (error.status == 500) {
+          Toast.show({
+            type: "error",
+            text1: "Somthing went wrong!!",
+            text2: "Try agian!!",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      });
   };
 
   return (
@@ -46,13 +102,13 @@ const ReceiptScreen = () => {
                 textAlign: "center",
               }}
             >
-              ZYONA LEASER
+              Zyona Laser & Skin Care Center
             </Text>
             <View style={{ alignItems: "center", marginTop: 10 }}>
-              <Text>Contact: 0161544212</Text>
+              <Text>Contact: 01307-842071</Text>
               <Text>
-                Address: জব্বার মার্কেট ২য় তলা, উপজেলা সদর বোয়ালখালী চট্টগ্রাম।
-                , Boalkhali, Bangladesh
+                Address: House #499/685, Siddique Valley, 3rd Floor, Agrabad
+                Access Road, Chattogram
               </Text>
             </View>
             <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -78,9 +134,7 @@ const ReceiptScreen = () => {
               >
                 <View style={{ flexDirection: "row" }}>
                   <Text style={{ fontWeight: "700" }}>Payment Status: </Text>
-                  <Text style={{ color: "green", fontWeight: "700" }}>
-                    Paid
-                  </Text>
+                  <Text style={{ color: "red", fontWeight: "700" }}>Due</Text>
                 </View>
                 <View>
                   <Text>
@@ -96,10 +150,10 @@ const ReceiptScreen = () => {
                 }}
               >
                 <View>
-                  <Text style={{ fontWeight: "700" }}>Date: 12-12-24</Text>
+                  <Text style={{ fontWeight: "700" }}>Date: {data.date}</Text>
                 </View>
                 <View>
-                  <Text style={{ fontWeight: "700" }}>Time: 7:30 PM</Text>
+                  <Text style={{ fontWeight: "700" }}>Time: {data.time}</Text>
                 </View>
               </View>
             </View>
@@ -118,7 +172,8 @@ const ReceiptScreen = () => {
             <Text
               style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
             >
-              <Text style={{ fontWeight: "700" }}>Full Name: </Text>Jon Doe
+              <Text style={{ fontWeight: "700" }}>Full Name: </Text>
+              {data.full_name}
             </Text>
 
             <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -135,7 +190,7 @@ const ReceiptScreen = () => {
             <Text
               style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
             >
-              <Text style={{ fontWeight: "700" }}>Phone: </Text> 01325234556
+              <Text style={{ fontWeight: "700" }}>Phone: </Text> {data.mobile}
             </Text>
 
             <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -149,7 +204,21 @@ const ReceiptScreen = () => {
               ></View>
             </View>
 
+            <TextInput
+              style={styles.input}
+              placeholder="Payment"
+              keyboardType="numeric"
+              onChangeText={(value) => setPaymentAmount(value)}
+            />
+
             <TouchableOpacity
+              style={styles.button}
+              onPress={() => goToPaymentScreen(data.id)}
+            >
+              <Text style={{ color: COLOR_WHITE }}>Payment</Text>
+            </TouchableOpacity>
+
+            {/* <TouchableOpacity
               style={styles.button}
               onPress={goToThankYouScreen}
             >
@@ -160,7 +229,8 @@ const ReceiptScreen = () => {
               onPress={goToThankYouScreen}
             >
               <Text style={{ color: COLOR_WHITE }}>Skip</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+
             <Text
               style={{ textAlign: "center", fontStyle: "italic", fontSize: 12 }}
             >
@@ -169,7 +239,7 @@ const ReceiptScreen = () => {
             <Text
               style={{ textAlign: "center", fontStyle: "italic", fontSize: 10 }}
             >
-              Powered By: Project Photon
+              Powered By: KAF Tech BD
             </Text>
             <Text
               style={{ textAlign: "center", fontStyle: "italic", fontSize: 10 }}
@@ -205,5 +275,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    marginVertical: 10,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 5,
+    borderColor: "#eae8e8",
   },
 });

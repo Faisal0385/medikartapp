@@ -5,18 +5,77 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Text,
+  Dimensions,
+  ActivityIndicator,
 } from "react-native";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import Search from "../../components/Search";
 import { goToDashboardScreen } from "../../navigations/routes";
 import AppBar from "../../components/AppBar";
-import { paidData } from "../../data/data";
-import PaymentCard from "./components/PaymentCard";
 import Divider from "../../components/Divider";
 import DateCountComponent from "./components/DateCountComponent";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const PatientListScreen = () => {
+  const navigation = useNavigation();
+  const { width } = Dimensions.get("window");
+  const [loader, setLoader] = useState(false);
+  const [userDataObj, setUserDataObj] = useState({});
+  const [paidData, setPaidData] = useState([]);
+
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  const currentDate = date + "-" + month + "-" + year;
+
+  useFocusEffect(
+    useCallback(() => {
+      setLoader(true);
+      authUser();
+    }, [])
+  );
+
+  // Authentication
+  const authUser = async () => {
+    const userData = await AsyncStorage.getItem("user-data");
+    const userDataObj = JSON.parse(userData);
+    if (!userDataObj) {
+      goToSignIntScreen(navigation);
+      return;
+    }
+    setUserDataObj(userDataObj[0]);
+
+    axios
+      .get(
+        "https://aketbd.com/medikart/api/v1/paid/patient-list/" +
+          userDataObj[0].id
+      )
+      .then(function (response) {
+        if (response.data.status === "success") {
+          setPaidData(response.data?.data);
+          setLoader(false);
+        }
+      })
+      .catch(function (error) {
+        setLoader(false);
+        if (error.status == 500) {
+          Toast.show({
+            type: "error",
+            text1: "Somthing went wrong!!",
+            text2: "Try agian!!",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* App Bar */}
@@ -27,31 +86,85 @@ const PatientListScreen = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ margin: 10 }}>
           {/* Heading Title Component */}
-          <View style={{ marginVertical: 5 }}>
+          <View
+            style={{
+              marginVertical: 5,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <HeadingTitle title="Zyona Laser & Skin Care" />
           </View>
 
           {/* Search Component */}
-          <Search />
+          {/* <Search /> */}
 
           {/* Date Count Component */}
-          <DateCountComponent date="12-08-2024" count={100} />
+          <DateCountComponent date={currentDate} count={100} />
 
           {/* Divider */}
           <Divider />
 
           {/* Paid Data List */}
-          {paidData.map((item) => {
-            return (
-              <PaymentCard
-                id={item.id}
-                name={item.name}
-                fee={item.fee}
-                status={item.status}
-                time={item.time}
-              />
-            );
-          })}
+          {loader ? (
+            <View
+              style={{
+                height: width,
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <ActivityIndicator size={"large"} color={"orange"} />
+              <Text style={{ fontSize: 12, fontWeight: "700", paddingTop: 10 }}>
+                Loading...
+              </Text>
+            </View>
+          ) : (
+            paidData.map((item) => {
+              return (
+                <View
+                  key={item.id}
+                  style={{
+                    backgroundColor: "#17B48C",
+                    marginVertical: 10,
+                    padding: 30,
+                    borderRadius: 5,
+                  }}
+                >
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>{item.full_name}</Text>
+                    <Text style={{ color: "white" }}>
+                      {item.payment_amount} BDT
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      height: 2,
+                      marginVertical: 10,
+                      backgroundColor: "white",
+                    }}
+                  ></View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>
+                      Status: {item.payment_status}
+                    </Text>
+                    <Text style={{ color: "white" }}>TIme: {item.time}</Text>
+                  </View>
+                </View>
+              );
+            })
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

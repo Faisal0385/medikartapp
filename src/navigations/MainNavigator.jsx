@@ -63,7 +63,6 @@ function MainNavigator() {
           headerBackTitleVisible: false,
         }}
       />
-
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}
