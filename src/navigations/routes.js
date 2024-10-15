@@ -13,3 +13,8 @@ export const goToPatientHistoryScreen = (navigation) => {
 export const goToPatientListScreen = (navigation) => {
   navigation.navigate("PatientList");
 };
+
+export const goToSignIntScreen = (navigation) => {
+  navigation.navigate("SignInScreen");
+};
+

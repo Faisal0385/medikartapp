@@ -21,6 +21,9 @@ import AuthTitle from "../../../components/AuthTitle";
 import AuthButton from "../../../components/AuthButton";
 import AuthLinkButton from "../../../components/AuthLinkButton";
 import { errorToast, successToast } from "../../ToastMessage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Toast from "react-native-toast-message";
+import axios from "axios";
 
 const SignInScreen = () => {
   const navigation = useNavigation();
@@ -28,6 +31,7 @@ const SignInScreen = () => {
   const [secureTextBool, setSecureTextBool] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const validateFun = () => {
     if (email.trim() === "") {
@@ -39,8 +43,54 @@ const SignInScreen = () => {
       return;
     }
 
-    successToast("Login Successful");
-    navigation.navigate("Bottom Navbar");
+    axios
+      .post("https://aketbd.com/medikart/api/v1/attendant/login", {
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        setLoader(false);
+
+        if (response.data.status == "success") {
+          Toast.show({
+            type: "success",
+            text1: "Login Succesfull",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+          setEmail("");
+          setPassword("");
+          setData(response.data.data);
+          navigation.navigate("Bottom Navbar");
+        } else if (response.data.status == "error") {
+          Toast.show({
+            type: "error",
+            text1: "Invalid Credential",
+            text2: "Pls check your email & password",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      })
+      .catch(function (error) {
+        setLoader(false);
+        if (error.status == 500) {
+          Toast.show({
+            type: "error",
+            text1: "Somthing went wrong!!",
+            text2: "Try agian!!",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      });
+
+    const setData = async (userData) => {
+      await AsyncStorage.setItem("user-data", JSON.stringify(userData));
+    };
   };
   return (
     <SafeAreaView style={styles.container}>

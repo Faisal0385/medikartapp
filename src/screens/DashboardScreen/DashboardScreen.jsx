@@ -7,12 +7,14 @@ import {
   StatusBar,
   Platform,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Search from "../../components/Search";
 import HeadingTitle from "../../components/HeadingTitle";
 import DashboardCard from "../../components/DashboardCard";
 import { COLOR_WHITE } from "../../utils/colors";
+import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import SubHeadingTitle from "../../components/SubHeadingTitle";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -20,11 +22,42 @@ import DashboardAppBar from "./components/DashboardAppBar";
 import {
   goToPatientHistoryScreen,
   goToPatientListScreen,
+  goToSignIntScreen,
 } from "../../navigations/routes";
 import Divider from "./components/Divider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const DashboardScreen = () => {
   const navigation = useNavigation();
+  const [email, setEmail] = useState();
+  const [userDataObj, setUserDataObj] = useState({});
+
+  useFocusEffect(
+    useCallback(() => {
+      authUser();
+    }, [])
+  );
+
+  // Authentication
+  const authUser = async () => {
+    const userData = await AsyncStorage.getItem("user-data");
+    const userDataObj = JSON.parse(userData);
+
+    if (!userDataObj) {
+      goToSignIntScreen(navigation);
+      return;
+    }
+    setEmail(userDataObj[0].email);
+    setUserDataObj(userDataObj[0]);
+  };
+
+  // Logout
+  const logoutBtn = async () => {
+    await AsyncStorage.removeItem("user-data");
+    setEmail("");
+    setUserDataObj({});
+    authUser();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,6 +70,7 @@ const DashboardScreen = () => {
           <View style={{ marginVertical: 8 }}>
             <HeadingTitle title="Welcome Back" />
           </View>
+          <Text style={{ fontSize: 20, fontWeight: "700" }}>{email}</Text>
 
           {/* Search Component */}
           <Search goto={() => goToPatientHistoryScreen(navigation)} />
@@ -70,6 +104,12 @@ const DashboardScreen = () => {
             <Text style={{ color: COLOR_WHITE }}>
               {" "}
               <FontAwesomeIcon name="user-circle" size={18} /> Show Patient List
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => logoutBtn()}>
+            <Text style={{ color: COLOR_WHITE }}>
+              {" "}
+              <FontAwesomeIcon name="user-circle" size={18} /> Logout
             </Text>
           </TouchableOpacity>
         </View>

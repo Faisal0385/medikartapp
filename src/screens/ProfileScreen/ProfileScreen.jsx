@@ -8,11 +8,33 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import AppBar from "../../components/AppBar";
 import { goToDashboardScreen } from "../../navigations/routes";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
+  const [userDataObj, setUserDataObj] = useState({});
+
+  useFocusEffect(
+    useCallback(() => {
+      authUser();
+    }, [])
+  );
+
+  // Authentication
+  const authUser = async () => {
+    const userData = await AsyncStorage.getItem("user-data");
+    const userDataObj = JSON.parse(userData);
+    if (!userDataObj) {
+      goToSignIntScreen(navigation);
+      return;
+    }
+    setUserDataObj(userDataObj[0]);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* App Bar */}
@@ -26,12 +48,12 @@ const ProfileScreen = () => {
           />
           <View style={{ paddingTop: 10 }}>
             <Text style={{ fontSize: 22, fontWeight: "600" }}>
-              Faisal A. Salam
+              {userDataObj.full_name}
             </Text>
           </View>
           <View>
             <Text style={{ fontSize: 16, fontWeight: "600" }}>
-              faisal@gmail.com
+              {userDataObj.email}
             </Text>
           </View>
         </View>

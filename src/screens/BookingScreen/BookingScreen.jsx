@@ -11,15 +11,16 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { COLOR_WHITE } from "../../utils/colors";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import Divider from "../../components/Divider";
 import { errorToast } from "../ToastMessage";
 import { Dropdown } from "react-native-element-dropdown";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import axios from "axios";
 import Toast from "react-native-toast-message";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const data = [
   { label: "AB+", value: "1" },
@@ -33,6 +34,26 @@ const data = [
 ];
 
 const BookingScreen = () => {
+  const navigation = useNavigation();
+  const [userDataObj, setUserDataObj] = useState({});
+
+  useFocusEffect(
+    useCallback(() => {
+      authUser();
+    }, [])
+  );
+
+  // Authentication
+  const authUser = async () => {
+    const userData = await AsyncStorage.getItem("user-data");
+    const userDataObj = JSON.parse(userData);
+    if (!userDataObj) {
+      goToSignIntScreen(navigation);
+      return;
+    }
+    setUserDataObj(userDataObj[0]);
+  };
+
   const [loader, setLoader] = useState(false);
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
@@ -92,6 +113,7 @@ const BookingScreen = () => {
     setLoader(true);
     axios
       .post("https://aketbd.com/medikart/api/v1/doctor/booking-appointment", {
+        asst_id: userDataObj.id,
         full_name: fullName,
         mobile: phone,
         gender: gender,
