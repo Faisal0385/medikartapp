@@ -76,12 +76,32 @@ const PaymentScreen = () => {
             }}
           >
             <ActivityIndicator size={"large"} color={"orange"} />
-            <Text style={{fontSize:12, fontWeight:"700",paddingTop:10}}>Loading...</Text>
+            <Text style={{ fontSize: 12, fontWeight: "700", paddingTop: 10 }}>
+              Loading...
+            </Text>
           </View>
-        ) : (
+        ) : data.length > 0 ? (
           data.map((item, index) => (
             <PaymentComponent key={index} data={item} />
           ))
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              height: width,
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "700",
+              }}
+            >
+              No Data Found!!
+            </Text>
+          </View>
         )}
       </ScrollView>
     </SafeAreaView>

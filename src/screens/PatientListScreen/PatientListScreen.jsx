@@ -120,7 +120,7 @@ const PatientListScreen = () => {
                 Loading...
               </Text>
             </View>
-          ) : (
+          ) : paidData.length > 0 ? (
             paidData.map((item) => {
               return (
                 <View
@@ -164,6 +164,24 @@ const PatientListScreen = () => {
                 </View>
               );
             })
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                height: width,
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "700",
+                }}
+              >
+                No Data Found!!
+              </Text>
+            </View>
           )}
         </View>
       </ScrollView>
