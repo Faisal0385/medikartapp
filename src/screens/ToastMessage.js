@@ -23,7 +23,7 @@ export const errorToast = (message) => {
 
 export const successToast = (message) => {
   Toast.show({
-    position: "bottom",
+    position: "top",
     type: "success",
     text1: message,
   });

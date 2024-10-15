@@ -100,7 +100,7 @@ const PatientListScreen = () => {
           {/* <Search /> */}
 
           {/* Date Count Component */}
-          <DateCountComponent date={currentDate} count={100} />
+          <DateCountComponent date={currentDate} count={paidData.length} />
 
           {/* Divider */}
           <Divider />
@@ -127,8 +127,8 @@ const PatientListScreen = () => {
                   key={item.id}
                   style={{
                     backgroundColor: "#17B48C",
-                    marginVertical: 10,
-                    padding: 30,
+                    marginVertical: 8,
+                    padding: 20,
                     borderRadius: 5,
                   }}
                 >
@@ -145,7 +145,7 @@ const PatientListScreen = () => {
                   </View>
                   <View
                     style={{
-                      height: 2,
+                      height: 3,
                       marginVertical: 10,
                       backgroundColor: "white",
                     }}

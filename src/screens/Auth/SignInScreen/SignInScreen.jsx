@@ -55,9 +55,9 @@ const SignInScreen = () => {
           Toast.show({
             type: "success",
             text1: "Login Succesfull",
-            position: "bottom",
+            position: "top",
             visibilityTime: 2000,
-            bottomOffset: 100,
+            topOffset: 60,
           });
           setEmail("");
           setPassword("");
@@ -68,9 +68,9 @@ const SignInScreen = () => {
             type: "error",
             text1: "Invalid Credential",
             text2: "Pls check your email & password",
-            position: "bottom",
+            position: "top",
             visibilityTime: 2000,
-            bottomOffset: 100,
+            topOffset: 60,
           });
         }
       })
@@ -81,9 +81,9 @@ const SignInScreen = () => {
             type: "error",
             text1: "Somthing went wrong!!",
             text2: "Try agian!!",
-            position: "bottom",
+            position: "top",
             visibilityTime: 2000,
-            bottomOffset: 100,
+            topOffset: 60,
           });
         }
       });
@@ -179,10 +179,10 @@ const SignInScreen = () => {
             />
 
             {/* Link Button */}
-            <AuthLinkButton
+            {/* <AuthLinkButton
               linkText={"Forgot Your Password?"}
               navigationRoute={"ForgotPasswordScreen"}
-            />
+            /> */}
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
