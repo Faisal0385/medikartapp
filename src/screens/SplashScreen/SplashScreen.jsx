@@ -13,7 +13,7 @@ import {
   company_name,
   SPLASH_COPYRIGHT_TEXT,
 } from "../../utils/string";
-import { INDICATOR_COLOR } from "../../utils/colors";
+import { themeColors } from "../../utils/colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { goToDashboardScreen } from "../../navigations/routes";
 
@@ -49,7 +49,7 @@ const SplashScreen = () => {
         <Text style={styles.splashText}>{company_name}</Text>
       </View>
       <View style={styles.copyrightWrapper}>
-        <ActivityIndicator color={INDICATOR_COLOR} />
+        <ActivityIndicator color={themeColors.indicatorColor} />
         <Text style={styles.copyrightTextStyle}>{SPLASH_COPYRIGHT_TEXT}</Text>
       </View>
     </SafeAreaView>

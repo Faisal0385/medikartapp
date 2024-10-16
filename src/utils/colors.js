@@ -11,5 +11,6 @@ export const themeColors = {
   secondary: "#17B48C",
   white: "white",
   grey: "grey",
-  orangeRed:"#F8481C"
+  orangeRed: "#F8481C",
+  indicatorColor: "red",
 };
