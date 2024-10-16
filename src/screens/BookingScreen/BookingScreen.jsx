@@ -11,15 +11,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { COLOR_WHITE } from "../../utils/colors";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import Divider from "../../components/Divider";
-import { errorToast } from "../ToastMessage";
+import { authToaster, ToastMsg } from "../ToastMessage";
 import { Dropdown } from "react-native-element-dropdown";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import axios from "axios";
-import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const data = [
@@ -36,6 +35,18 @@ const data = [
 const BookingScreen = () => {
   const navigation = useNavigation();
   const [userDataObj, setUserDataObj] = useState({});
+  const [loader, setLoader] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
+  // Form Data
+  const [serialNo, setSerialNo] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("M");
+  const [ageYear, setAgeYear] = useState(0);
+  const [ageMonth, setAgeMonth] = useState(0);
+  const [ageDay, setAgeDay] = useState(0);
+  const [value, setValue] = useState(null);
+  const [weight, setWeight] = useState(0);
 
   useFocusEffect(
     useCallback(() => {
@@ -54,59 +65,24 @@ const BookingScreen = () => {
     setUserDataObj(userDataObj[0]);
   };
 
-  const [loader, setLoader] = useState(false);
-  const [value, setValue] = useState(null);
-  const [isFocus, setIsFocus] = useState(false);
-  const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [gender, setGender] = useState("M");
-  const [ageYear, setAgeYear] = useState(0);
-  const [ageMonth, setAgeMonth] = useState(0);
-  const [ageDay, setAgeDay] = useState(0);
-  const [weight, setWeight] = useState(0);
-
-  const booking = () => {
+  const makeBooking = () => {
     if (fullName.trim() == "") {
-      Toast.show({
-        type: "error",
-        text1: "Full name can not be empty!!",
-        position: "bottom",
-        visibilityTime: 2000,
-        bottomOffset: 100,
-      });
+      ToastMsg("error", "Full name can not be empty!!", "top");
       return;
     }
 
     if (phone.trim() == "") {
-      Toast.show({
-        type: "error",
-        text1: "Mobile can not be empty!!",
-        position: "bottom",
-        visibilityTime: 2000,
-        bottomOffset: 100,
-      });
+      ToastMsg("error", "Mobile can not be empty!!", "top");
       return;
     }
 
     if (gender.trim() == "") {
-      Toast.show({
-        type: "error",
-        text1: "Gender can not be empty!!",
-        position: "bottom",
-        visibilityTime: 2000,
-        bottomOffset: 100,
-      });
+      ToastMsg("error", "Gender can not be empty!!", "top");
       return;
     }
 
-    if (ageYear.trim() == "") {
-      Toast.show({
-        type: "error",
-        text1: "Year can not be empty!!",
-        position: "bottom",
-        visibilityTime: 2000,
-        bottomOffset: 100,
-      });
+    if (ageYear == "") {
+      ToastMsg("error", "Year can not be empty!!", "top");
       return;
     }
 
@@ -127,34 +103,27 @@ const BookingScreen = () => {
         setLoader(false);
 
         if (response.data.status == "success") {
-          Toast.show({
-            type: "success",
-            text1: response.data.message,
-            position: "bottom",
-            visibilityTime: 2000,
-            bottomOffset: 100,
-          });
+          ToastMsg("success", response.data.message, "top");
+          setSerialNo("");
           setFullName("");
           setPhone("");
           setGender("");
-          setValue("");
-          setWeight("");
           setAgeDay("");
           setAgeMonth("");
           setAgeYear("");
+          setValue("");
+          setWeight("");
         }
       })
       .catch(function (error) {
         setLoader(false);
         if (error.status == 500) {
-          Toast.show({
-            type: "error",
-            text1: "Somthing went wrong!!",
-            text2: "Try agian!!",
-            position: "bottom",
-            visibilityTime: 2000,
-            bottomOffset: 100,
-          });
+          authToaster(
+            "error",
+            "Somthing went wrong!!",
+            "Try agian!!",
+            "bottom"
+          );
         }
       });
   };
@@ -169,6 +138,9 @@ const BookingScreen = () => {
             <View style={{ padding: 10 }}>
               <Text style={{ fontWeight: "700" }}>Serial No.</Text>
               <TextInput
+                maxLength={1000}
+                value={serialNo}
+                onChangeText={(value) => setSerialNo(value)}
                 keyboardType="numeric"
                 style={styles.input}
                 placeholder="Serial No."
@@ -179,6 +151,7 @@ const BookingScreen = () => {
                 Full Name <Text style={{ color: "red" }}>*</Text>
               </Text>
               <TextInput
+                maxLength={100}
                 value={fullName}
                 onChangeText={(value) => {
                   setFullName(value);
@@ -192,8 +165,9 @@ const BookingScreen = () => {
                 Phone <Text style={{ color: "red" }}>*</Text>
               </Text>
               <TextInput
-                keyboardType="numeric"
+              maxLength={100}
                 value={phone}
+                keyboardType="numeric"
                 onChangeText={(value) => {
                   setPhone(value);
                 }}
@@ -360,7 +334,7 @@ const BookingScreen = () => {
                 <ActivityIndicator size="large" color={"green"} />
               ) : (
                 <TouchableOpacity
-                  onPress={() => booking()}
+                  onPress={() => makeBooking()}
                   style={styles.button}
                 >
                   <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>

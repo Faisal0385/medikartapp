@@ -22,6 +22,18 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="Splash Screen"
+        component={SplashScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Bottom Navbar"
+        component={BottomNavBar}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
         name="Payment"
         component={PaymentScreen}
         options={{
@@ -33,11 +45,7 @@ function MainNavigator() {
         component={ReceiptScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="Splash Screen"
-        component={SplashScreen}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
@@ -50,12 +58,6 @@ function MainNavigator() {
           headerShown: false,
           headerBackTitleVisible: false,
         }}
-      />
-
-      <Stack.Screen
-        name="Bottom Navbar"
-        component={BottomNavBar}
-        options={{ headerShown: false }}
       />
 
       <Stack.Screen
@@ -112,7 +114,7 @@ function MainNavigator() {
           headerBackTitleVisible: false,
         }}
       />
-      
+
       <Stack.Screen
         name="Thanks"
         component={ThankYouScreen}
