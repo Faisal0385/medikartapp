@@ -1,16 +1,13 @@
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
   ScrollView,
-  TouchableOpacity,
   Platform,
   StatusBar,
 } from "react-native";
 import Search from "../../components/Search";
 import React from "react";
-import { COLOR_WHITE } from "../../utils/colors";
 import { useNavigation } from "@react-navigation/native";
 import { goToDashboardScreen } from "../../navigations/routes";
 import AppBar from "../../components/AppBar";
@@ -58,7 +55,7 @@ const patientHistorydata = [
 const PatientHistory = () => {
   const navigation = useNavigation();
 
-  const goToBookingScreen = () => {
+  const goToBookingScreen = (navigation) => {
     navigation.navigate("Booking");
   };
 
@@ -81,6 +78,7 @@ const PatientHistory = () => {
               date={item.date}
               name={item.name}
               phone={item.phone}
+              routeFun={() => goToBookingScreen(navigation)}
             />
           );
         })}

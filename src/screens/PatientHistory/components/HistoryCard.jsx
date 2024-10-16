@@ -2,9 +2,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { COLOR_WHITE } from "../../../utils/colors";
 
-const HistoryCard = ({ id, vid, date, name, phone }) => {
+const HistoryCard = ({ id, vid, date, name, phone, routeFun }) => {
   return (
-    <View key={id+2} style={[styles.card, styles.shadowProp]}>
+    <View key={id + 2} style={[styles.card, styles.shadowProp]}>
       <View style={{ padding: 10 }}>
         <Text
           style={{
@@ -46,7 +46,7 @@ const HistoryCard = ({ id, vid, date, name, phone }) => {
         </Text>
 
         <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => routeFun()}>
             <Text style={{ color: COLOR_WHITE }}>Re-Appointment</Text>
           </TouchableOpacity>
         </View>

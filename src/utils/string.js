@@ -1,6 +1,8 @@
 export const company_name = "Zyona Laser & Skin Care Center";
 export const company_logo = require("../../assets/logo/logo.png");
-export const contact = "Contact: 01307-842071";
+export const company_contact = "Contact: 01307-842071";
+export const company_address =
+  "Address: House #499/685, Siddique Valley, 3rd Floor, Agrabad Access Road, Chattogram";
 
 // SPLASH SCREEN START
 export const SPLASH_COPYRIGHT_TEXT = "Powered By KAF Tech BD";

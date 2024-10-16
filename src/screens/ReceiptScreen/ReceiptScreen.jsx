@@ -9,13 +9,16 @@ import {
   StatusBar,
   Platform,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
+import { company_name, company_contact } from "../../utils/string";
 import { useRoute } from "@react-navigation/native";
 import axios from "axios";
 import Toast from "react-native-toast-message";
+import InfoSection from "./components/InfoSection";
 
 const ReceiptScreen = ({ navigation }) => {
   const route = useRoute();
@@ -34,7 +37,7 @@ const ReceiptScreen = ({ navigation }) => {
       });
       return;
     }
-
+    setLoader(true);
     axios
       .post("https://aketbd.com/medikart/api/v1/doctor/booking-payment", {
         booking_id: bid,
@@ -43,6 +46,7 @@ const ReceiptScreen = ({ navigation }) => {
       .then(function (response) {
         setLoader(false);
         if (response.data.status == "success") {
+          setPaymentAmount(0);
           Toast.show({
             type: "success",
             text1: response.data.message,
@@ -50,9 +54,9 @@ const ReceiptScreen = ({ navigation }) => {
             visibilityTime: 2000,
             bottomOffset: 100,
           });
-          setPaymentAmount(0);
           navigation.navigate("Thanks");
         } else if (response.data.status == "error") {
+          setPaymentAmount(0);
           Toast.show({
             type: "error",
             text1: response.data.message,
@@ -82,143 +86,134 @@ const ReceiptScreen = ({ navigation }) => {
       <View style={{ alignItems: "center" }}>
         <HeadingTitle title="Payment Receipt" />
       </View>
-      <View style={{ alignItems: "center", marginTop: 5 }}>
+      {/* <View style={{ alignItems: "center", marginTop: 5 }}>
         <Image
           source={require("../../../assets/qrcode.png")}
           style={{ height: 70, width: 70 }}
         />
-      </View>
+      </View> */}
 
       <ScrollView>
-        <View style={[styles.card, styles.shadowProp]}>
-          <View style={{ padding: 10 }}>
-            <Text
+        <View style={{ padding: 10 }}>
+          <InfoSection />
+          <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <View
               style={{
-                backgroundColor: "#eae8e8",
-                padding: 5,
-                marginTop: 10,
-                fontWeight: "700",
-                fontSize: 20,
-                textAlign: "center",
+                height: 2,
+                width: "30%",
+                marginVertical: 10,
+                backgroundColor: COLOR_BLACK,
+              }}
+            ></View>
+          </View>
+
+          <View
+            style={{ backgroundColor: "#eae8e8", padding: 8, marginTop: 10 }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginBottom: 5,
               }}
             >
-              Zyona Laser & Skin Care Center
-            </Text>
-            <View style={{ alignItems: "center", marginTop: 10 }}>
-              <Text>Contact: 01307-842071</Text>
-              <Text>
-                Address: House #499/685, Siddique Valley, 3rd Floor, Agrabad
-                Access Road, Chattogram
-              </Text>
+              <View style={{ flexDirection: "row" }}>
+                <Text style={{ fontWeight: "700" }}>Payment Status: </Text>
+                <Text style={{ color: "red", fontWeight: "700" }}>Due</Text>
+              </View>
+              <View>
+                <Text>
+                  <Text style={{ fontWeight: "700" }}>Visit ID: </Text>{" "}
+                  {data.visit_id}
+                </Text>
+              </View>
             </View>
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
-                style={{
-                  height: 2,
-                  width: "30%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
-                }}
-              ></View>
-            </View>
-
             <View
-              style={{ backgroundColor: "#eae8e8", padding: 8, marginTop: 10 }}
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginBottom: 5,
+              }}
             >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginBottom: 5,
-                }}
-              >
-                <View style={{ flexDirection: "row" }}>
-                  <Text style={{ fontWeight: "700" }}>Payment Status: </Text>
-                  <Text style={{ color: "red", fontWeight: "700" }}>Due</Text>
-                </View>
-                <View>
-                  <Text>
-                    <Text style={{ fontWeight: "700" }}>Fee (BDT): </Text> 700
-                  </Text>
-                </View>
+              <View>
+                <Text style={{ fontWeight: "700" }}>Date: {data.date}</Text>
               </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginBottom: 5,
-                }}
-              >
-                <View>
-                  <Text style={{ fontWeight: "700" }}>Date: {data.date}</Text>
-                </View>
-                <View>
-                  <Text style={{ fontWeight: "700" }}>Time: {data.time}</Text>
-                </View>
+              <View>
+                <Text style={{ fontWeight: "700" }}>Time: {data.time}</Text>
               </View>
             </View>
+          </View>
 
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
-                style={{
-                  height: 2,
-                  width: "100%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
-                }}
-              ></View>
+          <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                height: 2,
+                width: "100%",
+                marginVertical: 10,
+                backgroundColor: COLOR_BLACK,
+              }}
+            ></View>
+          </View>
+
+          <Text
+            style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
+          >
+            <Text style={{ fontWeight: "700" }}>Full Name: </Text>
+            {data.full_name}
+          </Text>
+
+          <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                height: 2,
+                width: "100%",
+                marginVertical: 10,
+                backgroundColor: COLOR_BLACK,
+              }}
+            ></View>
+          </View>
+
+          <Text
+            style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
+          >
+            <Text style={{ fontWeight: "700" }}>Phone: </Text> {data.mobile}
+          </Text>
+
+          <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                height: 2,
+                width: "100%",
+                marginVertical: 10,
+                backgroundColor: COLOR_BLACK,
+              }}
+            ></View>
+          </View>
+
+          <TextInput
+            maxLength={10}
+            style={styles.input}
+            keyboardType="numeric"
+            value={paymentAmount}
+            placeholder="Payment (BDT)"
+            onChangeText={(value) => setPaymentAmount(value)}
+          />
+
+          {/* Button */}
+          {loader ? (
+            <View style={{ marginVertical: 20 }}>
+              <ActivityIndicator color="blue" />
             </View>
-
-            <Text
-              style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
-            >
-              <Text style={{ fontWeight: "700" }}>Full Name: </Text>
-              {data.full_name}
-            </Text>
-
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
-                style={{
-                  height: 2,
-                  width: "100%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
-                }}
-              ></View>
-            </View>
-
-            <Text
-              style={{ backgroundColor: "#eae8e8", padding: 10, marginTop: 10 }}
-            >
-              <Text style={{ fontWeight: "700" }}>Phone: </Text> {data.mobile}
-            </Text>
-
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <View
-                style={{
-                  height: 2,
-                  width: "100%",
-                  marginVertical: 10,
-                  backgroundColor: COLOR_BLACK,
-                }}
-              ></View>
-            </View>
-
-            <TextInput
-              style={styles.input}
-              placeholder="Payment"
-              keyboardType="numeric"
-              onChangeText={(value) => setPaymentAmount(value)}
-            />
-
+          ) : (
             <TouchableOpacity
               style={styles.button}
               onPress={() => goToPaymentScreen(data.id)}
             >
               <Text style={{ color: COLOR_WHITE }}>Payment</Text>
             </TouchableOpacity>
+          )}
 
-            {/* <TouchableOpacity
+          {/* <TouchableOpacity
               style={styles.button}
               onPress={goToThankYouScreen}
             >
@@ -231,22 +226,21 @@ const ReceiptScreen = ({ navigation }) => {
               <Text style={{ color: COLOR_WHITE }}>Skip</Text>
             </TouchableOpacity> */}
 
-            <Text
-              style={{ textAlign: "center", fontStyle: "italic", fontSize: 12 }}
-            >
-              Receipt Print Time: 7:30 PM
-            </Text>
-            <Text
-              style={{ textAlign: "center", fontStyle: "italic", fontSize: 10 }}
-            >
-              Powered By: KAF Tech BD
-            </Text>
-            <Text
-              style={{ textAlign: "center", fontStyle: "italic", fontSize: 10 }}
-            >
-              Copyright @2024
-            </Text>
-          </View>
+          <Text
+            style={{ textAlign: "center", fontStyle: "italic", fontSize: 12 }}
+          >
+            Receipt Print Time: 7:30 PM
+          </Text>
+          <Text
+            style={{ textAlign: "center", fontStyle: "italic", fontSize: 10 }}
+          >
+            Powered By: KAF Tech BD
+          </Text>
+          <Text
+            style={{ textAlign: "center", fontStyle: "italic", fontSize: 10 }}
+          >
+            Copyright @2024
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -282,6 +276,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
-    borderColor: "#eae8e8",
+    borderColor: "grey",
   },
 });
