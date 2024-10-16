@@ -16,3 +16,10 @@ export const ONBOARDING_THREE_PARA_TEXT =
   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe amet quo natus veniam optio rem.";
 
 // ONBOARDING SCREEN END
+
+// SignIn Screen Started
+export const signin_image = require("../../assets/doctor.jpg");
+export const signin_title = "Welcome Back";
+export const singin_sub_title =
+  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati et tenetur, animi.";
+// SignIn Screen Ended

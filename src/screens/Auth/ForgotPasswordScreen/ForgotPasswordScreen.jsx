@@ -19,6 +19,7 @@ import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
 import { errorToast } from "../../ToastMessage";
+import { signin_image } from "../../../utils/string";
 
 
 const ForgotPasswordScreen = () => {
@@ -42,7 +43,7 @@ const ForgotPasswordScreen = () => {
         <ScrollView>
           <AuthImage
             imageWidth={width}
-            authImage={require("../../../../assets/doctor-illustration.jpg")}
+            authImage={signin_image}
           />
 
           <AuthTitle titleText={"Forgot Your Password!!"} subTitleText={""} />

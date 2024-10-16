@@ -17,6 +17,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome6";
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
 import { errorToast } from "../../ToastMessage";
+import { signin_image } from "../../../utils/string";
 
 const OTPScreen = () => {
   const navigation = useNavigation();
@@ -48,7 +49,7 @@ const OTPScreen = () => {
         <ScrollView>
           <AuthImage
             imageWidth={width}
-            authImage={require("../../../../assets/doctor-illustration.jpg")}
+            authImage={signin_image}
           />
 
           <AuthTitle

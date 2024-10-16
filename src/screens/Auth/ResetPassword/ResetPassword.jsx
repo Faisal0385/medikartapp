@@ -17,6 +17,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
 import { myErrorToast, successToast } from "../../ToastMessage";
+import { signin_image } from "../../../utils/string";
 
 const ResetPassword = () => {
   const navigation = useNavigation();
@@ -52,7 +53,7 @@ const ResetPassword = () => {
         <ScrollView>
           <AuthImage
             imageWidth={width}
-            authImage={require("../../../../assets/doctor-illustration.jpg")}
+            authImage={signin_image}
           />
 
           <AuthTitle

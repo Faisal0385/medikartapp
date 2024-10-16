@@ -23,6 +23,11 @@ import AuthLinkButton from "../../../components/AuthLinkButton";
 import { authToaster, errorToast } from "../../ToastMessage";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  signin_image,
+  signin_title,
+  singin_sub_title,
+} from "../../../utils/string";
 
 const SignInScreen = () => {
   const navigation = useNavigation();
@@ -92,16 +97,11 @@ const SignInScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ScrollView>
-          <AuthImage
-            authImage={require("../../../../assets/doctor-illustration.jpg")}
-          />
-
-          <AuthTitle
-            titleText={"Welcome Back"}
-            subTitleText={
-              "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati et tenetur, animi."
-            }
-          />
+          {/* signin image */}
+          <AuthImage authImage={signin_image} />
+          
+          {/* title text & subtitle */}
+          <AuthTitle titleText={signin_title} subTitleText={singin_sub_title} />
 
           <View style={styles.formWrapper}>
             {/* Email Input*/}
@@ -115,7 +115,7 @@ const SignInScreen = () => {
                 Email
               </Text>
               <TextInput
-              maxLength={100}
+                maxLength={100}
                 value={email}
                 placeholder="Email"
                 style={styles.input}
