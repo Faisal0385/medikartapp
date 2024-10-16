@@ -7,7 +7,6 @@ export const authToaster = (type, text1, text2, position) =>{
     text2: text2,
     position: position,
     visibilityTime: 3000,
-    topOffset: 0,
   });
 }
 

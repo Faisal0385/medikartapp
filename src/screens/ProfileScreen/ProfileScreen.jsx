@@ -18,6 +18,7 @@ import FontAwesome6Icon from "react-native-vector-icons/FontAwesome6";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { COLOR_WHITE } from "../../utils/colors";
+import { authToaster } from "../ToastMessage";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -34,6 +35,12 @@ const ProfileScreen = () => {
     const userData = await AsyncStorage.getItem("user-data");
     const userDataObj = JSON.parse(userData);
     if (!userDataObj) {
+      authToaster(
+        "error",
+        "Logout Successful...",
+        "See You Soon!!",
+        "bottom"
+      );
       goToSignIntScreen(navigation);
       return;
     }
