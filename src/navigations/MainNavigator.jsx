@@ -21,6 +21,19 @@ const Stack = createStackNavigator();
 function MainNavigator() {
   return (
     <Stack.Navigator>
+            <Stack.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="PatientList"
+        component={PatientListScreen}
+        options={{
+          headerShown: false,
+          headerBackTitleVisible: false,
+        }}
+      />
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
@@ -80,11 +93,7 @@ function MainNavigator() {
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name="Receipt"
         component={ReceiptScreen}
@@ -109,14 +118,7 @@ function MainNavigator() {
           headerBackTitleVisible: false,
         }}
       />
-      <Stack.Screen
-        name="PatientList"
-        component={PatientListScreen}
-        options={{
-          headerShown: false,
-          headerBackTitleVisible: false,
-        }}
-      />
+      
     </Stack.Navigator>
   );
 }

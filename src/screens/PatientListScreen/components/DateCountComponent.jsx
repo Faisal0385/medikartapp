@@ -1,11 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const DateCountComponent = ({ date, count }) => {
+const DateCountComponent = ({ date }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.textStyle}>Date: {date}</Text>
-      <Text style={styles.textStyle}>Count({count})</Text>
     </View>
   );
 };

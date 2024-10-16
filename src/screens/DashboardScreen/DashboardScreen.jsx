@@ -51,13 +51,7 @@ const DashboardScreen = () => {
     setUserDataObj(userDataObj[0]);
   };
 
-  // Logout
-  const logoutBtn = async () => {
-    await AsyncStorage.removeItem("user-data");
-    setEmail("");
-    setUserDataObj({});
-    authUser();
-  };
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -76,20 +70,20 @@ const DashboardScreen = () => {
           <Search goto={() => goToPatientHistoryScreen(navigation)} />
 
           {/* Income Card  */}
-          <DashboardCard
+          {/* <DashboardCard
             title="Today's Income"
             amount={7000}
             bgcolor="#17B48C"
             fonticons={<FontAwesomeIcon name="dollar" size={16} />}
-          />
+          /> */}
 
           {/* Patient Card  */}
-          <DashboardCard
+          {/* <DashboardCard
             title="Today's Patient"
             amount={100}
             bgcolor="#FA4D24"
             fonticons={<FontAwesomeIcon name="users" size={16} />}
-          />
+          /> */}
 
           <Divider />
 
@@ -106,12 +100,7 @@ const DashboardScreen = () => {
               <FontAwesomeIcon name="user-circle" size={18} /> Show Patient List
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => logoutBtn()}>
-            <Text style={{ color: COLOR_WHITE }}>
-              {" "}
-              <FontAwesomeIcon name="user-circle" size={18} /> Logout
-            </Text>
-          </TouchableOpacity>
+
         </View>
       </ScrollView>
     </SafeAreaView>

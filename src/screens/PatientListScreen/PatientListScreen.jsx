@@ -19,6 +19,8 @@ import DateCountComponent from "./components/DateCountComponent";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import DashboardCard from "../../components/DashboardCard";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const PatientListScreen = () => {
   const navigation = useNavigation();
@@ -26,6 +28,7 @@ const PatientListScreen = () => {
   const [loader, setLoader] = useState(false);
   const [userDataObj, setUserDataObj] = useState({});
   const [paidData, setPaidData] = useState([]);
+  const [total, setTotal] = useState([]);
 
   const today = new Date();
   const month = today.getMonth() + 1;
@@ -58,6 +61,7 @@ const PatientListScreen = () => {
       .then(function (response) {
         if (response.data.status === "success") {
           setPaidData(response.data?.data);
+          setTotal(response.data?.total);
           setLoader(false);
         }
       })
@@ -100,7 +104,16 @@ const PatientListScreen = () => {
           {/* <Search /> */}
 
           {/* Date Count Component */}
-          <DateCountComponent date={currentDate} count={paidData.length} />
+          <DateCountComponent date={currentDate} />
+
+          {/* Income Card  */}
+          <DashboardCard
+            title="Today's Income"
+            amount={total ?? 0}
+            count={paidData.length ?? 0}
+            bgcolor="#FA4D24"
+            fonticons={<FontAwesomeIcon name="user" size={16} />}
+          />
 
           {/* Divider */}
           <Divider />
