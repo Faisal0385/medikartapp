@@ -10,6 +10,8 @@ import React, { useCallback } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { SPLASH_COPYRIGHT_TEXT } from "../../utils/string";
 import { INDICATOR_COLOR } from "../../utils/colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { goToDashboardScreen } from "../../navigations/routes";
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -17,10 +19,22 @@ const SplashScreen = () => {
   useFocusEffect(
     useCallback(() => {
       setTimeout(() => {
-        navigation.navigate("OnboardingOne");
+        authUser();
       }, 2000);
     }, [])
   );
+
+  // Authentication
+  const authUser = async () => {
+    const userData = await AsyncStorage.getItem("user-data");
+    const userDataObj = JSON.parse(userData);
+
+    if (!userDataObj) {
+      navigation.navigate("OnboardingOne");
+    } else {
+      goToDashboardScreen(navigation);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.mainWrapper}>

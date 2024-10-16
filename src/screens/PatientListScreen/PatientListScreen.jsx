@@ -100,8 +100,6 @@ const PatientListScreen = () => {
             <HeadingTitle title="Zyona Laser & Skin Care" />
           </View>
 
-          {/* Search Component */}
-          {/* <Search /> */}
 
           {/* Date Count Component */}
           <DateCountComponent date={currentDate} />
@@ -114,6 +112,10 @@ const PatientListScreen = () => {
             bgcolor="#FA4D24"
             fonticons={<FontAwesomeIcon name="user" size={16} />}
           />
+
+
+          {/* Search Component */}
+          {/* <Search /> */}
 
           {/* Divider */}
           <Divider />
