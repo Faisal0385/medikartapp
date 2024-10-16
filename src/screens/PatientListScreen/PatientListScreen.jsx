@@ -21,6 +21,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import DashboardCard from "../../components/DashboardCard";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { company_name } from "../../utils/string";
 
 const PatientListScreen = () => {
   const navigation = useNavigation();
@@ -97,7 +98,7 @@ const PatientListScreen = () => {
               alignItems: "center",
             }}
           >
-            <HeadingTitle title="Zyona Laser & Skin Care" />
+            <HeadingTitle title={company_name} />
           </View>
 
 

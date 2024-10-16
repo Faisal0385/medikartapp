@@ -13,7 +13,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Search from "../../components/Search";
 import HeadingTitle from "../../components/HeadingTitle";
 import DashboardCard from "../../components/DashboardCard";
-import { COLOR_WHITE } from "../../utils/colors";
+import { COLOR_WHITE, themeColors } from "../../utils/colors";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import SubHeadingTitle from "../../components/SubHeadingTitle";
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "teal",
+    backgroundColor: themeColors.primary,
     padding: 10,
     borderRadius: 5,
     marginVertical: 20,

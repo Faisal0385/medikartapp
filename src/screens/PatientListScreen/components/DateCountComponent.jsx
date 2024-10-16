@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { themeColors } from "../../../utils/colors";
 
 const DateCountComponent = ({ date }) => {
   return (
@@ -18,5 +19,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginVertical: 10,
   },
-  textStyle: { fontSize: 16, fontWeight: "600" },
+  textStyle: {
+    fontSize: 16,
+    fontStyle: "italic",
+    color: themeColors.grey,
+    fontWeight: "600",
+  },
 });

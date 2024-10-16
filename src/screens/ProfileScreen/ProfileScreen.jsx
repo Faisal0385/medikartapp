@@ -11,7 +11,10 @@ import {
 } from "react-native";
 import React, { useCallback, useState } from "react";
 import AppBar from "../../components/AppBar";
-import { goToDashboardScreen, goToSignIntScreen } from "../../navigations/routes";
+import {
+  goToDashboardScreen,
+  goToSignIntScreen,
+} from "../../navigations/routes";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import FontAwesome6Icon from "react-native-vector-icons/FontAwesome6";
@@ -19,6 +22,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { COLOR_WHITE } from "../../utils/colors";
 import { authToaster } from "../ToastMessage";
+import { company_name, contact } from "../../utils/string";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -35,12 +39,7 @@ const ProfileScreen = () => {
     const userData = await AsyncStorage.getItem("user-data");
     const userDataObj = JSON.parse(userData);
     if (!userDataObj) {
-      authToaster(
-        "error",
-        "Logout Successful...",
-        "See You Soon!!",
-        "bottom"
-      );
+      authToaster("error", "Logout Successful...", "See You Soon!!", "bottom");
       goToSignIntScreen(navigation);
       return;
     }
@@ -67,11 +66,11 @@ const ProfileScreen = () => {
           />
           <View style={{ paddingTop: 10 }}>
             <Text style={{ fontSize: 20, fontWeight: "600" }}>
-              Zyona Laser & Skin Care Center
+              {company_name}
             </Text>
           </View>
           <View>
-            <Text>Contact: 01307-842071</Text>
+            <Text>{contact}</Text>
           </View>
 
           <View style={styles.cardStyle("#17B48C")}>
