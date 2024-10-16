@@ -6,18 +6,22 @@ import {
   Text,
   View,
 } from "react-native";
-import React, { useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useCallback } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { SPLASH_COPYRIGHT_TEXT } from "../../utils/string";
 import { INDICATOR_COLOR } from "../../utils/colors";
 
 const SplashScreen = () => {
   const navigation = useNavigation();
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate("OnboardingOne");
-    }, 2000);
-  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      setTimeout(() => {
+        navigation.navigate("OnboardingOne");
+      }, 2000);
+    }, [])
+  );
+
   return (
     <SafeAreaView style={styles.mainWrapper}>
       <View style={styles.wrapper}>

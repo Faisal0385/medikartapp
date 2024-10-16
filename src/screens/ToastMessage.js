@@ -1,5 +1,16 @@
 import Toast from "react-native-toast-message";
 
+export const authToaster = (type, text1, text2, position) =>{
+  Toast.show({
+    type: type,
+    text1: text1,
+    text2: text2,
+    position: position,
+    visibilityTime: 3000,
+    topOffset: 0,
+  });
+}
+
 
 export const myErrorToast = (message, position) => {
   Toast.show({

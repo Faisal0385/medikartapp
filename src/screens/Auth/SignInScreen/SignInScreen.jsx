@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -10,6 +9,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -20,14 +20,12 @@ import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
 import AuthButton from "../../../components/AuthButton";
 import AuthLinkButton from "../../../components/AuthLinkButton";
-import { errorToast, successToast } from "../../ToastMessage";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Toast from "react-native-toast-message";
+import { authToaster, errorToast } from "../../ToastMessage";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignInScreen = () => {
   const navigation = useNavigation();
-  const { width } = Dimensions.get("window");
   const [secureTextBool, setSecureTextBool] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,48 +41,44 @@ const SignInScreen = () => {
       return;
     }
 
+    setLoader(true);
     axios
       .post("https://aketbd.com/medikart/api/v1/attendant/login", {
         email: email,
         password: password,
       })
       .then(function (response) {
-        setLoader(false);
-
         if (response.data.status == "success") {
-          Toast.show({
-            type: "success",
-            text1: "Login Succesfull",
-            position: "top",
-            visibilityTime: 2000,
-            topOffset: 60,
-          });
+          setLoader(false);
+          authToaster(
+            "success",
+            "Login Successful...",
+            "Welcome Back!!",
+            "bottom"
+          );
           setEmail("");
           setPassword("");
           setData(response.data.data);
           navigation.navigate("Bottom Navbar");
         } else if (response.data.status == "error") {
-          Toast.show({
-            type: "error",
-            text1: "Invalid Credential",
-            text2: "Pls check your email & password",
-            position: "top",
-            visibilityTime: 2000,
-            topOffset: 60,
-          });
+          setLoader(false);
+          authToaster(
+            "error",
+            "Invalid Credential",
+            "Pls check your email & password",
+            "bottom"
+          );
         }
       })
       .catch(function (error) {
         setLoader(false);
         if (error.status == 500) {
-          Toast.show({
-            type: "error",
-            text1: "Somthing went wrong!!",
-            text2: "Try agian!!",
-            position: "top",
-            visibilityTime: 2000,
-            topOffset: 60,
-          });
+          authToaster(
+            "error",
+            "Somthing went wrong!!",
+            "Try agian!!",
+            "bottom"
+          );
         }
       });
 
@@ -109,7 +103,7 @@ const SignInScreen = () => {
             }
           />
 
-          <View style={styles.formWrapper(width)}>
+          <View style={styles.formWrapper}>
             {/* Email Input*/}
             <View style={styles.inputWrapper}>
               <Text style={styles.inputLabel}>
@@ -121,11 +115,12 @@ const SignInScreen = () => {
                 Email
               </Text>
               <TextInput
-                style={styles.input}
-                placeholder="Email"
-                keyboardType="email-address"
-                autoCapitalize="none"
+              maxLength={100}
                 value={email}
+                placeholder="Email"
+                style={styles.input}
+                autoCapitalize="none"
+                keyboardType="email-address"
                 onChangeText={(value) => setEmail(value)}
               />
             </View>
@@ -163,20 +158,27 @@ const SignInScreen = () => {
                 </TouchableOpacity>
               </View>
               <TextInput
+                maxLength={30}
+                value={password}
                 style={styles.input}
                 placeholder="Password"
                 secureTextEntry={secureTextBool}
-                value={password}
                 onChangeText={(value) => setPassword(value)}
               />
             </View>
 
             {/* Button */}
-            <AuthButton
-              onPressFun={validateFun}
-              btnText={"Sing In"}
-              icon={<FontAwesomeIcon name="user-circle" size={14} />}
-            />
+            {loader ? (
+              <View style={{ marginTop: 10 }}>
+                <ActivityIndicator color="blue" />
+              </View>
+            ) : (
+              <AuthButton
+                onPressFun={validateFun}
+                btnText={"Sing In"}
+                icon={<FontAwesomeIcon name="user-circle" size={14} />}
+              />
+            )}
 
             {/* Link Button */}
             {/* <AuthLinkButton
@@ -197,10 +199,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
-  formWrapper: (width) => ({
-    width: width,
+  formWrapper: {
+    width: "100%",
     alignItems: "center",
-  }),
+  },
   inputWrapper: { width: "90%", marginVertical: 10 },
   inputLabel: { fontWeight: "700" },
   input: {
