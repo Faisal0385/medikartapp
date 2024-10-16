@@ -8,7 +8,11 @@ import {
 } from "react-native";
 import React, { useCallback } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { SPLASH_COPYRIGHT_TEXT } from "../../utils/string";
+import {
+  company_logo,
+  company_name,
+  SPLASH_COPYRIGHT_TEXT,
+} from "../../utils/string";
 import { INDICATOR_COLOR } from "../../utils/colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { goToDashboardScreen } from "../../navigations/routes";
@@ -40,12 +44,9 @@ const SplashScreen = () => {
     <SafeAreaView style={styles.mainWrapper}>
       <View style={styles.wrapper}>
         <View style={styles.imageWrapper}>
-          <Image
-            source={require("../../../assets/logo/logo.png")}
-            style={{ height: 100, width: 100 }}
-          />
+          <Image source={company_logo} style={{ height: 100, width: 100 }} />
         </View>
-        <Text style={styles.splashText}>Zyona Laser & Skincare</Text>
+        <Text style={styles.splashText}>{company_name}</Text>
       </View>
       <View style={styles.copyrightWrapper}>
         <ActivityIndicator color={INDICATOR_COLOR} />

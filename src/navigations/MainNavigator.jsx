@@ -98,11 +98,7 @@ function MainNavigator() {
         component={ReceiptScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="Thanks"
-        component={ThankYouScreen}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name="Booking"
         component={BookingScreen}
@@ -116,6 +112,11 @@ function MainNavigator() {
         options={{
           headerBackTitleVisible: false,
         }}
+      />
+      <Stack.Screen
+        name="Thanks"
+        component={ThankYouScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

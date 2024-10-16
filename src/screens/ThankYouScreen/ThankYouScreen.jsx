@@ -1,25 +1,33 @@
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import {
+  ActivityIndicator,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import React, { useCallback } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { company_logo } from "../../utils/string";
+import { goToDashboardScreen } from "../../navigations/routes";
+import { themeColors } from "../../utils/colors";
 
 const ThankYouScreen = () => {
   const navigation = useNavigation();
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate("Dashboard");
-    }, 2000);
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      setTimeout(() => {
+        goToDashboardScreen(navigation);
+      }, 2000);
+    }, [])
+  );
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ alignItems: "center", marginTop: 5 }}>
-        <Image
-          source={require("../../../assets/logo/logo.png")}
-          style={{ height: 80, width: 80 }}
-        />
+      <View style={styles.imageWrapper}>
+        <Image source={company_logo} style={styles.imageStyle} />
       </View>
-      <Text style={{ fontSize: 40, color: "#FA4D24", marginVertical: 20 }}>
-        Thank You
-      </Text>
+      <Text style={styles.textStyle}>Thank You</Text>
+      <ActivityIndicator color={themeColors.primary} size={"small"} />
     </SafeAreaView>
   );
 };
@@ -29,10 +37,13 @@ export default ThankYouScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F4F4F4",
-    paddingHorizontal: 20,
     margin: 5,
+    paddingHorizontal: 20,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#F4F4F4",
   },
+  imageWrapper: { alignItems: "center", marginTop: 5 },
+  imageStyle: { height: 80, width: 80 },
+  textStyle: { fontSize: 40, color: themeColors.orangeRed, marginVertical: 20 },
 });

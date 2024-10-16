@@ -1,6 +1,6 @@
 export const company_name = "Zyona Laser & Skin Care Center";
-export const contact = "Contact: 01307-842071"
-
+export const company_logo = require("../../assets/logo/logo.png");
+export const contact = "Contact: 01307-842071";
 
 // SPLASH SCREEN START
 export const SPLASH_COPYRIGHT_TEXT = "Powered By KAF Tech BD";
