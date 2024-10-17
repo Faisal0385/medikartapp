@@ -6,8 +6,8 @@ export const goToProfileScreen = (navigation) => {
   navigation.navigate("ProfileScreen");
 };
 
-export const goToPatientHistoryScreen = (navigation) => {
-  navigation.navigate("PatientHistory");
+export const goToPatientHistoryScreen = (navigation, asstId) => {
+  navigation.navigate("PatientHistory", {asstId:asstId});
 };
 
 export const goToPatientListScreen = (navigation) => {

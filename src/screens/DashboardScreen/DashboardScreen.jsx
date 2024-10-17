@@ -67,7 +67,7 @@ const DashboardScreen = () => {
           <Text style={{ fontSize: 20, fontWeight: "700" }}>{email}</Text>
 
           {/* Search Component */}
-          <Search goto={() => goToPatientHistoryScreen(navigation)} />
+          <Search asstId={userDataObj.id}/>
 
           {/* Income Card  */}
           {/* <DashboardCard

@@ -5,10 +5,27 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { COLOR_WHITE } from "../utils/colors";
+import { useNavigation } from "@react-navigation/native";
+import { ToastMsg } from "../screens/ToastMessage";
 
-const Search = ({goto}) => {
+const Search = ({ asstId }) => {
+  const navigation = useNavigation();
+  const [keywordValue, setKeywordValue] = useState("");
+  const [keywordText, setKeywordText] = useState("");
+
+  const validate = (id) => {    
+    if (keywordText.trim() == "") {
+      ToastMsg("error", "Search field can not be empty!!", "top");
+      return;
+    }
+    setKeywordValue(keywordText)
+    setKeywordText("")
+    navigation.navigate("PatientHistory", { asstId: id, keywordText: keywordValue });
+    return
+  };
+
   return (
     <View style={styles.searchStyle}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -16,8 +33,13 @@ const Search = ({goto}) => {
           placeholderTextColor={COLOR_WHITE}
           style={styles.searchInputStyle}
           placeholder="Search Here..."
+          value={keywordText}
+          onChangeText={(value) => setKeywordText(value)}
         />
-        <TouchableOpacity style={styles.searchBtn} onPress={goto}>
+        <TouchableOpacity
+          style={styles.searchBtn}
+          onPress={() => validate(asstId)}
+        >
           <Text style={{ color: COLOR_WHITE }}>Search</Text>
         </TouchableOpacity>
       </View>

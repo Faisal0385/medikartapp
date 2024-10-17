@@ -5,55 +5,74 @@ import {
   ScrollView,
   Platform,
   StatusBar,
+  Text,
+  ActivityIndicator,
 } from "react-native";
 import Search from "../../components/Search";
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { goToDashboardScreen } from "../../navigations/routes";
+import React, { useCallback, useState } from "react";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
+import {
+  goToDashboardScreen,
+  goToSignIntScreen,
+} from "../../navigations/routes";
 import AppBar from "../../components/AppBar";
 import HistoryCard from "./components/HistoryCard";
-
-const patientHistorydata = [
-  {
-    vid: "VID-121224",
-    date: "12-12-24",
-    name: "Jon Doe",
-    phone: "01212545154",
-  },
-  {
-    vid: "VID-121224",
-    date: "12-12-24",
-    name: "Jon Doe",
-    phone: "01212545154",
-  },
-  {
-    vid: "VID-121224",
-    date: "12-12-24",
-    name: "Jon Doe",
-    phone: "01212545154",
-  },
-  {
-    vid: "VID-121224",
-    date: "12-12-24",
-    name: "Jon Doe",
-    phone: "01212545154",
-  },
-  {
-    vid: "VID-121224",
-    date: "12-12-24",
-    name: "Jon Doe",
-    phone: "01212545154",
-  },
-  {
-    vid: "VID-121224",
-    date: "12-12-24",
-    name: "Jon Doe",
-    phone: "01212545154",
-  },
-];
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PatientHistory = () => {
   const navigation = useNavigation();
+  const [loader, setLoader] = useState(false);
+  const [searchResult, setSearchResult] = useState([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      setLoader(true);
+      authUser();
+    }, [])
+  );
+
+  const route = useRoute();
+  const asstId = route.params?.asstId;
+  const keywordText = route.params?.keywordText;
+
+  // Authentication
+  const authUser = async () => {
+    const userData = await AsyncStorage.getItem("user-data");
+    const userDataObj = JSON.parse(userData);
+
+    if (!userDataObj) {
+      goToSignIntScreen(navigation);
+    } else {
+      axios
+        .get(
+          `https://aketbd.com/medikart/api/v1/search/patient/${asstId}/${keywordText}`
+        )
+        .then(function (response) {
+          if (response.data.status === "success") {
+            setSearchResult(response.data?.data);
+            setLoader(false);
+          }
+        })
+        .catch(function (error) {
+          setLoader(false);
+          if (error.status == 500) {
+            Toast.show({
+              type: "error",
+              text1: "Somthing went wrong!!",
+              text2: "Try agian!!",
+              position: "bottom",
+              visibilityTime: 2000,
+              bottomOffset: 100,
+            });
+          }
+        });
+    }
+  };
 
   const goToBookingScreen = (navigation) => {
     navigation.navigate("Booking");
@@ -70,18 +89,52 @@ const PatientHistory = () => {
           <Search />
         </View>
 
-        {patientHistorydata.map((item) => {
-          return (
-            <HistoryCard
-              id={item.id}
-              vid={item.vid}
-              date={item.date}
-              name={item.name}
-              phone={item.phone}
-              routeFun={() => goToBookingScreen(navigation)}
-            />
-          );
-        })}
+        {loader ? (
+          <View
+            style={{
+              height: 100,
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <ActivityIndicator size={"large"} color={"orange"} />
+            <Text style={{ fontSize: 12, fontWeight: "700", paddingTop: 10 }}>
+              Loading...
+            </Text>
+          </View>
+        ) : searchResult.length === 0 ? (
+          <View
+            style={{
+              flex: 1,
+              height: 100,
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "700",
+              }}
+            >
+              No Data Found!!
+            </Text>
+          </View>
+        ) : (
+          searchResult.map((item, index) => {
+            return (
+              <HistoryCard
+                key={index}
+                vid={item.visit_id}
+                date={item.date}
+                name={item.full_name}
+                phone={item.mobile}
+                routeFun={() => goToBookingScreen(navigation)}
+              />
+            );
+          })
+        )}
       </ScrollView>
     </SafeAreaView>
   );

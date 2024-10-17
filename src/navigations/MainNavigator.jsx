@@ -28,6 +28,15 @@ function MainNavigator() {
       />
 
       <Stack.Screen
+        name="PatientHistory"
+        component={PatientHistory}
+        options={{
+          headerShown: false,
+          headerBackTitleVisible: false,
+        }}
+      />
+
+      <Stack.Screen
         name="Bottom Navbar"
         component={BottomNavBar}
         options={{ headerShown: false }}
@@ -82,14 +91,6 @@ function MainNavigator() {
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen
-        name="PatientHistory"
-        component={PatientHistory}
-        options={{
-          headerShown: false,
-          headerBackTitleVisible: false,
-        }}
-      />
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}
