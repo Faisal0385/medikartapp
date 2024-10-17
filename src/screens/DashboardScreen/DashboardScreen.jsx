@@ -8,6 +8,7 @@ import {
   Platform,
   ScrollView,
   ActivityIndicator,
+  TextInput,
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import Search from "../../components/Search";
@@ -51,8 +52,6 @@ const DashboardScreen = () => {
     setUserDataObj(userDataObj[0]);
   };
 
-
-
   return (
     <SafeAreaView style={styles.container}>
       {/* Dashboard App Bar */}
@@ -66,41 +65,61 @@ const DashboardScreen = () => {
           </View>
           <Text style={{ fontSize: 20, fontWeight: "700" }}>{email}</Text>
 
-          {/* Search Component */}
-          <Search asstId={userDataObj.id}/>
+          {/* Sub Heading Title Component */}
+          <SubHeadingTitle title="Dashboard" />
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity
+              onPress={() => goToPatientHistoryScreen(navigation)}
+              style={{
+                flex: 1,
+                margin: 10,
+                height: 100,
+                borderRadius: 8,
+                backgroundColor: themeColors.primary,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <FontAwesomeIcon name="users" size={16} color={"white"} />
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "700",
+                  marginTop: 10,
+                }}
+              >
+                Patient History
+              </Text>
+            </TouchableOpacity>
 
-          {/* Income Card  */}
-          {/* <DashboardCard
-            title="Today's Income"
-            amount={7000}
-            bgcolor="#17B48C"
-            fonticons={<FontAwesomeIcon name="dollar" size={16} />}
-          /> */}
-
-          {/* Patient Card  */}
-          {/* <DashboardCard
-            title="Today's Patient"
-            amount={100}
-            bgcolor="#FA4D24"
-            fonticons={<FontAwesomeIcon name="users" size={16} />}
-          /> */}
+            <TouchableOpacity
+              onPress={() => goToPatientListScreen(navigation)}
+              style={{
+                flex: 1,
+                margin: 10,
+                height: 100,
+                borderRadius: 8,
+                backgroundColor: "#FA4D24",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <FontAwesomeIcon name="user-circle" size={16} color={"white"} />
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "700",
+                  marginTop: 10,
+                }}
+              >
+                Patient List
+              </Text>
+            </TouchableOpacity>
+          </View>
 
           <Divider />
-
-          {/* Sub Heading Title Component */}
-          <SubHeadingTitle title="Today's Patient List" />
-
-          {/* Patient List */}
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => goToPatientListScreen(navigation)}
-          >
-            <Text style={{ color: COLOR_WHITE }}>
-              {" "}
-              <FontAwesomeIcon name="user-circle" size={18} /> Show Patient List
-            </Text>
-          </TouchableOpacity>
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -120,5 +139,26 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginVertical: 20,
+  },
+  searchStyle: {
+    backgroundColor: "#65ad53",
+    marginVertical: 10,
+    padding: 15,
+    borderRadius: 5,
+  },
+  searchInputStyle: {
+    flex: 1,
+    height: 40,
+    marginVertical: 5,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 5,
+    borderColor: COLOR_WHITE,
+  },
+  searchBtn: {
+    backgroundColor: "#246015",
+    marginHorizontal: 5,
+    padding: 12,
+    borderRadius: 5,
   },
 });

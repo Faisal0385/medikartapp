@@ -22,6 +22,11 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="Bottom Navbar"
+        component={BottomNavBar}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="PatientHistory"
         component={PatientHistory}
         options={{
@@ -35,11 +40,7 @@ function MainNavigator() {
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen
-        name="Bottom Navbar"
-        component={BottomNavBar}
-        options={{ headerShown: false }}
-      />
+      
 
       <Stack.Screen
         name="Payment"
