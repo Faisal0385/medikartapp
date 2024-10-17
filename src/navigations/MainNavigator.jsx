@@ -22,18 +22,17 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Splash Screen"
-        component={SplashScreen}
-        options={{ headerShown: false }}
-      />
-
-      <Stack.Screen
         name="PatientHistory"
         component={PatientHistory}
         options={{
           headerShown: false,
           headerBackTitleVisible: false,
         }}
+      />
+      <Stack.Screen
+        name="Splash Screen"
+        component={SplashScreen}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
