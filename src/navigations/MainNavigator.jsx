@@ -22,6 +22,11 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="Splash Screen"
+        component={SplashScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="Bottom Navbar"
         component={BottomNavBar}
         options={{ headerShown: false }}
@@ -35,14 +40,6 @@ function MainNavigator() {
         }}
       />
       <Stack.Screen
-        name="Splash Screen"
-        component={SplashScreen}
-        options={{ headerShown: false }}
-      />
-
-      
-
-      <Stack.Screen
         name="Payment"
         component={PaymentScreen}
         options={{
@@ -54,7 +51,6 @@ function MainNavigator() {
         component={ReceiptScreen}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
@@ -68,13 +64,11 @@ function MainNavigator() {
           headerBackTitleVisible: false,
         }}
       />
-
       <Stack.Screen
         name="SignInScreen"
         component={SignInScreen}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="OnboardingOne"
         component={OnBoardingScreenOne}
@@ -90,13 +84,11 @@ function MainNavigator() {
         component={OnBoardingScreenThree}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
@@ -107,7 +99,6 @@ function MainNavigator() {
         component={OTPScreen}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="Booking"
         component={BookingScreen}
@@ -115,7 +106,6 @@ function MainNavigator() {
           headerBackTitleVisible: false,
         }}
       />
-
       <Stack.Screen
         name="Thanks"
         component={ThankYouScreen}
