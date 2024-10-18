@@ -22,7 +22,8 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { COLOR_WHITE } from "../../utils/colors";
 import { authToaster } from "../ToastMessage";
-import { company_name, contact } from "../../utils/string";
+import { company_contact, company_name, contact } from "../../utils/string";
+import InfoDisplay from "./components/InfoValue";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -64,124 +65,30 @@ const ProfileScreen = () => {
             source={require("../../../assets/logo/logo.png")}
             style={styles.profileImage}
           />
-          <View style={{ paddingTop: 10 }}>
-            <Text style={{ fontSize: 20, fontWeight: "600" }}>
-              {company_name}
-            </Text>
-          </View>
-          <View>
-            <Text>{contact}</Text>
-          </View>
+          <Text style={styles.comapnyStyle}>{company_name}</Text>
+          <Text style={styles.contactStyle}>{company_contact}</Text>
 
           <View style={styles.cardStyle("#17B48C")}>
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ color: COLOR_WHITE, fontWeight: "bold" }}>
-                <FontAwesome6Icon name="user" size={16} />
-              </Text>
-              <Text
-                style={{
-                  color: COLOR_WHITE,
-                  fontWeight: "bold",
-                  fontSize: 14,
-                  marginHorizontal: 5,
-                }}
-              >
-                {userDataObj.full_name}
-              </Text>
-            </View>
-            <View
-              style={{
-                height: 2,
-                marginVertical: 10,
-                backgroundColor: COLOR_WHITE,
-              }}
-            ></View>
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ color: COLOR_WHITE, fontWeight: "bold" }}>
-                <MaterialIcons name="mark-email-read" size={16} />
-              </Text>
-              <Text
-                style={{
-                  color: COLOR_WHITE,
-                  fontWeight: "bold",
-                  fontSize: 14,
-                  marginHorizontal: 5,
-                }}
-              >
-                {userDataObj.email}
-              </Text>
-            </View>
-            <View
-              style={{
-                height: 2,
-                marginVertical: 10,
-                backgroundColor: COLOR_WHITE,
-              }}
-            ></View>
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ color: COLOR_WHITE, fontWeight: "bold" }}>
-                <FontAwesome6Icon name="phone" size={16} />
-              </Text>
-              <Text
-                style={{
-                  color: COLOR_WHITE,
-                  fontWeight: "bold",
-                  fontSize: 14,
-                  marginHorizontal: 5,
-                }}
-              >
-                {userDataObj.hotline}
-              </Text>
-            </View>
-            <View
-              style={{
-                height: 2,
-                marginVertical: 10,
-                backgroundColor: COLOR_WHITE,
-              }}
-            ></View>
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ color: COLOR_WHITE, fontWeight: "bold" }}>
-                <FontAwesome name="address-card" size={16} />
-              </Text>
-              <Text
-                style={{
-                  color: COLOR_WHITE,
-                  fontWeight: "bold",
-                  fontSize: 14,
-                  marginHorizontal: 5,
-                }}
-              >
-                {userDataObj.address}
-              </Text>
-            </View>
-            <View
-              style={{
-                height: 2,
-                marginVertical: 10,
-                backgroundColor: COLOR_WHITE,
-              }}
-            ></View>
+            <InfoDisplay
+              infoValue={userDataObj.full_name}
+              fontIcon={<FontAwesome6Icon name="user" size={16} />}
+            />
+            <InfoDisplay
+              infoValue={userDataObj.email}
+              fontIcon={<MaterialIcons name="mark-email-read" size={16} />}
+            />
+            <InfoDisplay
+              infoValue={userDataObj.hotline}
+              fontIcon={<FontAwesome6Icon name="phone" size={16} />}
+            />
+            <InfoDisplay
+              infoValue={userDataObj.address}
+              fontIcon={<FontAwesome name="address-card" size={16} />}
+            />
           </View>
 
           <TouchableOpacity style={styles.button} onPress={() => logoutBtn()}>
-            <Text style={{ color: COLOR_WHITE }}>
+            <Text style={{ color: COLOR_WHITE, fontFamily: "montSemiBold" }}>
               {" "}
               <FontAwesome name="user-circle" size={18} /> Logout
             </Text>
@@ -199,15 +106,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F4F4F4",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-  },
-  appBarStyle: {
-    backgroundColor: "lightgrey",
-  },
-  headerTextStyle: {
-    textAlign: "center",
-    fontWeight: "900",
-    fontSize: 18,
-    padding: 10,
   },
   profileImage: {
     width: 100,
@@ -227,5 +125,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 10,
     width: "100%",
+  },
+  contactStyle: { fontSize: 18, fontFamily: "montSemiBold", marginTop: 5 },
+  comapnyStyle: {
+    paddingTop: 10,
+    fontFamily: "montBold",
+    fontSize: 22,
+    fontWeight: "600",
   },
 });
