@@ -48,7 +48,7 @@ const HistoryCard = ({ id, vid, date, name, phone, routeFun }) => {
         </Text>
 
         <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Rebooking", {id:id})}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.replace("Rebooking", {id:id})}>
             <Text style={{ color: COLOR_WHITE }}>Re-Appointment</Text>
           </TouchableOpacity>
         </View>

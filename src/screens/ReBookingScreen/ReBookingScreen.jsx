@@ -11,15 +11,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { COLOR_WHITE } from "../../utils/colors";
-import { useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import Divider from "../../components/Divider";
 import { authToaster, ToastMsg } from "../ToastMessage";
 import { Dropdown } from "react-native-element-dropdown";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { goToDashboardScreen } from "../../navigations/routes";
 
 const data = [
   { label: "AB+", value: "1" },
@@ -33,10 +38,12 @@ const data = [
 ];
 
 const ReBookingScreen = () => {
-const {params} = useRoute()
-console.log(params.id);
+  const { params } = useRoute();
+
+  // console.log(params.id);
 
   const navigation = useNavigation();
+  const [userInfo, setUserInfo] = useState(null);
   const [userDataObj, setUserDataObj] = useState({});
   const [loader, setLoader] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
@@ -51,76 +58,42 @@ console.log(params.id);
   const [value, setValue] = useState(null);
   const [weight, setWeight] = useState(0);
 
-  useFocusEffect(
-    useCallback(() => {
-      authUser();
-    }, [])
-  );
-
-  // Authentication
-  const authUser = async () => {
-    const userData = await AsyncStorage.getItem("user-data");
-    const userDataObj = JSON.parse(userData);
-    if (!userDataObj) {
-      goToSignIntScreen(navigation);
-      return;
-    }
-    setUserDataObj(userDataObj[0]);
-  };
-
-  const makeBooking = () => {
-    if (fullName.trim() == "") {
-      ToastMsg("error", "Full name can not be empty!!", "top");
-      return;
-    }
-
-    if (phone.trim() == "") {
-      ToastMsg("error", "Mobile can not be empty!!", "top");
-      return;
-    }
-
-    if (gender.trim() == "") {
-      ToastMsg("error", "Gender can not be empty!!", "top");
-      return;
-    }
-
-    if (ageYear == "") {
-      ToastMsg("error", "Year can not be empty!!", "top");
-      return;
-    }
-
+  useEffect(() => {
     setLoader(true);
-    axios
-      .post("https://aketbd.com/medikart/api/v1/doctor/booking-appointment", {
-        asst_id: userDataObj.id,
-        full_name: fullName,
-        mobile: phone,
-        gender: gender,
-        age_year: ageYear,
-        age_month: ageMonth,
-        age_day: ageDay,
-        weight: weight,
-        blood_grp: value,
-      })
-      .then(function (response) {
-        setLoader(false);
+    // authUser();
+    getData(params?.id);
+  }, []);
 
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     console.log("I am here");
+
+  //     setLoader(true);
+  //     // authUser();
+  //     getData(params?.id);
+  //   }, [])
+  // );
+
+  const getData = async (id) => {
+    axios
+      .get(`https://aketbd.com/medikart/api/v1/patient/data/${id}`)
+      .then(function (response) {
         if (response.data.status == "success") {
-          ToastMsg("success", response.data.message, "top");
-          setSerialNo("");
-          setFullName("");
-          setPhone("");
-          setGender("");
-          setAgeDay("");
-          setAgeMonth("");
-          setAgeYear("");
-          setValue("");
-          setWeight("");
-        }
-      })
-      .catch(function (error) {
-        setLoader(false);
-        if (error.status == 500) {
+          setLoader(false);
+          setUserInfo(response?.data.data);
+
+          // setSerialNo("");
+          setFullName(userInfo.full_name);
+          setPhone(userInfo.mobile);
+          setGender(userInfo.gender);
+          setAgeDay(userInfo.age_day);
+          setAgeMonth(userInfo.age_month);
+          setAgeYear(userInfo.age_year);
+          setValue(userInfo.blood_grp);
+          setWeight(userInfo.weight);
+          console.log(userInfo.gender);
+        } else {
+          setLoader(false);
           authToaster(
             "error",
             "Somthing went wrong!!",
@@ -128,223 +101,318 @@ console.log(params.id);
             "bottom"
           );
         }
+      })
+      .catch(function (error) {
+        setLoader(false);
+        if (error.status == 500) {
+          authToaster(
+            "error",
+           "Somthing went wrong!!",
+            "Try agian!!",
+            "bottom"
+          );
+        }
       });
   };
 
+  // Authentication
+  // const authUser = async () => {
+  //   const userData = await AsyncStorage.getItem("user-data");
+  //   const userDataObj = JSON.parse(userData);
+  //   if (!userDataObj) {
+  //     goToSignIntScreen(navigation);
+  //     return;
+  //   }
+  //   setUserDataObj(userDataObj[0]);
+  // };
+
+  // const makeBooking = () => {
+  //   if (fullName.trim() == "") {
+  //     ToastMsg("error", "Full name can not be empty!!", "top");
+  //     return;
+  //   }
+
+  //   if (phone.trim() == "") {
+  //     ToastMsg("error", "Mobile can not be empty!!", "top");
+  //     return;
+  //   }
+
+  //   if (gender.trim() == "") {
+  //     ToastMsg("error", "Gender can not be empty!!", "top");
+  //     return;
+  //   }
+
+  //   if (ageYear == "") {
+  //     ToastMsg("error", "Year can not be empty!!", "top");
+  //     return;
+  //   }
+
+  //   setLoader(true);
+  //   axios
+  //     .post("https://aketbd.com/medikart/api/v1/doctor/booking-appointment", {
+  //       asst_id: userDataObj.id,
+  //       full_name: fullName,
+  //       mobile: phone,
+  //       gender: gender,
+  //       age_year: ageYear,
+  //       age_month: ageMonth,
+  //       age_day: ageDay,
+  //       weight: weight,
+  //       blood_grp: value,
+  //     })
+  //     .then(function (response) {
+  //       setLoader(false);
+
+  //       if (response.data.status == "success") {
+  //         ToastMsg("success", response.data.message, "top");
+  //         setSerialNo("");
+  //         setFullName("");
+  //         setPhone("");
+  //         setGender("");
+  //         setAgeDay("");
+  //         setAgeMonth("");
+  //         setAgeYear("");
+  //         setValue("");
+  //         setWeight("");
+  //       }
+  //     })
+  //     .catch(function (error) {
+  //       setLoader(false);
+  //       if (error.status == 500) {
+  //         authToaster(
+  //           "error",
+  //           "Somthing went wrong!!",
+  //           "Try agian!!",
+  //           "bottom"
+  //         );
+  //       }
+  //     });
+  // };
+  console.log("this is ");
+  console.log(fullName);
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ScrollView>
-          <View style={[styles.card, styles.shadowProp]}>
-            <View style={{ padding: 10 }}>
-              <Text style={{ fontWeight: "700" }}>Serial No. Reb</Text>
-              <TextInput
-                maxLength={1000}
-                value={serialNo}
-                onChangeText={(value) => setSerialNo(value)}
-                keyboardType="numeric"
-                style={styles.input}
-                placeholder="Serial No."
-              />
-              <Divider />
+          {loader ? (
+            <ActivityIndicator size="large" color={"green"} />
+          ) : userInfo ? (
+            <View style={[styles.card, styles.shadowProp]}>
+              <View style={{ padding: 10 }}>
+                <Text style={{ fontWeight: "700" }}>Serial No. Reb</Text>
+                <TextInput
+                  maxLength={1000}
+                  value={serialNo}
+                  onChangeText={(value) => setSerialNo(value)}
+                  keyboardType="numeric"
+                  style={[styles.input, { color: "grey" }]}
+                  placeholder="Serial No."
+                />
+                <Divider />
 
-              <Text style={{ fontWeight: "700" }}>
-                Full Name <Text style={{ color: "red" }}>*</Text>
-              </Text>
-              <TextInput
-                maxLength={100}
-                value={fullName}
-                onChangeText={(value) => {
-                  setFullName(value);
-                }}
-                style={styles.input}
-                placeholder="Full Name"
-              />
-              <Divider />
+                <Text style={{ fontWeight: "700" }}>Full Name</Text>
+                <TextInput
+                  editable={false}
+                  selectTextOnFocus={false}
+                  placeholder={fullName}
+                  value={fullName}
+                  style={[styles.input, { backgroundColor: "#f0f0f0" }]}
+                />
+                <Divider />
 
-              <Text style={{ fontWeight: "700" }}>
-                Phone <Text style={{ color: "red" }}>*</Text>
-              </Text>
-              <TextInput
-                maxLength={100}
-                value={phone}
-                keyboardType="numeric"
-                onChangeText={(value) => {
-                  setPhone(value);
-                }}
-                style={styles.input}
-                placeholder="Phone"
-              />
-              <Divider />
+                <Text style={{ fontWeight: "700" }}>Phone</Text>
+                <TextInput
+                  editable={false}
+                  selectTextOnFocus={false}
+                  value={phone}
+                  style={[styles.input, { backgroundColor: "#f0f0f0" }]}
+                />
+                <Divider />
 
-              <Text style={{ fontWeight: "700" }}>
-                Gender <Text style={{ color: "red" }}>*</Text>
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  paddingVertical: 10,
-                }}
-              >
-                <Pressable
-                  onPress={() => setGender("M")}
+                <Text style={{ fontWeight: "700" }}>Gender</Text>
+                <View
                   style={{
-                    flex: 1,
-                    backgroundColor: gender === "M" ? "teal" : "white",
-                    padding: 10,
-                    borderRadius: 8,
-                    borderColor: "teal",
-                    borderWidth: 1,
-                    margin: 5,
+                    flexDirection: "row",
+                    paddingVertical: 10,
                   }}
                 >
-                  <Text
+                  <Pressable
+                    onPress={() => setGender("M")}
                     style={{
-                      color: gender === "M" ? "white" : "black",
-                      textAlign: "center",
+                      flex: 1,
+                      backgroundColor:
+                        userInfo.gender === "M" ? "teal" : "white",
+                      padding: 10,
+                      borderRadius: 8,
+                      borderColor: "teal",
+                      borderWidth: 1,
+                      margin: 5,
                     }}
                   >
-                    Male
-                  </Text>
-                </Pressable>
-                <Pressable
-                  onPress={() => setGender("F")}
-                  style={{
-                    flex: 1,
-                    backgroundColor: gender === "F" ? "teal" : "white",
-                    padding: 10,
-                    borderRadius: 8,
-                    borderColor: "teal",
-                    borderWidth: 1,
-                    margin: 5,
-                  }}
-                >
-                  <Text
+                    <Text
+                      style={{
+                        color: userInfo.gender === "M" ? "white" : "black",
+                        textAlign: "center",
+                      }}
+                    >
+                      Male
+                    </Text>
+                  </Pressable>
+                  <Pressable
+                    onPress={() => setGender("F")}
                     style={{
-                      color: gender === "F" ? "white" : "black",
-                      textAlign: "center",
+                      flex: 1,
+                      backgroundColor:
+                        userInfo.gender === "F" ? "teal" : "white",
+                      padding: 10,
+                      borderRadius: 8,
+                      borderColor: "teal",
+                      borderWidth: 1,
+                      margin: 5,
                     }}
                   >
-                    Female
-                  </Text>
-                </Pressable>
-                <Pressable
-                  onPress={() => setGender("O")}
-                  style={{
-                    flex: 1,
-                    backgroundColor: gender === "O" ? "teal" : "white",
-                    padding: 10,
-                    borderRadius: 8,
-                    borderColor: "teal",
-                    borderWidth: 1,
-                    margin: 5,
-                  }}
-                >
-                  <Text
+                    <Text
+                      style={{
+                        color: userInfo.gender === "F" ? "white" : "black",
+                        textAlign: "center",
+                      }}
+                    >
+                      Female
+                    </Text>
+                  </Pressable>
+                  <Pressable
+                    onPress={() => setGender("O")}
                     style={{
-                      color: gender === "O" ? "white" : "black",
-                      textAlign: "center",
+                      flex: 1,
+                      backgroundColor:
+                        userInfo.gender === "O" ? "teal" : "white",
+                      padding: 10,
+                      borderRadius: 8,
+                      borderColor: "teal",
+                      borderWidth: 1,
+                      margin: 5,
                     }}
                   >
-                    Others
-                  </Text>
-                </Pressable>
-              </View>
+                    <Text
+                      style={{
+                        color: userInfo.gender === "O" ? "white" : "black",
+                        textAlign: "center",
+                      }}
+                    >
+                      Others
+                    </Text>
+                  </Pressable>
+                </View>
 
-              <Divider />
+                <Divider />
 
-              <Text style={{ fontWeight: "700" }}>
-                Age (Y/M/D) <Text style={{ color: "red" }}>*</Text>
-              </Text>
-              <View style={{ flexDirection: "row" }}>
+                <Text style={{ fontWeight: "700" }}>
+                  Age (Y/M/D) <Text style={{ color: "red" }}>*</Text>
+                </Text>
+                <View style={{ flexDirection: "row" }}>
+                  <TextInput
+                    keyboardType="numeric"
+                    value={ageYear}
+                    onChangeText={(value) => {
+                      setAgeYear(value);
+                    }}
+                    style={styles.ageInput}
+                    placeholder="Year"
+                    maxLength={3}
+                  />
+                  <TextInput
+                    keyboardType="numeric"
+                    value={userInfo.age_month}
+                    onChangeText={(value) => {
+                      setAgeMonth(value);
+                    }}
+                    style={styles.ageInput}
+                    placeholder="Month"
+                    maxLength={2}
+                  />
+                  <TextInput
+                    keyboardType="numeric"
+                    value={userInfo.age_day}
+                    onChangeText={(value) => {
+                      setAgeDay(value);
+                    }}
+                    style={styles.ageInput}
+                    placeholder="Day"
+                    maxLength={2}
+                  />
+                </View>
+
+                <Divider />
+
+                <Text style={{ fontWeight: "700" }}>Blood Group</Text>
+                <Dropdown
+                  style={[styles.dropdown, isFocus && { borderColor: "red" }]}
+                  selectedTextStyle={styles.selectedTextStyle}
+                  data={data}
+                  maxHeight={250}
+                  labelField="label"
+                  valueField="value"
+                  placeholder={!isFocus ? "Select item" : "..."}
+                  value={userInfo.value}
+                  onFocus={() => setIsFocus(true)}
+                  onBlur={() => setIsFocus(false)}
+                  onChange={(item) => {
+                    setValue(item.value);
+                    setIsFocus(false);
+                  }}
+                  renderLeftIcon={() => (
+                    <MaterialIcons
+                      style={styles.icon}
+                      color={isFocus ? "red" : "teal"}
+                      name="bloodtype"
+                      size={20}
+                    />
+                  )}
+                />
+                <Divider />
+
+                <Text style={{ fontWeight: "700" }}>Patient Weight (Kg)</Text>
                 <TextInput
                   keyboardType="numeric"
-                  value={ageYear}
+                  value={userInfo.weight}
                   onChangeText={(value) => {
-                    setAgeYear(value);
+                    setWeight(value);
                   }}
-                  style={styles.ageInput}
-                  placeholder="Year"
+                  style={styles.input}
+                  placeholder="Patient Weight (Kg)"
                   maxLength={3}
                 />
-                <TextInput
-                  keyboardType="numeric"
-                  value={ageMonth}
-                  onChangeText={(value) => {
-                    setAgeMonth(value);
-                  }}
-                  style={styles.ageInput}
-                  placeholder="Month"
-                  maxLength={2}
-                />
-                <TextInput
-                  keyboardType="numeric"
-                  value={ageDay}
-                  onChangeText={(value) => {
-                    setAgeDay(value);
-                  }}
-                  style={styles.ageInput}
-                  placeholder="Day"
-                  maxLength={2}
-                />
-              </View>
+                <Divider />
 
-              <Divider />
-
-              <Text style={{ fontWeight: "700" }}>Blood Group</Text>
-              <Dropdown
-                style={[styles.dropdown, isFocus && { borderColor: "red" }]}
-                selectedTextStyle={styles.selectedTextStyle}
-                data={data}
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder={!isFocus ? "Select item" : "..."}
-                value={value}
-                onFocus={() => setIsFocus(true)}
-                onBlur={() => setIsFocus(false)}
-                onChange={(item) => {
-                  setValue(item.value);
-                  setIsFocus(false);
-                }}
-                renderLeftIcon={() => (
-                  <MaterialIcons
-                    style={styles.icon}
-                    color={isFocus ? "red" : "teal"}
-                    name="bloodtype"
-                    size={20}
-                  />
+                {loader ? (
+                  <ActivityIndicator size="large" color={"green"} />
+                ) : (
+                  <View>
+                    <TouchableOpacity
+                      onPress={() => makeBooking()}
+                      style={styles.button}
+                    >
+                      <Text style={{ color: COLOR_WHITE }}>
+                        Add Appointment
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => goToDashboardScreen(navigation)}
+                      style={[styles.button, { backgroundColor: "red" }]}
+                    >
+                      <Text style={{ color: COLOR_WHITE }}>
+                        Cancel Appointment
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 )}
-              />
-              <Divider />
-
-              <Text style={{ fontWeight: "700" }}>Patient Weight (Kg)</Text>
-              <TextInput
-                keyboardType="numeric"
-                value={weight}
-                onChangeText={(value) => {
-                  setWeight(value);
-                }}
-                style={styles.input}
-                placeholder="Patient Weight (Kg)"
-                maxLength={3}
-              />
-              <Divider />
-
-              {loader ? (
-                <ActivityIndicator size="large" color={"green"} />
-              ) : (
-                <TouchableOpacity
-                  onPress={() => makeBooking()}
-                  style={styles.button}
-                >
-                  <Text style={{ color: COLOR_WHITE }}>Add Appointment</Text>
-                </TouchableOpacity>
-              )}
+              </View>
             </View>
-          </View>
+          ) : (
+            <Text>No Data</Text>
+          )}
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
