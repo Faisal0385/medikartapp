@@ -15,6 +15,7 @@ import SignInScreen from "../screens/Auth/SignInScreen/SignInScreen";
 import ForgotPasswordScreen from "../screens/Auth/ForgotPasswordScreen/ForgotPasswordScreen";
 import OTPScreen from "../screens/Auth/OTPScreen/OTPScreen";
 import ResetPassword from "../screens/Auth/ResetPassword/ResetPassword";
+import { ReBookingScreen } from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -103,6 +104,14 @@ function MainNavigator() {
         name="Booking"
         component={BookingScreen}
         options={{
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="Rebooking"
+        component={ReBookingScreen}
+        options={{
+          headerShown:false,
           headerBackTitleVisible: false,
         }}
       />

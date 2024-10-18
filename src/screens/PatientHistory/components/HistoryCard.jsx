@@ -1,8 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { COLOR_WHITE } from "../../../utils/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const HistoryCard = ({ id, vid, date, name, phone, routeFun }) => {
+  const navigation = useNavigation()
   return (
     <View style={[styles.card, styles.shadowProp]}>
       <View style={{ padding: 10 }}>
@@ -46,7 +48,7 @@ const HistoryCard = ({ id, vid, date, name, phone, routeFun }) => {
         </Text>
 
         <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity style={styles.button} onPress={() => routeFun()}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Rebooking", {id:id})}>
             <Text style={{ color: COLOR_WHITE }}>Re-Appointment</Text>
           </TouchableOpacity>
         </View>

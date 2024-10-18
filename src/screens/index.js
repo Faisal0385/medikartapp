@@ -15,6 +15,7 @@ import ProfileScreen from './ProfileScreen/ProfileScreen'
 import PaymentScreen from './PaymentScreen/PaymentScreen'
 import PatientListScreen from './PatientListScreen/PatientListScreen'
 import PatientHistory from './PatientHistory/PatientHistory'
+import ReBookingScreen from './ReBookingScreen/ReBookingScreen'
 
 export {
   SplashScreen,
@@ -33,5 +34,6 @@ export {
   ProfileScreen,
   PaymentScreen,
   PatientListScreen,
-  ThankYouScreen
+  ThankYouScreen,
+  ReBookingScreen
 };

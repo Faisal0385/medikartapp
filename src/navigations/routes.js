@@ -17,3 +17,7 @@ export const goToPatientListScreen = (navigation) => {
 export const goToSignIntScreen = (navigation) => {
   navigation.navigate("SignInScreen");
 };
+
+export const goToReBookingScreen = (navigation) => {
+  navigation.navigate("Rebooking");
+};

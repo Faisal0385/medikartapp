@@ -19,6 +19,7 @@ import {
 } from "@react-navigation/native";
 import {
   goToDashboardScreen,
+  goToReBookingScreen,
   goToSignIntScreen,
 } from "../../navigations/routes";
 import AppBar from "../../components/AppBar";
@@ -153,11 +154,12 @@ const PatientHistory = () => {
             return (
               <HistoryCard
                 key={index}
+                id={item.id}
                 vid={item.visit_id}
                 date={item.date}
                 name={item.full_name}
                 phone={item.mobile}
-                routeFun={() => goToBookingScreen(navigation)}
+                routeFun={() => goToReBookingScreen(navigation)}
               />
             );
           })
