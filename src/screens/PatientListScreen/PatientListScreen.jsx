@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import React, { useCallback, useState } from "react";
 import HeadingTitle from "../../components/HeadingTitle";
-import Search from "../../components/Search";
 import { goToDashboardScreen } from "../../navigations/routes";
 import AppBar from "../../components/AppBar";
 import Divider from "../../components/Divider";
