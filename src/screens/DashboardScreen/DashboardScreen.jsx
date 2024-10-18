@@ -7,13 +7,9 @@ import {
   StatusBar,
   Platform,
   ScrollView,
-  ActivityIndicator,
-  TextInput,
 } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import Search from "../../components/Search";
+import React, { useCallback, useState } from "react";
 import HeadingTitle from "../../components/HeadingTitle";
-import DashboardCard from "../../components/DashboardCard";
 import { COLOR_WHITE, themeColors } from "../../utils/colors";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
@@ -61,7 +57,7 @@ const DashboardScreen = () => {
         <View style={{ marginHorizontal: 8 }}>
           {/* Heading Title Component */}
           <View style={{ marginVertical: 8 }}>
-            <HeadingTitle title="Welcome Back" />
+            <HeadingTitle title="Welcome Back" size={30} />
           </View>
           <Text style={{ fontSize: 20, fontWeight: "700" }}>{email}</Text>
 
@@ -87,6 +83,7 @@ const DashboardScreen = () => {
                   fontSize: 18,
                   fontWeight: "700",
                   marginTop: 10,
+                  fontFamily: "poppinsSemiBold",
                 }}
               >
                 Patient History
@@ -112,6 +109,7 @@ const DashboardScreen = () => {
                   fontSize: 18,
                   fontWeight: "700",
                   marginTop: 10,
+                  fontFamily: "poppinsSemiBold",
                 }}
               >
                 Patient List

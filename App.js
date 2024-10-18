@@ -2,6 +2,9 @@ import MainNavigator from "./src/navigations/MainNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import { Platform, StatusBar } from "react-native";
 import Toast, { BaseToast, ErrorToast } from "react-native-toast-message";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 
 const toastConfig = {
   success: (props) => (
@@ -38,6 +41,33 @@ const toastConfig = {
 };
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    montBold: require("./assets/fonts/Montserrat-Bold.ttf"),
+    montExtraBold: require("./assets/fonts/Montserrat-ExtraBold.ttf"),
+    montLight: require("./assets/fonts/Montserrat-Light.ttf"),
+    montRegular: require("./assets/fonts/Montserrat-Regular.ttf"),
+    montSemiBold: require("./assets/fonts/Montserrat-SemiBold.ttf"),
+
+    poppinsBold: require("./assets/fonts/Poppins-Bold.ttf"),
+    poppinsExtraBold: require("./assets/fonts/Poppins-ExtraBold.ttf"),
+    poppinsLight: require("./assets/fonts/Poppins-Light.ttf"),
+    poppinsRegular: require("./assets/fonts/Poppins-Regular.ttf"),
+    poppinsSemiBold: require("./assets/fonts/Poppins-SemiBold.ttf"),
+  });
+
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+
+  if (!fontsLoaded) {
+    return undefined;
+  } else {
+    SplashScreen.hideAsync();
+  }
+
   return (
     <NavigationContainer>
       <MainNavigator />

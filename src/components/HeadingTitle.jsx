@@ -1,9 +1,9 @@
 import { StyleSheet, Text } from "react-native";
 import React from "react";
 
-const HeadingTitle = ({ title }) => {
+const HeadingTitle = ({ title, size }) => {
   return (
-    <Text style={{ fontSize: 26, fontWeight: "600", marginTop: 5 }}>
+    <Text style={{ fontFamily:"montBold", fontSize: size, fontWeight: "600", marginTop: 5 }}>
       {title}
     </Text>
   );

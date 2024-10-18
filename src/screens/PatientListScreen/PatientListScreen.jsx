@@ -98,9 +98,8 @@ const PatientListScreen = () => {
               alignItems: "center",
             }}
           >
-            <HeadingTitle title={company_name} />
+            <HeadingTitle title={company_name} size={22} />
           </View>
-
 
           {/* Date Count Component */}
           <DateCountComponent date={currentDate} />
@@ -114,10 +113,6 @@ const PatientListScreen = () => {
             fonticons={<FontAwesomeIcon name="user" size={16} />}
           />
 
-
-          {/* Search Component */}
-          {/* <Search /> */}
-
           {/* Divider */}
           <Divider />
 
@@ -125,8 +120,8 @@ const PatientListScreen = () => {
           {loader ? (
             <View
               style={{
-                height: width,
                 flex: 1,
+                height: width,
                 alignItems: "center",
                 justifyContent: "center",
               }}
@@ -184,7 +179,7 @@ const PatientListScreen = () => {
             <View
               style={{
                 flex: 1,
-                height: width,
+                height: 200,
                 justifyContent: "flex-end",
                 alignItems: "center",
               }}
