@@ -22,14 +22,14 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const data = [
-  { label: "AB+", value: "1" },
-  { label: "AB-", value: "2" },
-  { label: "O+", value: "3" },
-  { label: "O-", value: "4" },
-  { label: "A-", value: "5" },
-  { label: "A+", value: "6" },
-  { label: "B+", value: "7" },
-  { label: "B-", value: "8" },
+  { label: "AB+", value: "AB+" },
+  { label: "AB-", value: "AB-" },
+  { label: "O+", value: "O+" },
+  { label: "O-", value: "O-" },
+  { label: "A-", value: "A-" },
+  { label: "A+", value: "A+" },
+  { label: "B+", value: "B+" },
+  { label: "B-", value: "B-" },
 ];
 
 const BookingScreen = () => {
@@ -165,7 +165,7 @@ const BookingScreen = () => {
                 Phone <Text style={{ color: "red" }}>*</Text>
               </Text>
               <TextInput
-              maxLength={100}
+                maxLength={100}
                 value={phone}
                 keyboardType="numeric"
                 onChangeText={(value) => {

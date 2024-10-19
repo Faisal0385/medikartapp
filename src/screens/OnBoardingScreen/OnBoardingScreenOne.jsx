@@ -23,7 +23,7 @@ const OnBoardingScreenOne = () => {
     <SafeAreaView style={[styles.container, { width: width }]}>
       <ScrollView>
         <Image
-          source={require("../../../assets/onboarding/doctor-01.jpg")}
+          source={require("../../../assets/onboarding/doctor-01.jpeg")}
           style={{ width: width, height: height/2 }}
         />
         <View
