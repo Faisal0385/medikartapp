@@ -131,7 +131,7 @@ const BookingScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === "ios" ? "padding" : ""}
       >
         <ScrollView>
           <View style={[styles.card, styles.shadowProp]}>

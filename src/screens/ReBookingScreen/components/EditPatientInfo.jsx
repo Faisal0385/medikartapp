@@ -29,6 +29,8 @@ const data = [
 const EditPatientInfo = ({ userInfo, asstID }) => {
   const navigation = useNavigation();
   const [isFocus, setIsFocus] = useState(false);
+  const [loader, setLoader] = useState(false);
+
   // Form Data
   const [serialNo, setSerialNo] = useState("");
   const [fullName, setFullName] = useState("");

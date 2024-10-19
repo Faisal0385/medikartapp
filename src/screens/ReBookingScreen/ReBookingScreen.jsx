@@ -4,6 +4,7 @@ import {
   Platform,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -22,7 +23,6 @@ import { goToSignIntScreen } from "../../navigations/routes";
 
 const ReBookingScreen = () => {
   const { params } = useRoute();
-
   const navigation = useNavigation();
   const [userInfo, setUserInfo] = useState(true);
   const [loader, setLoader] = useState(false);
@@ -80,7 +80,7 @@ const ReBookingScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === "ios" ? "padding" : ""}
       >
         <ScrollView>
           {loader ? (
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
   },
   card: {
     backgroundColor: "white",
