@@ -177,7 +177,7 @@ export default OTPScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 10 : 0,
     alignItems: "center",
   },
   input: {

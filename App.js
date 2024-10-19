@@ -25,7 +25,7 @@ const toastConfig = {
       {...props}
       style={{
         borderLeftColor: "red",
-        marginTop: Platform.OS == "android" ? StatusBar.currentHeight + 5 : 30,
+        marginTop: Platform.OS == "android" ? StatusBar.currentHeight - 5: 30,
         height: 60,
       }}
       text1Style={{
