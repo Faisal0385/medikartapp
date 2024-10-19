@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F4F4F4",
     paddingHorizontal: 10,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 10 : 0,
+    paddingTop: Platform.OS === "android" ?  10 : 0,
   },
   button: {
     alignItems: "center",

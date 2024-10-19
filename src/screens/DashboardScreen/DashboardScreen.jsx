@@ -129,7 +129,7 @@ export default DashboardScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 10 : 0,
+    paddingTop: Platform.OS === "android" ?  10 : 0,
   },
   button: {
     alignItems: "center",
