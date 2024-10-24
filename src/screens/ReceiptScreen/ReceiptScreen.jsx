@@ -6,16 +6,14 @@ import {
   Text,
   TouchableOpacity,
   View,
-  StatusBar,
   Platform,
   TextInput,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
-import { company_name, company_contact } from "../../utils/string";
-import { useRoute } from "@react-navigation/native";
+import { useFocusEffect, useRoute } from "@react-navigation/native";
 import axios from "axios";
 import Toast from "react-native-toast-message";
 import InfoSection from "./components/InfoSection";
@@ -54,7 +52,7 @@ const ReceiptScreen = ({ navigation }) => {
             visibilityTime: 2000,
             bottomOffset: 100,
           });
-          navigation.navigate("Thanks");
+          navigation.navigate("Invoice Screen", { payID: bid });
         } else if (response.data.status == "error") {
           setPaymentAmount(0);
           Toast.show({
@@ -86,12 +84,12 @@ const ReceiptScreen = ({ navigation }) => {
       <View style={{ alignItems: "center" }}>
         <HeadingTitle title="Payment Receipt" />
       </View>
-      {/* <View style={{ alignItems: "center", marginTop: 5 }}>
+      <View style={{ alignItems: "center", marginTop: 5 }}>
         <Image
           source={require("../../../assets/qrcode.png")}
           style={{ height: 70, width: 70 }}
         />
-      </View> */}
+      </View>
 
       <ScrollView>
         <View style={{ padding: 10 }}>
@@ -254,7 +252,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F4F4F4",
     paddingHorizontal: 10,
-    paddingTop: Platform.OS === "android" ?  10 : 0,
+    paddingTop: Platform.OS === "android" ? 10 : 0,
   },
   button: {
     alignItems: "center",

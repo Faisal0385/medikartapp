@@ -16,6 +16,7 @@ import ForgotPasswordScreen from "../screens/Auth/ForgotPasswordScreen/ForgotPas
 import OTPScreen from "../screens/Auth/OTPScreen/OTPScreen";
 import ResetPassword from "../screens/Auth/ResetPassword/ResetPassword";
 import { ReBookingScreen } from "../screens";
+import InvoiceScreen from "../screens/InvoiceScreen/InvoiceScreen";
 
 const Stack = createStackNavigator();
 
@@ -23,15 +24,28 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="Bottom Navbar"
+        component={BottomNavBar}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Bottom Navbar"
-        component={BottomNavBar}
+        name="Receipt"
+        component={ReceiptScreen}
         options={{ headerShown: false }}
       />
+
+      <Stack.Screen
+        name="Invoice Screen"
+        component={InvoiceScreen}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         name="PatientHistory"
         component={PatientHistory}
@@ -47,11 +61,7 @@ function MainNavigator() {
           headerBackTitleVisible: false,
         }}
       />
-      <Stack.Screen
-        name="Receipt"
-        component={ReceiptScreen}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
@@ -111,7 +121,7 @@ function MainNavigator() {
         name="Rebooking"
         component={ReBookingScreen}
         options={{
-          headerShown:false,
+          headerShown: false,
           headerBackTitleVisible: false,
         }}
       />
