@@ -17,6 +17,8 @@ import OTPScreen from "../screens/Auth/OTPScreen/OTPScreen";
 import ResetPassword from "../screens/Auth/ResetPassword/ResetPassword";
 import { ReBookingScreen } from "../screens";
 import InvoiceScreen from "../screens/InvoiceScreen/InvoiceScreen";
+import VenueScreen from "../screens/VenueScreen/VenueScreen";
+import VenueWiseReport from "../screens/VenueWiseReport/VenueWiseReport";
 
 const Stack = createStackNavigator();
 
@@ -24,15 +26,30 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Splash Screen"
-        component={SplashScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="Bottom Navbar"
         component={BottomNavBar}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Venuewise Report Screen"
+        component={VenueWiseReport}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Venue Screen"
+        component={VenueScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Splash Screen"
+        component={SplashScreen}
+        options={{ headerShown: false }}
+      />
+      {/* <Stack.Screen
+        name="Bottom Navbar"
+        component={BottomNavBar}
+        options={{ headerShown: false }}
+      /> */}
 
       <Stack.Screen
         name="Receipt"

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "MediKart",
-    "slug": "MediKart",
+    "slug": "medikart",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -26,11 +26,12 @@
     },
     "extra": {
       "eas": {
-        "projectId": "4793d320-d99b-4c2d-b0a9-894f6e239cc1"
+        "projectId": "1dac99cc-6da7-4a9b-aafb-c7bb4b69eb53"
       }
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "owner": "faisal03"
   }
 }
