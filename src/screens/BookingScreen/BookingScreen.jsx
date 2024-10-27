@@ -20,17 +20,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const data = [
-  { label: "AB+", value: "AB+" },
-  { label: "AB-", value: "AB-" },
-  { label: "O+", value: "O+" },
-  { label: "O-", value: "O-" },
-  { label: "A-", value: "A-" },
-  { label: "A+", value: "A+" },
-  { label: "B+", value: "B+" },
-  { label: "B-", value: "B-" },
-];
+import { data } from "../../data/data";
 
 const BookingScreen = () => {
   const navigation = useNavigation();
@@ -42,6 +32,7 @@ const BookingScreen = () => {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("M");
+  const [reason, setReason] = useState("visit");
   const [ageYear, setAgeYear] = useState(0);
   const [ageMonth, setAgeMonth] = useState(0);
   const [ageDay, setAgeDay] = useState(0);
@@ -90,6 +81,7 @@ const BookingScreen = () => {
     axios
       .post("https://aketbd.com/medikart/api/v1/doctor/booking-appointment", {
         asst_id: userDataObj.id,
+        serial_no: serialNo,
         full_name: fullName,
         mobile: phone,
         gender: gender,
@@ -97,6 +89,7 @@ const BookingScreen = () => {
         age_month: ageMonth,
         age_day: ageDay,
         weight: weight,
+        reason: reason,
         blood_grp: value,
       })
       .then(function (response) {
@@ -130,9 +123,7 @@ const BookingScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : ""}
-      >
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : ""}>
         <ScrollView>
           <View style={[styles.card, styles.shadowProp]}>
             <View style={{ padding: 10 }}>
@@ -286,6 +277,61 @@ const BookingScreen = () => {
                   placeholder="Day"
                   maxLength={2}
                 />
+              </View>
+
+              <Divider />
+
+              <Text style={{ fontWeight: "700" }}>
+                Reason <Text style={{ color: "red" }}>*</Text>
+              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  paddingVertical: 10,
+                }}
+              >
+                <Pressable
+                  onPress={() => setReason("visit")}
+                  style={{
+                    flex: 1,
+                    backgroundColor: reason === "visit" ? "teal" : "white",
+                    padding: 10,
+                    borderRadius: 8,
+                    borderColor: "teal",
+                    borderWidth: 1,
+                    margin: 5,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: reason === "visit" ? "white" : "black",
+                      textAlign: "center",
+                    }}
+                  >
+                    Visit
+                  </Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => setReason("report")}
+                  style={{
+                    flex: 1,
+                    backgroundColor: reason === "report" ? "teal" : "white",
+                    padding: 10,
+                    borderRadius: 8,
+                    borderColor: "teal",
+                    borderWidth: 1,
+                    margin: 5,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: reason === "report" ? "white" : "black",
+                      textAlign: "center",
+                    }}
+                  >
+                    Report
+                  </Text>
+                </Pressable>
               </View>
 
               <Divider />

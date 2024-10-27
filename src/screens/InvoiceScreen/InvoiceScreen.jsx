@@ -13,12 +13,13 @@ import {
 import React, { useCallback, useState } from "react";
 import HeadingTitle from "../../components/HeadingTitle";
 import { COLOR_WHITE, COLOR_BLACK } from "../../utils/colors";
-import { useFocusEffect, useRoute } from "@react-navigation/native";
+import { useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
 import axios from "axios";
 import Toast from "react-native-toast-message";
 import InfoSection from "./components/InfoSection";
 
 const InvoiceScreen = () => {
+  const navigation = useNavigation();
   const route = useRoute();
   const biid = route.params?.payID;
   const [loader, setLoader] = useState(false);
@@ -203,13 +204,13 @@ const InvoiceScreen = () => {
 
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate("Invoice Screen")}
+                onPress={() => navigation.navigate("Thanks")}
               >
                 <Text style={{ color: COLOR_WHITE }}>Print Receipt</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.skipButton}
-                onPress={() => navigation.navigate("Invoice Screen")}
+                onPress={() => navigation.navigate("Thanks")}
               >
                 <Text style={{ color: COLOR_WHITE }}>Skip</Text>
               </TouchableOpacity>
