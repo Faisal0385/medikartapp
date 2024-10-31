@@ -19,12 +19,25 @@ import { ReBookingScreen } from "../screens";
 import InvoiceScreen from "../screens/InvoiceScreen/InvoiceScreen";
 import VenueScreen from "../screens/VenueScreen/VenueScreen";
 import VenueWiseReport from "../screens/VenueWiseReport/VenueWiseReport";
+import UploadImageScreen from "../screens/UploadImageScreen/UploadImageScreen";
+import UploadFormScreen from "../screens/UploadFormScreen/UploadFormScreen";
 
 const Stack = createStackNavigator();
 
 function MainNavigator() {
   return (
     <Stack.Navigator>
+      
+      <Stack.Screen
+        name="Upload Docs"
+        component={UploadImageScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Upload Form"
+        component={UploadFormScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Bottom Navbar"
         component={BottomNavBar}

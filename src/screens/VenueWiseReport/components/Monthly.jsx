@@ -10,7 +10,7 @@ import React from "react";
 const Monthly = () => {
   return (
     <ScrollView>
-      {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((item, key) => {
+      {["Jan 24", "Feb 24", "March 24", "April 24", "May 24","June 24"].map((item, key) => {
         return (
           <TouchableOpacity
             key={key + 1}
@@ -23,7 +23,7 @@ const Monthly = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ color: "black" }}>Jan</Text>
+            <Text style={{ color: "black" }}>{item}</Text>
             <Text style={{ color: "black" }}>5000 BDT</Text>
           </TouchableOpacity>
         );

@@ -17,7 +17,7 @@ const VenueWiseReport = () => {
   const [tab, setTab] = useState(2);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       {/* App Bar */}
       <AppBar appBarText="Report Screen" routeFunc={goToDashboardScreen} />
       <View
@@ -81,4 +81,8 @@ const VenueWiseReport = () => {
 
 export default VenueWiseReport;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container:{
+    flex:1
+  }
+});

@@ -19,6 +19,7 @@ import {
   goToPatientHistoryScreen,
   goToPatientListScreen,
   goToSignIntScreen,
+  goToUploadDocScreen,
   goToVenueScreen,
 } from "../../navigations/routes";
 import Divider from "./components/Divider";
@@ -146,7 +147,7 @@ const DashboardScreen = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => goToPatientListScreen(navigation)}
+              onPress={() => goToUploadDocScreen(navigation)}
               style={{
                 flex: 1,
                 margin: 10,
@@ -167,7 +168,7 @@ const DashboardScreen = () => {
                   fontFamily: "poppinsSemiBold",
                 }}
               >
-                Patient List
+                Docs Upload
               </Text>
             </TouchableOpacity>
           </View>

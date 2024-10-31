@@ -4,7 +4,7 @@ import React from 'react'
 const Yearly = () => {
   return (
 <ScrollView>
-{[2020, 2021, 2022, 2023].map(( item, key ) => {
+{[2020, 2021, 2022, 2023, 2024].map(( item, key ) => {
   return (
     <TouchableOpacity
       key={key + 1}

@@ -29,3 +29,11 @@ export const goToVenueScreen = (navigation) => {
 export const goToVenuewiseScreen = (navigation) => {
   navigation.navigate("Venuewise Report Screen");
 };
+
+export const goToUploadDocScreen = (navigation) => {
+  navigation.navigate("Upload Docs");
+};
+
+export const goToUploadFormScreen = (navigation) => {
+  navigation.navigate("Upload Form");
+};
