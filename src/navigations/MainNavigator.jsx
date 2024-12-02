@@ -18,6 +18,10 @@ import ResetPassword from "../screens/Auth/ResetPassword/ResetPassword";
 import { ReBookingScreen } from "../screens";
 import InvoiceScreen from "../screens/InvoiceScreen/InvoiceScreen";
 import ImageUpload from "../screens/ImageUpload/ImageUpload";
+import VenueScreen from "../screens/VenueScreen/VenueScreen";
+import VenueWiseReport from "../screens/VenueWiseReport/VenueWiseReport";
+import UploadImageScreen from "../screens/UploadImageScreen/UploadImageScreen";
+import UploadFormScreen from "../screens/UploadFormScreen/UploadFormScreen";
 
 const Stack = createStackNavigator();
 
@@ -25,8 +29,13 @@ function MainNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Splash Screen"
-        component={SplashScreen}
+        name="Upload Docs"
+        component={UploadImageScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Upload Form"
+        component={UploadFormScreen}
         options={{ headerShown: false }}
       />
 
@@ -40,6 +49,26 @@ function MainNavigator() {
         component={BottomNavBar}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Venuewise Report Screen"
+        component={VenueWiseReport}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Venue Screen"
+        component={VenueScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Splash Screen"
+        component={SplashScreen}
+        options={{ headerShown: false }}
+      />
+      {/* <Stack.Screen
+        name="Bottom Navbar"
+        component={BottomNavBar}
+        options={{ headerShown: false }}
+      /> */}
 
       <Stack.Screen
         name="Receipt"

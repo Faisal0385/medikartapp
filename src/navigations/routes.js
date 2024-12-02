@@ -21,3 +21,19 @@ export const goToSignIntScreen = (navigation) => {
 export const goToReBookingScreen = (navigation) => {
   navigation.navigate("Rebooking");
 };
+
+export const goToVenueScreen = (navigation) => {
+  navigation.navigate("Venue Screen");
+};
+
+export const goToVenuewiseScreen = (navigation) => {
+  navigation.navigate("Venuewise Report Screen");
+};
+
+export const goToUploadDocScreen = (navigation) => {
+  navigation.navigate("Upload Docs");
+};
+
+export const goToUploadFormScreen = (navigation) => {
+  navigation.navigate("Upload Form");
+};

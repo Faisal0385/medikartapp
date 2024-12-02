@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  StatusBar,
   Platform,
   ScrollView,
 } from "react-native";
@@ -20,6 +19,8 @@ import {
   goToPatientHistoryScreen,
   goToPatientListScreen,
   goToSignIntScreen,
+  goToUploadDocScreen,
+  goToVenueScreen,
 } from "../../navigations/routes";
 import Divider from "./components/Divider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -118,6 +119,59 @@ const DashboardScreen = () => {
           </View>
 
           <Divider />
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity
+              onPress={() => goToVenueScreen(navigation)}
+              style={{
+                flex: 1,
+                margin: 10,
+                height: 100,
+                borderRadius: 8,
+                backgroundColor: themeColors.primary,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <FontAwesomeIcon name="users" size={16} color={"white"} />
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "700",
+                  marginTop: 10,
+                  fontFamily: "poppinsSemiBold",
+                }}
+              >
+                Report
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => goToUploadDocScreen(navigation)}
+              style={{
+                flex: 1,
+                margin: 10,
+                height: 100,
+                borderRadius: 8,
+                backgroundColor: "#FA4D24",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <FontAwesomeIcon name="user-circle" size={16} color={"white"} />
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "700",
+                  marginTop: 10,
+                  fontFamily: "poppinsSemiBold",
+                }}
+              >
+                Docs Upload
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
