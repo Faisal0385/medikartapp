@@ -125,7 +125,7 @@ const PatientListScreen = () => {
                 justifyContent: "center",
               }}
             >
-              <ActivityIndicator size={"large"} color={"orange"} />
+              <ActivityIndicator color={"orange"} />
               <Text style={{ fontSize: 12, fontWeight: "700", paddingTop: 10 }}>
                 Loading...
               </Text>
@@ -205,6 +205,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
-    paddingTop: Platform.OS === "android" ?  10  : 0,
+    paddingTop: Platform.OS === "android" ? 10 : 0,
   },
 });

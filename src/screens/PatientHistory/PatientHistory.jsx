@@ -42,36 +42,36 @@ const PatientHistory = () => {
     }, [])
   );
 
-  const validate = () => {  
+  const validate = () => {
     if (keywordText.trim() == "") {
       ToastMsg("error", "Search field can not be empty!!", "bottom");
       return;
     }
-    setLoader(true);  
+    setLoader(true);
     axios
-    .get(
-      `https://aketbd.com/medikart/api/v1/search/patient/${userDataObj.id}/${keywordText}`
-    )
-    .then(function (response) {
-      setLoader(false);
-      if (response.data.status === "success") {
-        setSearchResult(response.data?.data);
+      .get(
+        `https://aketbd.com/medikart/api/v1/search/patient/${userDataObj.id}/${keywordText}`
+      )
+      .then(function (response) {
         setLoader(false);
-      }
-    })
-    .catch(function (error) {
-      setLoader(false);
-      if (error.status == 500) {
-        Toast.show({
-          type: "error",
-          text1: "Somthing went wrong!!",
-          text2: "Try agian!!",
-          position: "bottom",
-          visibilityTime: 2000,
-          bottomOffset: 100,
-        });
-      }
-    });
+        if (response.data.status === "success") {
+          setSearchResult(response.data?.data);
+          setLoader(false);
+        }
+      })
+      .catch(function (error) {
+        setLoader(false);
+        if (error.status == 500) {
+          Toast.show({
+            type: "error",
+            text1: "Somthing went wrong!!",
+            text2: "Try agian!!",
+            position: "bottom",
+            visibilityTime: 2000,
+            bottomOffset: 100,
+          });
+        }
+      });
   };
 
   // Authentication
@@ -83,7 +83,6 @@ const PatientHistory = () => {
     if (!userDataObj) {
       goToSignIntScreen(navigation);
     }
-
   };
 
   const goToBookingScreen = (navigation) => {
@@ -126,7 +125,7 @@ const PatientHistory = () => {
               justifyContent: "center",
             }}
           >
-            <ActivityIndicator size={"large"} color={"orange"} />
+            <ActivityIndicator color={"orange"} />
             <Text style={{ fontSize: 12, fontWeight: "700", paddingTop: 10 }}>
               Loading...
             </Text>
@@ -175,7 +174,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
-    paddingTop: Platform.OS === "android" ?  10  : 0,
+    paddingTop: Platform.OS === "android" ? 10 : 0,
   },
   searchStyle: {
     backgroundColor: "#65ad53",

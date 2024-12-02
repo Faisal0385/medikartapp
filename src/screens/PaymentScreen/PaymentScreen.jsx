@@ -75,7 +75,7 @@ const PaymentScreen = () => {
               justifyContent: "flex-end",
             }}
           >
-            <ActivityIndicator size={"large"} color={"orange"} />
+            <ActivityIndicator color={"orange"} />
             <Text style={{ fontSize: 12, fontWeight: "700", paddingTop: 10 }}>
               Loading...
             </Text>

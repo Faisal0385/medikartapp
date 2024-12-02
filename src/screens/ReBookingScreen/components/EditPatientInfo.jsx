@@ -322,7 +322,7 @@ const EditPatientInfo = ({ userInfo, asstID }) => {
       <Divider />
 
       {loader ? (
-        <ActivityIndicator size="large" color={"green"} />
+        <ActivityIndicator color={"green"} />
       ) : (
         <View>
           <TouchableOpacity onPress={() => makeBooking()} style={styles.button}>

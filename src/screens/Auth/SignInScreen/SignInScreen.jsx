@@ -3,7 +3,6 @@ import {
   Platform,
   SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   View,
   Text,
@@ -19,7 +18,6 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import AuthImage from "../../../components/AuthImage";
 import AuthTitle from "../../../components/AuthTitle";
 import AuthButton from "../../../components/AuthButton";
-import AuthLinkButton from "../../../components/AuthLinkButton";
 import { authToaster, errorToast } from "../../ToastMessage";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -93,13 +91,11 @@ const SignInScreen = () => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : ""}
-      >
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : ""}>
         <ScrollView>
           {/* signin image */}
           <AuthImage authImage={signin_image} />
-          
+
           {/* title text & subtitle */}
           <AuthTitle titleText={signin_title} subTitleText={singin_sub_title} />
 
@@ -197,7 +193,7 @@ export default SignInScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === "android" ?  10  : 0,
+    paddingTop: Platform.OS === "android" ? 10 : 0,
   },
   formWrapper: {
     width: "100%",

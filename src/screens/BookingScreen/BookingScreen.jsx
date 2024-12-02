@@ -377,7 +377,7 @@ const BookingScreen = () => {
               <Divider />
 
               {loader ? (
-                <ActivityIndicator size="large" color={"green"} />
+                <ActivityIndicator color={"green"} />
               ) : (
                 <TouchableOpacity
                   onPress={() => makeBooking()}

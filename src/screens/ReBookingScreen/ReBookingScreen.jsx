@@ -79,12 +79,10 @@ const ReBookingScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : ""}
-      >
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : ""}>
         <ScrollView>
           {loader ? (
-            <ActivityIndicator size="large" color={"green"} />
+            <ActivityIndicator color={"green"} />
           ) : userInfo ? (
             <View style={[styles.card, styles.shadowProp]}>
               <EditPatientInfo userInfo={userInfo} asstID={userDataObj.id} />
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F4F4F4",
-    paddingTop: Platform.OS == "android" ?  10 : 0,
+    paddingTop: Platform.OS == "android" ? 10 : 0,
   },
   card: {
     backgroundColor: "white",

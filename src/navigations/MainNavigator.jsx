@@ -17,6 +17,7 @@ import OTPScreen from "../screens/Auth/OTPScreen/OTPScreen";
 import ResetPassword from "../screens/Auth/ResetPassword/ResetPassword";
 import { ReBookingScreen } from "../screens";
 import InvoiceScreen from "../screens/InvoiceScreen/InvoiceScreen";
+import ImageUpload from "../screens/ImageUpload/ImageUpload";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,12 @@ function MainNavigator() {
       <Stack.Screen
         name="Splash Screen"
         component={SplashScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Image Upload"
+        component={ImageUpload}
         options={{ headerShown: false }}
       />
       <Stack.Screen
